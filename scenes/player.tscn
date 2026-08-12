@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://i7gse8jih7h6"]
+
+[ext_resource type="Script" uid="uid://spyqbwfilv61" path="res://scripts/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://dxinngpqrmhbi" path="res://sprites/pixilart-sprite.png" id="2_onrkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(59, 141)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_hqtel")
+}],
+"loop": 1,
+"name": &"standing",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=900707046]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320426006]
+position = Vector2(3.5, 8.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1982523372]
+position = Vector2(2, 7)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+animation = &"standing"
+autoplay = "standing"
+frame = 1
+frame_progress = 0.16223426

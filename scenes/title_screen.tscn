@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://60lr0limgu22"]
+
+[ext_resource type="Texture2D" uid="uid://cq7mxui6buetp" path="res://sprites/title screen scenery.png" id="1_fgkus"]
+[ext_resource type="Script" uid="uid://cj34p2xrsn1yj" path="res://scripts/title_screen.gd" id="1_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://bqqw0c25q3puv" path="res://sprites/play button.png" id="2_sa3yf"]
+[ext_resource type="Script" uid="uid://dtu7uqjbrndcf" path="res://scenes/play_button.gd" id="4_mgrm8"]
+
+[node name="Title Screen" type="Control" unique_id=1499017291]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s4lrb")
+metadata/_edit_lock_ = true
+
+[node name="Background" type="TextureRect" parent="." unique_id=70778300]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_fgkus")
+
+[node name="PlayButton" type="TextureButton" parent="." unique_id=1626238975]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -108.0
+offset_right = 164.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("2_sa3yf")
+script = ExtResource("4_mgrm8")
+
+[connection signal="button_down" from="PlayButton" to="PlayButton" method="_on_button_down"]
+[connection signal="button_up" from="PlayButton" to="PlayButton" method="_on_button_up"]
+[connection signal="mouse_entered" from="PlayButton" to="PlayButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PlayButton" to="PlayButton" method="_on_mouse_exited"]
