@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://60lr0limgu22"]
 
-[ext_resource type="Texture2D" uid="uid://cq7mxui6buetp" path="res://sprites/title screen scenery.png" id="1_fgkus"]
+[ext_resource type="Texture2D" uid="uid://cq7mxui6buetp" path="res://backgrounds/title_screen.png" id="1_fgkus"]
 [ext_resource type="Script" uid="uid://cj34p2xrsn1yj" path="res://scripts/title_screen.gd" id="1_s4lrb"]
-[ext_resource type="Texture2D" uid="uid://bqqw0c25q3puv" path="res://sprites/play button.png" id="2_sa3yf"]
-[ext_resource type="Script" uid="uid://dtu7uqjbrndcf" path="res://scenes/play_button.gd" id="4_mgrm8"]
+[ext_resource type="Texture2D" uid="uid://bqqw0c25q3puv" path="res://object_sprites/play_button.png" id="2_sa3yf"]
+[ext_resource type="Script" uid="uid://dtu7uqjbrndcf" path="res://scripts/play_button.gd" id="4_mgrm8"]
 
-[node name="Title Screen" type="Control" unique_id=1499017291]
+[node name="TitleScreen" type="Control" unique_id=1499017291]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

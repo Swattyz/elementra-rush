@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqqw0c25q3puv"
-path="res://.godot/imported/play button.png-858091133319b075204b216b3b7c0a59.ctex"
+uid="uid://dec7ddqo01ixh"
+path="res://.godot/imported/lesser_title_screen.png-51201497f93df86ad69b4c4dddd8faf3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/play button.png"
-dest_files=["res://.godot/imported/play button.png-858091133319b075204b216b3b7c0a59.ctex"]
+source_file="res://backgrounds/lesser_title_screen.png"
+dest_files=["res://.godot/imported/lesser_title_screen.png-51201497f93df86ad69b4c4dddd8faf3.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://i7gse8jih7h6"]
 
 [ext_resource type="Script" uid="uid://spyqbwfilv61" path="res://scripts/player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://dxinngpqrmhbi" path="res://sprites/pixilart-sprite.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://dxinngpqrmhbi" path="res://player_sprites/idle_spritesheet.png" id="2_onrkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(59, 141)

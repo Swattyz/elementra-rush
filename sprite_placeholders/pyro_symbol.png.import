@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxinngpqrmhbi"
-path="res://.godot/imported/pixilart-sprite.png-52b5c5a26679cd39fd199b2bc8f051f6.ctex"
+uid="uid://ndwxj0va0x05"
+path="res://.godot/imported/pyro_symbol.png-5588618f88f622d5c52f263612cb5ccf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pixilart-sprite.png"
-dest_files=["res://.godot/imported/pixilart-sprite.png-52b5c5a26679cd39fd199b2bc8f051f6.ctex"]
+source_file="res://sprite_placeholders/pyro_symbol.png"
+dest_files=["res://.godot/imported/pyro_symbol.png-5588618f88f622d5c52f263612cb5ccf.ctex"]
 
 [params]
 

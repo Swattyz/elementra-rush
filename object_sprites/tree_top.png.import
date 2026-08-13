@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq7mxui6buetp"
-path="res://.godot/imported/title screen scenery.png-2c731096d2ccabdb8bbb51f0f12693ee.ctex"
+uid="uid://l6bijtw7fyd2"
+path="res://.godot/imported/tree_top.png-498063c8ba33e020aece3e4b4af302aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/title screen scenery.png"
-dest_files=["res://.godot/imported/title screen scenery.png-2c731096d2ccabdb8bbb51f0f12693ee.ctex"]
+source_file="res://object_sprites/tree_top.png"
+dest_files=["res://.godot/imported/tree_top.png-498063c8ba33e020aece3e4b4af302aa.ctex"]
 
 [params]
 

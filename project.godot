@@ -14,6 +14,10 @@ config/name="Elementra RUSH"
 run/main_scene="uid://xfijux3rntwy"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
+[autoload]
+
+TransitionScreen="*uid://cpkbjkkw0tf3k"
+
 [display]
 
 window/size/viewport_width=640

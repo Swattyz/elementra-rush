@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l6bijtw7fyd2"
-path="res://.godot/imported/Tree Top.png-77cc471aa17af63e0ceca0003d63da2c.ctex"
+uid="uid://cq7mxui6buetp"
+path="res://.godot/imported/title_screen.png-c1a46a9140b6a4424c2167762916da59.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Tree Top.png"
-dest_files=["res://.godot/imported/Tree Top.png-77cc471aa17af63e0ceca0003d63da2c.ctex"]
+source_file="res://backgrounds/title_screen.png"
+dest_files=["res://.godot/imported/title_screen.png-c1a46a9140b6a4424c2167762916da59.ctex"]
 
 [params]
 
