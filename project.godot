@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 [autoload]
 
 TransitionScreen="*uid://cpkbjkkw0tf3k"
+Global="*uid://bcm8ug8ni01po"
 
 [display]
 

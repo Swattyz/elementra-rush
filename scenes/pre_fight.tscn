@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ba5pecb4dchew"]
+
+[ext_resource type="Script" uid="uid://b22gm3hxs20bh" path="res://scenes/pre_fight.gd" id="1_x6r5m"]
+[ext_resource type="Texture2D" uid="uid://bis2f8r08asg5" path="res://object_sprites/tree.png" id="2_y8r40"]
+
+[node name="PreFight" type="Node2D" unique_id=348778550]
+script = ExtResource("1_x6r5m")
+
+[node name="TreePlaceholder" type="Sprite2D" parent="." unique_id=1820234674]
+position = Vector2(285, 160)
+texture = ExtResource("2_y8r40")
