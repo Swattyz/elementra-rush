@@ -1,9 +1,18 @@
 extends TextureButton
 
+func _ready():
+	grab_focus()
+
 func _on_mouse_entered() -> void:
-	modulate = Color(1.2, 1.2, 1.2, 1.0)
+	modulate = Color(1.4, 1.4, 1.4, 1.4)
+
+func _on_focus_entered() -> void:
+	modulate = Color(1.4, 1.4, 1.4, 1.4)
 
 func _on_mouse_exited() -> void:
+	modulate = Color.WHITE
+
+func _on_focus_exited() -> void:
 	modulate = Color.WHITE
 
 func _on_button_down() -> void:
@@ -13,7 +22,7 @@ func _on_button_down() -> void:
 	call_deferred("change_scene")
 
 func _on_button_up() -> void:
-	modulate = Color(1.2, 1.2, 1.2, 1.0)
+	modulate = Color(1.4, 1.4, 1.4, 1.4)
 
 func change_scene():
 	get_tree().change_scene_to_file("res://scenes/pre_fight.tscn")

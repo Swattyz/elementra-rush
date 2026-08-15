@@ -1,5 +1,8 @@
 extends TextureButton
 
+func _ready():
+	grab_focus()
+
 func _on_mouse_entered() -> void:
 	modulate = Color(1.2, 1.2, 1.2, 1.0)
 
