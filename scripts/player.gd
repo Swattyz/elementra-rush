@@ -1,7 +1,8 @@
-extends Node2D
+extends CharacterBody2D
 var direction: Vector2 = Vector2(0,0)
-var speed: int = 15
+var speed: int = 125
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	direction = Input.get_vector("left", "right", "up", "down")
-	position += direction * speed
+	velocity = direction * speed
+	move_and_slide()

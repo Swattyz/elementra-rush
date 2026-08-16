@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dxinngpqrmhbi" path="res://player_sprites/idle_spritesheet.png" id="2_onrkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(59, 141)
+size = Vector2(33, 112)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
 atlas = ExtResource("2_onrkg")
@@ -29,10 +29,11 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=900707046]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320426006]
-position = Vector2(3.5, 8.5)
+position = Vector2(6.5, 8)
 shape = SubResource("RectangleShape2D_g4v7s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1982523372]
@@ -42,3 +43,12 @@ animation = &"standing"
 autoplay = "standing"
 frame = 1
 frame_progress = 0.16223426
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1939662166]
+zoom = Vector2(1.35, 1.35)
+limit_left = 0
+limit_top = 0
+limit_right = 640
+limit_bottom = 360
+position_smoothing_enabled = true
+position_smoothing_speed = 100.0

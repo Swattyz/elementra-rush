@@ -1,11 +1,95 @@
 [gd_scene format=3 uid="uid://ba5pecb4dchew"]
 
 [ext_resource type="Script" uid="uid://b22gm3hxs20bh" path="res://scenes/pre_fight.gd" id="1_x6r5m"]
-[ext_resource type="Texture2D" uid="uid://bis2f8r08asg5" path="res://object_sprites/tree.png" id="2_y8r40"]
+[ext_resource type="Texture2D" uid="uid://cl4fjehb5epa5" path="res://backgrounds/prefight_spritesheet.png" id="2_oyfrc"]
+[ext_resource type="Texture2D" uid="uid://uo41062thddr" path="res://sprite_placeholders/grass placeholder.png" id="3_x2mcq"]
+[ext_resource type="PackedScene" uid="uid://i7gse8jih7h6" path="res://scenes/player.tscn" id="4_r4fr8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2mcq"]
+atlas = ExtResource("2_oyfrc")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4fr8"]
+atlas = ExtResource("2_oyfrc")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u0ny"]
+atlas = ExtResource("2_oyfrc")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_x2mcq")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_r4fr8")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_7u0ny")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(639, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(20, 362)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57qmd"]
+size = Vector2(20, 362)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0u6y"]
+size = Vector2(664, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gngh"]
+size = Vector2(658, 275)
 
 [node name="PreFight" type="Node2D" unique_id=348778550]
 script = ExtResource("1_x6r5m")
 
-[node name="TreePlaceholder" type="Sprite2D" parent="." unique_id=1820234674]
-position = Vector2(285, 160)
-texture = ExtResource("2_y8r40")
+[node name="Background" type="AnimatedSprite2D" parent="." unique_id=556850775]
+position = Vector2(320, 182)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+frame = 1
+frame_progress = 0.098440595
+
+[node name="Terrain" type="StaticBody2D" parent="." unique_id=561650433]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain" unique_id=690342533]
+position = Vector2(320.5, 353.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="Sprite2D" type="Sprite2D" parent="Terrain" unique_id=1546053534]
+modulate = Color(1, 0.15686275, 0.02745098, 1)
+position = Vector2(320.00003, 340)
+scale = Vector2(0.6666666, 0.0851852)
+texture = ExtResource("3_x2mcq")
+
+[node name="Player" parent="." unique_id=900707046 instance=ExtResource("4_r4fr8")]
+position = Vector2(25, 285)
+
+[node name="Barriers" type="Node2D" parent="." unique_id=955887741]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Barriers" unique_id=1690068481]
+
+[node name="RightBarrier" type="CollisionShape2D" parent="Barriers/StaticBody2D" unique_id=2063082558]
+position = Vector2(650, 182)
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="LeftBarrier" type="CollisionShape2D" parent="Barriers/StaticBody2D" unique_id=1433947301]
+position = Vector2(-10, 182)
+shape = SubResource("RectangleShape2D_57qmd")
+
+[node name="BottomBarrier" type="CollisionShape2D" parent="Barriers/StaticBody2D" unique_id=2042414877]
+position = Vector2(323, 373)
+shape = SubResource("RectangleShape2D_d0u6y")
+
+[node name="TopBarrier" type="CollisionShape2D" parent="Barriers/StaticBody2D" unique_id=1196611847]
+position = Vector2(320, 118.5)
+shape = SubResource("RectangleShape2D_3gngh")
