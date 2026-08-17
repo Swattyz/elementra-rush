@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxinngpqrmhbi"
-path="res://.godot/imported/idle_spritesheet.png-ea40dc8b361c2fd021f43a8f1533b1fa.ctex"
+uid="uid://bt74lqu8nyi6v"
+path="res://.godot/imported/hydro_walking_spritesheet.png-3ec46c4dc967b30680a0a0c24b4101c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player_sprites/idle_spritesheet.png"
-dest_files=["res://.godot/imported/idle_spritesheet.png-ea40dc8b361c2fd021f43a8f1533b1fa.ctex"]
+source_file="res://player_sprites/hydro_walking_spritesheet.png"
+dest_files=["res://.godot/imported/hydro_walking_spritesheet.png-3ec46c4dc967b30680a0a0c24b4101c2.ctex"]
 
 [params]
 

@@ -1,3 +1,3 @@
 extends Node
 
-var player_element = "None"
+var player_element: int = 0
