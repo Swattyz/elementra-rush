@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://d2np7rx2gy4in"]
+
+[ext_resource type="Script" uid="uid://dwxnr1oal5o1l" path="res://scripts/dialogue_box.gd" id="1_tm68y"]
+[ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="2_hvmm2"]
+[ext_resource type="Texture2D" uid="uid://c10w7cl5o20o6" path="res://object_sprites/unknown_identity_icon.png" id="3_p0wdv"]
+
+[node name="DialogueBox" type="CanvasLayer" unique_id=2130471507]
+script = ExtResource("1_tm68y")
+
+[node name="Box" type="ColorRect" parent="." unique_id=2013241283]
+modulate = Color(0.47058824, 0, 0.050980393, 0.5921569)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -206.5
+offset_top = -351.0
+offset_right = 206.5
+offset_bottom = -276.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=1453325857]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -320.0
+offset_right = 189.0
+offset_bottom = -283.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("2_hvmm2")
+text = "...Você caminhou por tanto tempo, até que encontrou um local que se assemelhava a um vulcão."
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Author" type="Label" parent="." unique_id=2124774522]
+modulate = Color(1, 1, 0.28627452, 1)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -344.0
+offset_right = -60.0
+offset_bottom = -327.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_hvmm2")
+text = "???"
+
+[node name="Icon" type="TextureRect" parent="." unique_id=664171526]
+offset_left = 120.0
+offset_top = 14.0
+offset_right = 185.0
+offset_bottom = 79.0
+texture = ExtResource("3_p0wdv")
+expand_mode = 1
+stretch_mode = 2

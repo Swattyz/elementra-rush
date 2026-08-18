@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://ba5pecb4dchew"]
 
-[ext_resource type="Script" uid="uid://b22gm3hxs20bh" path="res://scenes/pre_fight.gd" id="1_x6r5m"]
+[ext_resource type="Script" uid="uid://b22gm3hxs20bh" path="res://scripts/pre_fight.gd" id="1_x6r5m"]
 [ext_resource type="Texture2D" uid="uid://cl4fjehb5epa5" path="res://backgrounds/prefight_spritesheet.png" id="2_oyfrc"]
 [ext_resource type="Texture2D" uid="uid://uo41062thddr" path="res://sprite_placeholders/grass placeholder.png" id="3_x2mcq"]
 [ext_resource type="PackedScene" uid="uid://i7gse8jih7h6" path="res://scenes/player.tscn" id="4_r4fr8"]
+[ext_resource type="Texture2D" uid="uid://l1rtl0vqtdlj" path="res://sprite_placeholders/dragon_placeholder.png" id="6_7u0ny"]
+[ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="7_aqtrw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x2mcq"]
 atlas = ExtResource("2_oyfrc")
@@ -49,6 +51,12 @@ size = Vector2(664, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gngh"]
 size = Vector2(658, 275)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcnqv"]
+size = Vector2(1980.6078, 1824.39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7numd"]
+size = Vector2(1019.14746, 848.78033)
+
 [node name="PreFight" type="Node2D" unique_id=348778550]
 script = ExtResource("1_x6r5m")
 
@@ -58,6 +66,7 @@ sprite_frames = SubResource("SpriteFrames_g4v7s")
 autoplay = "default"
 frame = 1
 frame_progress = 0.098440595
+metadata/_edit_lock_ = true
 
 [node name="Terrain" type="StaticBody2D" parent="." unique_id=561650433]
 
@@ -81,15 +90,65 @@ position = Vector2(25, 285)
 [node name="RightBarrier" type="CollisionShape2D" parent="Barriers/StaticBody2D" unique_id=2063082558]
 position = Vector2(650, 182)
 shape = SubResource("RectangleShape2D_yf5fn")
+metadata/_edit_lock_ = true
 
 [node name="LeftBarrier" type="CollisionShape2D" parent="Barriers/StaticBody2D" unique_id=1433947301]
 position = Vector2(-10, 182)
 shape = SubResource("RectangleShape2D_57qmd")
+metadata/_edit_lock_ = true
 
 [node name="BottomBarrier" type="CollisionShape2D" parent="Barriers/StaticBody2D" unique_id=2042414877]
 position = Vector2(323, 373)
 shape = SubResource("RectangleShape2D_d0u6y")
+metadata/_edit_lock_ = true
 
 [node name="TopBarrier" type="CollisionShape2D" parent="Barriers/StaticBody2D" unique_id=1196611847]
 position = Vector2(320, 118.5)
 shape = SubResource("RectangleShape2D_3gngh")
+metadata/_edit_lock_ = true
+
+[node name="Enemy" type="Node2D" parent="." unique_id=1857199118]
+position = Vector2(539.62506, 279.50003)
+scale = Vector2(0.10400849, 0.10250002)
+
+[node name="Dragon" type="Sprite2D" parent="Enemy" unique_id=1684796799]
+texture = ExtResource("6_7u0ny")
+
+[node name="Area2D" type="Area2D" parent="Enemy" unique_id=1439389621]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D" unique_id=368430834]
+position = Vector2(-25.23877, -97.56128)
+shape = SubResource("RectangleShape2D_fcnqv")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Enemy" unique_id=1868589829]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/StaticBody2D" unique_id=878971901]
+position = Vector2(-15.624512, -19.512451)
+shape = SubResource("RectangleShape2D_7numd")
+
+[node name="InteractSignal" type="Control" parent="." unique_id=332527410]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="ColorRect" parent="InteractSignal" unique_id=1169231033]
+modulate = Color(0.1148968, 0.11489681, 0.1148968, 0.50980395)
+layout_mode = 0
+offset_left = 441.0
+offset_top = 208.0
+offset_right = 491.0
+offset_bottom = 230.0
+
+[node name="Label" type="Label" parent="InteractSignal" unique_id=1255611346]
+layout_mode = 0
+offset_left = 447.0
+offset_top = 213.0
+offset_right = 488.0
+offset_bottom = 225.0
+theme_override_fonts/font = ExtResource("7_aqtrw")
+theme_override_font_sizes/font_size = 12
+text = "Interagir"
+
+[connection signal="body_entered" from="Enemy/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Enemy/Area2D" to="." method="_on_area_2d_body_exited"]

@@ -52,7 +52,7 @@ offset_bottom = 100.79199
 theme_override_colors/font_color = Color(0, 0.7522902, 0.7555237, 1)
 theme_override_fonts/font = ExtResource("8_d4efv")
 theme_override_font_sizes/font_size = 100
-text = "Air"
+text = "Ar"
 horizontal_alignment = 1
 
 [node name="ElementHydro" type="TextureButton" parent="ElementButtons" unique_id=1947945476]
@@ -77,10 +77,10 @@ offset_left = -103.5
 offset_top = -4.500061
 offset_right = 102.5
 offset_bottom = 96.49994
-theme_override_colors/font_color = Color(0.4336556, 0.3630683, 0.99999505, 1)
+theme_override_colors/font_color = Color(0, 0.3163275, 0.7026767, 1)
 theme_override_fonts/font = ExtResource("8_d4efv")
 theme_override_font_sizes/font_size = 100
-text = "Water"
+text = "Água"
 horizontal_alignment = 1
 
 [node name="ElementPyro" type="TextureButton" parent="ElementButtons" unique_id=1701501670]
@@ -108,7 +108,7 @@ offset_bottom = 106.55798
 theme_override_colors/font_color = Color(0.74658525, 2.0094587e-06, 8.663535e-07, 1)
 theme_override_fonts/font = ExtResource("8_d4efv")
 theme_override_font_sizes/font_size = 100
-text = "Fire"
+text = "Fogo"
 horizontal_alignment = 1
 
 [node name="ElementDendro" type="TextureButton" parent="ElementButtons" unique_id=1359100060]
@@ -135,7 +135,7 @@ offset_bottom = 100.79199
 theme_override_colors/font_color = Color(0.26429796, 0.5764952, 1.92523e-07, 1)
 theme_override_fonts/font = ExtResource("8_d4efv")
 theme_override_font_sizes/font_size = 100
-text = "Grass"
+text = "Planta"
 horizontal_alignment = 1
 
 [node name="Dialogue" type="Node" parent="." unique_id=795623253]
