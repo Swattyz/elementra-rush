@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal on_transition_finished
 
+@onready var transitioning: bool = false
 @onready var color_rect = $ColorRect
 @onready var animation_player = $AnimationPlayer
 

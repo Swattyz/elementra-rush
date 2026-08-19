@@ -16,6 +16,7 @@ func _on_focus_exited() -> void:
 	modulate = Color.WHITE
 
 func _on_button_down() -> void:
+	disabled = true
 	modulate = Color(0.5, 0.5, 0.5, 1.0)
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished

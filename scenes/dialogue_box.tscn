@@ -20,6 +20,7 @@ offset_right = 206.5
 offset_bottom = -276.0
 grow_horizontal = 2
 grow_vertical = 0
+metadata/_edit_group_ = true
 
 [node name="Text" type="RichTextLabel" parent="." unique_id=1453325857]
 anchors_preset = -1
@@ -36,6 +37,7 @@ theme_override_fonts/normal_font = ExtResource("2_hvmm2")
 text = "...Você caminhou por tanto tempo, até que encontrou um local que se assemelhava a um vulcão."
 scroll_active = false
 horizontal_alignment = 1
+metadata/_edit_group_ = true
 
 [node name="Author" type="Label" parent="." unique_id=2124774522]
 modulate = Color(1, 1, 0.28627452, 1)
@@ -52,6 +54,7 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_hvmm2")
 text = "???"
+metadata/_edit_group_ = true
 
 [node name="Icon" type="TextureRect" parent="." unique_id=664171526]
 offset_left = 120.0
@@ -61,3 +64,4 @@ offset_bottom = 79.0
 texture = ExtResource("3_p0wdv")
 expand_mode = 1
 stretch_mode = 2
+metadata/_edit_group_ = true

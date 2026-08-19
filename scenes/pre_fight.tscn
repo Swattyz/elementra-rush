@@ -39,6 +39,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(639, 17)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1u0y"]
+size = Vector2(114, 150)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
 size = Vector2(20, 362)
 
@@ -68,17 +71,25 @@ frame = 1
 frame_progress = 0.098440595
 metadata/_edit_lock_ = true
 
-[node name="Terrain" type="StaticBody2D" parent="." unique_id=561650433]
+[node name="Objects" type="Node2D" parent="." unique_id=1714373173]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain" unique_id=690342533]
+[node name="Terrain" type="StaticBody2D" parent="Objects" unique_id=561650433]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Terrain" unique_id=690342533]
 position = Vector2(320.5, 353.5)
 shape = SubResource("RectangleShape2D_g4v7s")
 
-[node name="Sprite2D" type="Sprite2D" parent="Terrain" unique_id=1546053534]
+[node name="Sprite2D" type="Sprite2D" parent="Objects/Terrain" unique_id=1546053534]
 modulate = Color(1, 0.15686275, 0.02745098, 1)
 position = Vector2(320.00003, 340)
 scale = Vector2(0.6666666, 0.0851852)
 texture = ExtResource("3_x2mcq")
+
+[node name="DialogueTrigger" type="Area2D" parent="Objects" unique_id=2013674989]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/DialogueTrigger" unique_id=7061946]
+position = Vector2(182, 290)
+shape = SubResource("RectangleShape2D_p1u0y")
 
 [node name="Player" parent="." unique_id=900707046 instance=ExtResource("4_r4fr8")]
 position = Vector2(25, 285)
@@ -150,5 +161,6 @@ theme_override_fonts/font = ExtResource("7_aqtrw")
 theme_override_font_sizes/font_size = 12
 text = "Interagir"
 
+[connection signal="body_entered" from="Objects/DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]
 [connection signal="body_entered" from="Enemy/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Enemy/Area2D" to="." method="_on_area_2d_body_exited"]
