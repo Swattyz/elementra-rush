@@ -16,6 +16,7 @@ func _on_animation_finished(anim_name):
 		animation_player.play("fade_to_normal")
 	elif anim_name == "fade_to_normal":
 		color_rect.visible = false
+	transitioning = false
 
 func transition():
 	color_rect.visible = true

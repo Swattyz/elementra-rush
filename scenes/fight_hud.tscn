@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://barxr5le2dev3"]
+
+[ext_resource type="Script" uid="uid://c4o6vbbajqawt" path="res://scripts/fight_hud.gd" id="1_kwora"]
+[ext_resource type="Texture2D" uid="uid://dx144wisx7646" path="res://sprite_placeholders/fight_button.png" id="1_pd4by"]
+[ext_resource type="Texture2D" uid="uid://bh0lmk3q7c6p7" path="res://sprite_placeholders/item_button.png" id="2_kwora"]
+[ext_resource type="Script" uid="uid://b6nfx3q5d6mgu" path="res://scripts/fight_buttons.gd" id="3_0qpmx"]
+[ext_resource type="Texture2D" uid="uid://cbv0mrw7b63rg" path="res://sprite_placeholders/mercy_button.png" id="3_yx6k4"]
+
+[node name="FightHUD" type="CanvasLayer" unique_id=1416916991]
+script = ExtResource("1_kwora")
+
+[node name="Background" type="ColorRect" parent="." unique_id=108655804]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.99700004
+anchor_right = 0.5
+anchor_bottom = 0.99700004
+offset_left = -320.0
+offset_top = -73.92001
+offset_right = 320.0
+offset_bottom = 0.07998657
+color = Color(0.45840502, 0.45840508, 0.45840502, 1)
+
+[node name="Buttons" type="Control" parent="." unique_id=1445736310]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FightButton" type="TextureButton" parent="Buttons" unique_id=536424163]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 295.0
+offset_right = 548.0
+offset_bottom = 485.0
+scale = Vector2(0.28091198, 0.28091198)
+focus_neighbor_right = NodePath("../ItemButton")
+texture_normal = ExtResource("1_pd4by")
+script = ExtResource("3_0qpmx")
+
+[node name="ItemButton" type="TextureButton" parent="Buttons" unique_id=918262939]
+layout_mode = 0
+offset_left = 251.00002
+offset_top = 293.00003
+offset_right = 779.0
+offset_bottom = 517.0
+scale = Vector2(0.2571681, 0.2571681)
+focus_neighbor_left = NodePath("../FightButton")
+focus_neighbor_right = NodePath("../MercyButton")
+texture_normal = ExtResource("2_kwora")
+script = ExtResource("3_0qpmx")
+
+[node name="MercyButton" type="TextureButton" parent="Buttons" unique_id=1301696052]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 439.0
+offset_top = 256.0
+offset_right = 973.0
+offset_bottom = 446.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.28091198, 0.28091198)
+focus_neighbor_left = NodePath("../ItemButton")
+texture_normal = ExtResource("3_yx6k4")
+script = ExtResource("3_0qpmx")
+
+[connection signal="button_down" from="Buttons/FightButton" to="Buttons/FightButton" method="_on_button_down"]
+[connection signal="button_up" from="Buttons/FightButton" to="Buttons/FightButton" method="_on_button_up"]
+[connection signal="focus_entered" from="Buttons/FightButton" to="Buttons/FightButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Buttons/FightButton" to="Buttons/FightButton" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="Buttons/FightButton" to="Buttons/FightButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/FightButton" to="Buttons/FightButton" method="_on_mouse_exited"]
+[connection signal="button_down" from="Buttons/ItemButton" to="Buttons/ItemButton" method="_on_button_down"]
+[connection signal="button_up" from="Buttons/ItemButton" to="Buttons/ItemButton" method="_on_button_up"]
+[connection signal="focus_entered" from="Buttons/ItemButton" to="Buttons/ItemButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Buttons/ItemButton" to="Buttons/ItemButton" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="Buttons/ItemButton" to="Buttons/ItemButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/ItemButton" to="Buttons/ItemButton" method="_on_mouse_exited"]
+[connection signal="button_down" from="Buttons/MercyButton" to="Buttons/MercyButton" method="_on_button_down"]
+[connection signal="button_up" from="Buttons/MercyButton" to="Buttons/MercyButton" method="_on_button_up"]
+[connection signal="focus_entered" from="Buttons/MercyButton" to="Buttons/MercyButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Buttons/MercyButton" to="Buttons/MercyButton" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="Buttons/MercyButton" to="Buttons/MercyButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/MercyButton" to="Buttons/MercyButton" method="_on_mouse_exited"]

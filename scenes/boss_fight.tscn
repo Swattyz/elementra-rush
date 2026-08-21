@@ -1,3 +1,103 @@
 [gd_scene format=3 uid="uid://bvc7e1qpkxqa7"]
 
+[ext_resource type="Texture2D" uid="uid://d0anpx3s2mkrd" path="res://player_sprites/idle_anemo_spritesheet.png" id="1_7ydql"]
+[ext_resource type="Script" uid="uid://ucqxs3wxgo7w" path="res://scripts/boss_fight.gd" id="1_85w88"]
+[ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="1_dl1d0"]
+[ext_resource type="Texture2D" uid="uid://l1rtl0vqtdlj" path="res://sprite_placeholders/dragon_placeholder.png" id="2_85w88"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67f06"]
+atlas = ExtResource("1_7ydql")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31neg"]
+atlas = ExtResource("1_7ydql")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67f06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31neg")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf5fn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_85w88")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="BossFight" type="Node2D" unique_id=378535863]
+script = ExtResource("1_85w88")
+
+[node name="Player" type="AnimatedSprite2D" parent="." unique_id=37230695]
+position = Vector2(122, 178.00002)
+scale = Vector2(1.4666667, 1.4666667)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+
+[node name="Enemy" type="AnimatedSprite2D" parent="." unique_id=178384744]
+position = Vector2(516.375, 153.22786)
+scale = Vector2(0.17447257, 0.17447257)
+sprite_frames = SubResource("SpriteFrames_yf5fn")
+
+[node name="Control" type="Control" parent="." unique_id=1365317707]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control" unique_id=1261936155]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 245.0
+offset_right = 54.0
+offset_bottom = 275.0
+theme_override_colors/font_color = Color(0.9855103, 0.50458753, 0, 1)
+theme_override_fonts/font = ExtResource("1_dl1d0")
+theme_override_font_sizes/font_size = 30
+text = "HP:"
+horizontal_alignment = 1
+
+[node name="DragonHP" type="ProgressBar" parent="Control" unique_id=1195635527]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 13.0
+offset_right = 623.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("1_dl1d0")
+theme_override_font_sizes/font_size = 15
+value = 100.0
+
+[node name="PlayerHP" type="ProgressBar" parent="Control" unique_id=1790658050]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 250.0
+offset_right = 322.0
+offset_bottom = 277.0
+theme_override_fonts/font = ExtResource("1_dl1d0")
+theme_override_font_sizes/font_size = 15
+value = 100.0
+
+[node name="Label2" type="Label" parent="Control" unique_id=2002292040]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 10.0
+offset_right = 355.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.9855103, 0.50458753, 0, 1)
+theme_override_fonts/font = ExtResource("1_dl1d0")
+theme_override_font_sizes/font_size = 30
+text = "HP:"
+horizontal_alignment = 1
