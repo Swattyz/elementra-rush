@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://btaq45hkjy5ju"]
+
+[ext_resource type="Texture2D" uid="uid://cq7mxui6buetp" path="res://backgrounds/title_screen.png" id="1_mqjok"]
+
+[node name="Ending" type="Node2D" unique_id=1609261854]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2031706349]
+texture = ExtResource("1_mqjok")
+centered = false

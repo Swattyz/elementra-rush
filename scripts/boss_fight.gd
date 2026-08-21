@@ -1,9 +1,83 @@
 extends Node2D
-var fight_hud_scene: PackedScene = preload("res://scenes/fight_hud.tscn")
-var fight_hud_instance = (fight_hud_scene).instantiate()
+
+var buttons: Control
+var fight_button: TextureButton
+
+var rng = RandomNumberGenerator.new()
+var chance: int
+
+var fight_qte_scene: PackedScene = preload("res://scenes/fight_qte.tscn")
+var fight_qte_instance = (fight_qte_scene).instantiate()
+
+var fight_dialogue_scene: PackedScene = preload("res://scenes/fight_dialogue.tscn")
+var fight_dialogue = fight_dialogue_scene.instantiate()
+
+var current_action: int = 0
+var counter: int = 0
 
 func _ready() -> void:
-	add_child(fight_hud_instance)
+	rng.randomize()
+	buttons = $FightHUD/Buttons
+	fight_button = $FightHUD/Buttons/FightButton
 
 func _process(_delta: float) -> void:
-	pass
+	match current_action:
+		1:
+			pass
+		2:
+			pass
+		3:
+			if Input.is_action_just_pressed("confirm"):
+				match counter:
+					0:
+						if chance >= 19:
+							fight_dialogue.change_text("...Com um ótimo controle de seu corpo, obteve extremo sucesso na sua fuga.")
+						elif chance == 18:
+							fight_dialogue.change_text("...Você conseguiu fugir, covardemente.")
+						elif chance == 17:
+							fight_dialogue.change_text("...Por pouco, quase perdia um pé durante a fuga... Mas obteve sucesso, ou quase isso.")
+						elif chance >= 10:
+							fight_dialogue.change_text("...A tentativa falhou miseravelmente... Exatamente como um jantar de dragão, tentando fugir de seu destino.")
+						elif chance > 2:
+							fight_dialogue.change_text("...Você é impedido no meio de sua fútil tentativa e cai no chão.")
+						else:
+							fight_dialogue.change_text("...Terrivelmente, você tropeça na menor rocha possível, cai no chão e leva dano por isso... Não é seu dia de sorte.")
+							Global.player_hp -= 5
+						counter = 1
+					
+					1:
+						if chance >= 17:
+							if TransitionScreen.transitioning:
+								return
+							
+							TransitionScreen.transitioning = true
+							TransitionScreen.transition()
+							await TransitionScreen.on_transition_finished
+							call_deferred("change_scene")
+						counter = 2
+					
+					2:
+						print(chance)
+						current_action = 0
+						remove_child(fight_dialogue)
+						$FightHUD.add_child(buttons)
+						fight_button.grab_focus()
+						counter = 0
+
+func change_scene():
+	get_tree().change_scene_to_file("res://scenes/ending.tscn")
+
+func _on_fight_button_pressed() -> void:
+	$FightHUD.remove_child(buttons)
+	current_action = 1
+
+func _on_item_button_pressed() -> void:
+	$FightHUD.remove_child(buttons)
+	current_action = 2
+
+func _on_run_button_pressed() -> void:
+	$FightHUD.remove_child(buttons)
+	add_child(fight_dialogue)
+	fight_dialogue.change_text("...Você tentou achar uma brecha para fugir...")
+	chance = rng.randi_range(1,20)
+	current_action = 3
