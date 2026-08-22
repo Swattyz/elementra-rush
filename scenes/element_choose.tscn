@@ -1,13 +1,17 @@
 [gd_scene format=3 uid="uid://ij14el8dui6p"]
 
-[ext_resource type="Texture2D" uid="uid://dec7ddqo01ixh" path="res://backgrounds/lesser_title_screen.png" id="1_0lnb1"]
-[ext_resource type="Texture2D" uid="uid://c3jg0jouqyyst" path="res://sprite_placeholders/anemo_symbol.png" id="2_g0fkl"]
+[ext_resource type="Texture2D" uid="uid://sb6kcab8x0r0" path="res://backgrounds/choose_elements_background.png" id="1_d4efv"]
 [ext_resource type="Script" uid="uid://ddcss3bxb7o6n" path="res://scripts/element_response.gd" id="2_xpj2q"]
-[ext_resource type="Texture2D" uid="uid://7e1lqe6ltdby" path="res://sprite_placeholders/hydro_symbol.png" id="3_6jc31"]
+[ext_resource type="Texture2D" uid="uid://c8sw54b3jd72f" path="res://object_sprites/icon_anemo.png" id="3_olepd"]
 [ext_resource type="Script" uid="uid://bxbcgwl5ln73i" path="res://scripts/element_buttons.gd" id="3_xpj2q"]
-[ext_resource type="Texture2D" uid="uid://ndwxj0va0x05" path="res://sprite_placeholders/pyro_symbol.png" id="4_xpj2q"]
-[ext_resource type="Texture2D" uid="uid://cbmjke8kstnyj" path="res://sprite_placeholders/dendro_symbol.png" id="5_d4efv"]
+[ext_resource type="Texture2D" uid="uid://ccnr5p6q6lqg2" path="res://object_sprites/text_air.png" id="5_olepd"]
+[ext_resource type="Texture2D" uid="uid://bcr6rjccsioen" path="res://object_sprites/icon_hydro.png" id="6_exh3a"]
+[ext_resource type="Texture2D" uid="uid://b3rgvyq1uc3aw" path="res://object_sprites/icon_pyro.png" id="7_6y1yg"]
+[ext_resource type="Texture2D" uid="uid://b55o2mwd4h3lw" path="res://object_sprites/text_hydro.png" id="7_l042f"]
 [ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="8_d4efv"]
+[ext_resource type="Texture2D" uid="uid://cv0igrj7ekqi2" path="res://object_sprites/icon_dendro.png" id="8_l042f"]
+[ext_resource type="Texture2D" uid="uid://meiog35401qt" path="res://object_sprites/text_pyro.png" id="9_oo6ja"]
+[ext_resource type="Texture2D" uid="uid://cyu65mm8fuml7" path="res://object_sprites/text_dendro.png" id="11_ow5ks"]
 
 [node name="ElementChoose" type="Control" unique_id=718524518]
 layout_mode = 3
@@ -18,125 +22,127 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="TextureRect" parent="." unique_id=1905342480]
-modulate = Color(0.37111843, 0.37111843, 0.37111843, 1)
+modulate = Color(0.42858, 0.42858, 0.42858, 1)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("1_0lnb1")
+texture = ExtResource("1_d4efv")
 metadata/_edit_lock_ = true
 
 [node name="ElementButtons" type="Node" parent="." unique_id=1095608442]
 script = ExtResource("2_xpj2q")
 
 [node name="ElementAnemo" type="TextureButton" parent="ElementButtons" unique_id=216892627]
-offset_left = 34.0
-offset_top = 186.0
-offset_right = 537.0
-offset_bottom = 682.0
-scale = Vector2(0.25, 0.25)
-focus_neighbor_right = NodePath("../ElementHydro/Water")
-texture_normal = ExtResource("2_g0fkl")
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -170.0
+offset_right = 152.0
+offset_bottom = -110.0
+grow_vertical = 0
+focus_neighbor_right = NodePath("../ElementHydro")
+texture_normal = ExtResource("3_olepd")
 script = ExtResource("3_xpj2q")
 
-[node name="Air" type="Label" parent="ElementButtons/ElementAnemo" unique_id=492623006]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.0730001
-anchor_right = 0.5
-anchor_bottom = 1.0730001
-offset_left = -47.5
-offset_top = -0.20800781
-offset_right = 46.5
-offset_bottom = 100.79199
-theme_override_colors/font_color = Color(0, 0.7522902, 0.7555237, 1)
-theme_override_fonts/font = ExtResource("8_d4efv")
-theme_override_font_sizes/font_size = 100
-text = "Ar"
-horizontal_alignment = 1
+[node name="TextureRect" type="TextureRect" parent="ElementButtons/ElementAnemo" unique_id=77061404]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 98.0
+offset_right = 108.0
+offset_bottom = 178.0
+texture = ExtResource("5_olepd")
+expand_mode = 1
+stretch_mode = 3
 
 [node name="ElementHydro" type="TextureButton" parent="ElementButtons" unique_id=1947945476]
-offset_left = 186.0
-offset_top = 186.0
-offset_right = 689.0
-offset_bottom = 686.0
-scale = Vector2(0.25, 0.25)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = -130.0
+offset_right = -100.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
 focus_neighbor_left = NodePath("../ElementAnemo")
 focus_neighbor_right = NodePath("../ElementPyro")
-texture_normal = ExtResource("3_6jc31")
+texture_normal = ExtResource("6_exh3a")
 script = ExtResource("3_xpj2q")
 
-[node name="Water" type="Label" parent="ElementButtons/ElementHydro" unique_id=922171222]
+[node name="Water" type="TextureRect" parent="ElementButtons/ElementHydro" unique_id=266643256]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 1.0730001
 anchor_right = 0.5
 anchor_bottom = 1.0730001
-offset_left = -103.5
-offset_top = -4.500061
-offset_right = 102.5
-offset_bottom = 96.49994
-theme_override_colors/font_color = Color(0, 0.3163275, 0.7026767, 1)
-theme_override_fonts/font = ExtResource("8_d4efv")
-theme_override_font_sizes/font_size = 100
-text = "Água"
-horizontal_alignment = 1
+offset_left = -106.5
+offset_top = -21.490005
+offset_right = 93.5
+offset_bottom = 78.509995
+texture = ExtResource("7_l042f")
 
 [node name="ElementPyro" type="TextureButton" parent="ElementButtons" unique_id=1701501670]
-offset_left = 350.0
-offset_top = 169.0
-offset_right = 802.0
-offset_bottom = 723.0
-scale = Vector2(0.25, 0.25)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 55.0
+offset_top = -130.0
+offset_right = 100.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
 focus_neighbor_left = NodePath("../ElementHydro")
 focus_neighbor_right = NodePath("../ElementDendro")
-texture_normal = ExtResource("4_xpj2q")
+texture_normal = ExtResource("7_6y1yg")
 script = ExtResource("3_xpj2q")
 
-[node name="Fire" type="Label" parent="ElementButtons/ElementPyro" unique_id=139921727]
+[node name="Fire" type="TextureRect" parent="ElementButtons/ElementPyro" unique_id=1697084993]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 1.0730001
 anchor_right = 0.5
 anchor_bottom = 1.0730001
-offset_left = -106.0
-offset_top = 5.5579834
-offset_right = 100.0
-offset_bottom = 106.55798
-theme_override_colors/font_color = Color(0.74658525, 2.0094587e-06, 8.663535e-07, 1)
-theme_override_fonts/font = ExtResource("8_d4efv")
-theme_override_font_sizes/font_size = 100
-text = "Fogo"
-horizontal_alignment = 1
+offset_left = -93.5
+offset_top = -61.490005
+offset_right = 96.5
+offset_bottom = 98.509995
+texture = ExtResource("9_oo6ja")
 
 [node name="ElementDendro" type="TextureButton" parent="ElementButtons" unique_id=1359100060]
-offset_left = 491.0
-offset_top = 186.0
-offset_right = 1004.0
-offset_bottom = 682.0
-scale = Vector2(0.25, 0.25)
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_top = -130.0
+offset_right = -20.0
+offset_bottom = -110.0
+grow_horizontal = 0
+grow_vertical = 0
 focus_neighbor_left = NodePath("../ElementPyro")
-texture_normal = ExtResource("5_d4efv")
+texture_normal = ExtResource("8_l042f")
 script = ExtResource("3_xpj2q")
 
-[node name="Grass" type="Label" parent="ElementButtons/ElementDendro" unique_id=505111761]
+[node name="Grass" type="TextureRect" parent="ElementButtons/ElementDendro" unique_id=518155154]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 1.0730001
 anchor_right = 0.5
 anchor_bottom = 1.0730001
-offset_left = -96.5
-offset_top = -0.20800781
-offset_right = 109.5
-offset_bottom = 100.79199
-theme_override_colors/font_color = Color(0.26429796, 0.5764952, 1.92523e-07, 1)
-theme_override_fonts/font = ExtResource("8_d4efv")
-theme_override_font_sizes/font_size = 100
-text = "Planta"
-horizontal_alignment = 1
+offset_left = -99.5
+offset_top = -81.490005
+offset_right = 100.5
+offset_bottom = 98.509995
+texture = ExtResource("11_ow5ks")
 
 [node name="Dialogue" type="Node" parent="." unique_id=795623253]
 
@@ -144,10 +150,10 @@ horizontal_alignment = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -266.0
-offset_top = 65.0
-offset_right = 262.0
-offset_bottom = 155.0
+offset_left = -239.0
+offset_top = 36.0
+offset_right = 242.0
+offset_bottom = 82.0
 grow_horizontal = 2
 color = Color(0.42745098, 0, 0.023529412, 0.654902)
 metadata/_edit_group_ = true
@@ -156,17 +162,16 @@ metadata/_edit_group_ = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -323.5
-offset_top = 74.0
-offset_right = 323.5
-offset_bottom = 149.0
+offset_left = -232.0
+offset_top = 39.0
+offset_right = 234.0
+offset_bottom = 77.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.627451, 0, 1)
 theme_override_fonts/font = ExtResource("8_d4efv")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 15
 text = "Os céus o observam: 
-Abençoado, fora concedido a ti habilidades únicas originadas da natureza...
-Qual escolherá?"
+Abençoado, fora concedido a ti habilidades únicas originadas da natureza... Qual escolherá?"
 horizontal_alignment = 1
 metadata/_edit_group_ = true
 

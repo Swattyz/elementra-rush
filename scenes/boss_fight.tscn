@@ -155,6 +155,7 @@ texture_normal = ExtResource("8_7hhev")
 script = ExtResource("6_62gkx")
 metadata/_edit_use_anchors_ = true
 
+[connection signal="value_changed" from="FightHUD/PlayerHP" to="." method="_on_player_hp_value_changed"]
 [connection signal="button_down" from="FightHUD/Buttons/FightButton" to="FightHUD/Buttons/FightButton" method="_on_button_down"]
 [connection signal="button_up" from="FightHUD/Buttons/FightButton" to="FightHUD/Buttons/FightButton" method="_on_button_up"]
 [connection signal="focus_entered" from="FightHUD/Buttons/FightButton" to="FightHUD/Buttons/FightButton" method="_on_focus_entered"]
