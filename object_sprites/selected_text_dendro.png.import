@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccnr5p6q6lqg2"
-path="res://.godot/imported/text_air.png-ed2924e2c6e8de655a07487434908391.ctex"
+uid="uid://dr4c0vcqiyatv"
+path="res://.godot/imported/selected_text_dendro.png-97ab1e7a686889ed256caf14f29d5a3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://object_sprites/text_air.png"
-dest_files=["res://.godot/imported/text_air.png-ed2924e2c6e8de655a07487434908391.ctex"]
+source_file="res://object_sprites/selected_text_dendro.png"
+dest_files=["res://.godot/imported/selected_text_dendro.png-97ab1e7a686889ed256caf14f29d5a3c.ctex"]
 
 [params]
 

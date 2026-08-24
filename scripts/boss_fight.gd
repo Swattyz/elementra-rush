@@ -17,7 +17,8 @@ var player_icon: String = "res://player_sprites/anemo_walking_spritesheet.png"
 var current_action: int = 0
 var counter: int = 0
 
-var dead = false
+var dead: bool = false
+var current_turn: int = 0
 
 func _ready() -> void:
 	rng.randomize()
@@ -30,7 +31,7 @@ func _process(_delta: float) -> void:
 		await TransitionScreen.on_transition_finished
 		call_deferred("change_scene")
 	
-	if not dead:
+	elif not dead and current_turn == 0:
 		match current_action:
 			1:
 				pass
@@ -69,15 +70,38 @@ func _process(_delta: float) -> void:
 							counter += 1
 						
 						3:
-							print(chance)
-							current_action = 0
-							remove_child(fight_dialogue)
-							$FightHUD.add_child(buttons)
-							fight_button.grab_focus()
-							counter = 0
+							print("Player: ",chance)
+							counter += 1
 							
 							if chance <= 2:
 								$FightHUD/PlayerHP.value -= 5
+								
+						_:
+							current_turn += 1
+							counter = 0
+							current_action = 0
+	
+	elif not dead and current_turn == 1:
+		if counter == 0:
+			chance = rng.randi_range(1,20)
+			counter += 1
+			print("Dragão: ",chance)
+			fight_dialogue.change_text("O dragão furiosamente ataca!")
+			
+		if Input.is_action_just_pressed("confirm"):
+			match counter:
+				1:
+					fight_dialogue.change_text("Ele desfere um golpe com suas garras!")
+					$FightHUD/PlayerHP.value -= chance
+					counter += 1
+				2:
+					remove_child(fight_dialogue)
+					$FightHUD.add_child(buttons)
+					fight_button.grab_focus()
+					counter += 1
+				3:
+					current_turn -= 1
+					counter = 0
 
 func change_scene():
 	get_tree().change_scene_to_file("res://scenes/ending.tscn")
@@ -97,9 +121,7 @@ func _on_run_button_pressed() -> void:
 	chance = rng.randi_range(1,20)
 	current_action = 3
 
-
 func _on_player_hp_value_changed(value: float) -> void:
 	if $FightHUD/PlayerHP.value == 0:
 		dead = true
-		add_child(fight_dialogue)
 		fight_dialogue.change_dialogue("...Seu HP ficou baixo demais... Você está perdendo forças...","???",unknown_icon)

@@ -4,14 +4,14 @@
 [ext_resource type="Script" uid="uid://ddcss3bxb7o6n" path="res://scripts/element_response.gd" id="2_xpj2q"]
 [ext_resource type="Texture2D" uid="uid://c8sw54b3jd72f" path="res://object_sprites/icon_anemo.png" id="3_olepd"]
 [ext_resource type="Script" uid="uid://bxbcgwl5ln73i" path="res://scripts/element_buttons.gd" id="3_xpj2q"]
-[ext_resource type="Texture2D" uid="uid://ccnr5p6q6lqg2" path="res://object_sprites/text_air.png" id="5_olepd"]
+[ext_resource type="Texture2D" uid="uid://cj8vs0duh2m27" path="res://object_sprites/unselected_text_anemo.png" id="5_l042f"]
 [ext_resource type="Texture2D" uid="uid://bcr6rjccsioen" path="res://object_sprites/icon_hydro.png" id="6_exh3a"]
 [ext_resource type="Texture2D" uid="uid://b3rgvyq1uc3aw" path="res://object_sprites/icon_pyro.png" id="7_6y1yg"]
-[ext_resource type="Texture2D" uid="uid://b55o2mwd4h3lw" path="res://object_sprites/text_hydro.png" id="7_l042f"]
+[ext_resource type="Texture2D" uid="uid://iddty5em31ti" path="res://object_sprites/unselected_text_hydro.png" id="7_oo6ja"]
 [ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="8_d4efv"]
 [ext_resource type="Texture2D" uid="uid://cv0igrj7ekqi2" path="res://object_sprites/icon_dendro.png" id="8_l042f"]
-[ext_resource type="Texture2D" uid="uid://meiog35401qt" path="res://object_sprites/text_pyro.png" id="9_oo6ja"]
-[ext_resource type="Texture2D" uid="uid://cyu65mm8fuml7" path="res://object_sprites/text_dendro.png" id="11_ow5ks"]
+[ext_resource type="Texture2D" uid="uid://b3p4e5bibdmfs" path="res://object_sprites/unselected_text_pyro.png" id="9_ow5ks"]
+[ext_resource type="Texture2D" uid="uid://dt30yin5nt3cv" path="res://object_sprites/unselected_text_dendro.png" id="11_pu0ep"]
 
 [node name="ElementChoose" type="Control" unique_id=718524518]
 layout_mode = 3
@@ -45,14 +45,18 @@ focus_neighbor_right = NodePath("../ElementHydro")
 texture_normal = ExtResource("3_olepd")
 script = ExtResource("3_xpj2q")
 
-[node name="TextureRect" type="TextureRect" parent="ElementButtons/ElementAnemo" unique_id=77061404]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 98.0
-offset_right = 108.0
-offset_bottom = 178.0
-texture = ExtResource("5_olepd")
-expand_mode = 1
+[node name="Air" type="TextureRect" parent="ElementButtons/ElementAnemo" unique_id=1365375049]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = 2.0
+offset_right = 19.0
+offset_bottom = 42.0
+texture = ExtResource("5_l042f")
 stretch_mode = 3
 
 [node name="ElementHydro" type="TextureButton" parent="ElementButtons" unique_id=1947945476]
@@ -72,18 +76,21 @@ focus_neighbor_right = NodePath("../ElementPyro")
 texture_normal = ExtResource("6_exh3a")
 script = ExtResource("3_xpj2q")
 
-[node name="Water" type="TextureRect" parent="ElementButtons/ElementHydro" unique_id=266643256]
+[node name="Water" type="TextureRect" parent="ElementButtons/ElementHydro" unique_id=610166892]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 1.0730001
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0730001
-offset_left = -106.5
-offset_top = -21.490005
-offset_right = 93.5
-offset_bottom = 78.509995
-texture = ExtResource("7_l042f")
+anchor_bottom = 1.0
+offset_left = -35.5
+offset_top = -1.0
+offset_right = 35.5
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("7_oo6ja")
+stretch_mode = 3
 
 [node name="ElementPyro" type="TextureButton" parent="ElementButtons" unique_id=1701501670]
 anchors_preset = -1
@@ -102,18 +109,21 @@ focus_neighbor_right = NodePath("../ElementDendro")
 texture_normal = ExtResource("7_6y1yg")
 script = ExtResource("3_xpj2q")
 
-[node name="Fire" type="TextureRect" parent="ElementButtons/ElementPyro" unique_id=1697084993]
+[node name="Fire" type="TextureRect" parent="ElementButtons/ElementPyro" unique_id=1564978842]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 1.0730001
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0730001
-offset_left = -93.5
-offset_top = -61.490005
-offset_right = 96.5
-offset_bottom = 98.509995
-texture = ExtResource("9_oo6ja")
+anchor_bottom = 1.0
+offset_left = -34.5
+offset_top = 2.0
+offset_right = 34.5
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("9_ow5ks")
+stretch_mode = 3
 
 [node name="ElementDendro" type="TextureButton" parent="ElementButtons" unique_id=1359100060]
 anchors_preset = -1
@@ -131,18 +141,19 @@ focus_neighbor_left = NodePath("../ElementPyro")
 texture_normal = ExtResource("8_l042f")
 script = ExtResource("3_xpj2q")
 
-[node name="Grass" type="TextureRect" parent="ElementButtons/ElementDendro" unique_id=518155154]
+[node name="Nature" type="TextureRect" parent="ElementButtons/ElementDendro" unique_id=162453704]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.0730001
-anchor_right = 0.5
-anchor_bottom = 1.0730001
-offset_left = -99.5
-offset_top = -81.490005
-offset_right = 100.5
-offset_bottom = 98.509995
-texture = ExtResource("11_ow5ks")
+anchor_left = 0.504
+anchor_top = 1.0
+anchor_right = 0.504
+anchor_bottom = 1.0
+offset_left = -70.024
+offset_top = 2.0
+offset_right = 70.976
+offset_bottom = 42.0
+texture = ExtResource("11_pu0ep")
+stretch_mode = 3
 
 [node name="Dialogue" type="Node" parent="." unique_id=795623253]
 

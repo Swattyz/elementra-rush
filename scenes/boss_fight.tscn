@@ -3,11 +3,41 @@
 [ext_resource type="Texture2D" uid="uid://d0anpx3s2mkrd" path="res://player_sprites/idle_anemo_spritesheet.png" id="1_7ydql"]
 [ext_resource type="Script" uid="uid://ucqxs3wxgo7w" path="res://scripts/boss_fight.gd" id="1_85w88"]
 [ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="1_dl1d0"]
+[ext_resource type="Texture2D" uid="uid://cl4fjehb5epa5" path="res://backgrounds/prefight_spritesheet.png" id="2_62gkx"]
 [ext_resource type="Texture2D" uid="uid://l1rtl0vqtdlj" path="res://sprite_placeholders/dragon_placeholder.png" id="2_85w88"]
 [ext_resource type="Texture2D" uid="uid://dx144wisx7646" path="res://sprite_placeholders/fight_button.png" id="5_2tdpq"]
 [ext_resource type="Script" uid="uid://b6nfx3q5d6mgu" path="res://scripts/fight_buttons.gd" id="6_62gkx"]
 [ext_resource type="Texture2D" uid="uid://bh0lmk3q7c6p7" path="res://sprite_placeholders/item_button.png" id="7_7imqq"]
 [ext_resource type="Texture2D" uid="uid://cbv0mrw7b63rg" path="res://sprite_placeholders/mercy_button.png" id="8_7hhev"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7imqq"]
+atlas = ExtResource("2_62gkx")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hhev"]
+atlas = ExtResource("2_62gkx")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7oq6"]
+atlas = ExtResource("2_62gkx")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_57qmd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7imqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hhev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7oq6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_67f06"]
 atlas = ExtResource("1_7ydql")
@@ -45,6 +75,12 @@ animations = [{
 [node name="BossFight" type="Node2D" unique_id=378535863]
 script = ExtResource("1_85w88")
 
+[node name="Background" type="AnimatedSprite2D" parent="." unique_id=1364962435]
+sprite_frames = SubResource("SpriteFrames_57qmd")
+autoplay = "default"
+centered = false
+metadata/_edit_lock_ = true
+
 [node name="Player" type="AnimatedSprite2D" parent="." unique_id=37230695]
 position = Vector2(122, 178.00002)
 scale = Vector2(1.4666667, 1.4666667)
@@ -58,7 +94,7 @@ sprite_frames = SubResource("SpriteFrames_yf5fn")
 
 [node name="FightHUD" type="CanvasLayer" parent="." unique_id=1801211472]
 
-[node name="Background" type="ColorRect" parent="FightHUD" unique_id=897795773]
+[node name="UIBackground" type="ColorRect" parent="FightHUD" unique_id=897795773]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

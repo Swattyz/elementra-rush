@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bce844rehy5wc"
-path="res://.godot/imported/elements_name.png-79f58f3e1e79e1af0092f21c181b15f0.ctex"
+uid="uid://1lkcvi5gxds6"
+path="res://.godot/imported/selected_text_anemo.png-0c266b87e770aa92b73ccefd57605f2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://object_sprites/elements_name.png"
-dest_files=["res://.godot/imported/elements_name.png-79f58f3e1e79e1af0092f21c181b15f0.ctex"]
+source_file="res://object_sprites/selected_text_anemo.png"
+dest_files=["res://.godot/imported/selected_text_anemo.png-0c266b87e770aa92b73ccefd57605f2c.ctex"]
 
 [params]
 

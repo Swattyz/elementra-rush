@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b55o2mwd4h3lw"
-path="res://.godot/imported/text_hydro.png-536f2f1f80b095bbbbd83aa8f7741944.ctex"
+uid="uid://b3p4e5bibdmfs"
+path="res://.godot/imported/unselected_text_pyro.png-3e38dfdb5647945409d45b703e796e7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://object_sprites/text_hydro.png"
-dest_files=["res://.godot/imported/text_hydro.png-536f2f1f80b095bbbbd83aa8f7741944.ctex"]
+source_file="res://object_sprites/unselected_text_pyro.png"
+dest_files=["res://.godot/imported/unselected_text_pyro.png-3e38dfdb5647945409d45b703e796e7b.ctex"]
 
 [params]
 
