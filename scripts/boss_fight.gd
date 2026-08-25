@@ -26,24 +26,27 @@ func _ready() -> void:
 	fight_button = $FightHUD/Buttons/FightButton
 
 func _process(_delta: float) -> void:
-	if dead and Input.is_action_just_pressed("confirm"):
-		TransitionScreen.transition()
-		await TransitionScreen.on_transition_finished
-		call_deferred("change_scene")
+	if dead:
+		if Input.is_action_just_pressed("confirm"):
+			if TransitionScreen.transitioning:
+				return
+			TransitionScreen.transitioning = true
+			TransitionScreen.transition()
+			await TransitionScreen.on_transition_finished
+			call_deferred("change_scene")
+		return
 	
-	elif not dead and current_turn == 0:
+	elif current_turn == 0:
 		match current_action:
 			1:
 				pass
 			2:
 				pass
 			3:
-				if Input.is_action_just_pressed("confirm"):
-					match counter:
-						0:
-							fight_dialogue.change_dialogue("...Você tentou achar uma brecha para fugir...","???", unknown_icon)
-							counter += 1
-						1:
+				
+				match counter:
+					0:
+						if Input.is_action_just_pressed("confirm"):
 							if chance >= 19:
 								fight_dialogue.change_text("...Com um ótimo controle de seu corpo, obteve extremo sucesso na sua fuga.")
 							elif chance == 18:
@@ -56,32 +59,32 @@ func _process(_delta: float) -> void:
 								fight_dialogue.change_text("...Você é impedido no meio de sua fútil tentativa e cai no chão.")
 							else:
 								fight_dialogue.change_text("...Terrivelmente, você tropeça na menor rocha possível, cai no chão e leva dano por isso... Não é seu dia de sorte.")
-							counter += 1
+								counter += 1
 						
-						2:
+					1:
+						if Input.is_action_just_pressed("confirm"):
 							if chance >= 17:
 								if TransitionScreen.transitioning:
 									return
-								
+									
 								TransitionScreen.transitioning = true
 								TransitionScreen.transition()
 								await TransitionScreen.on_transition_finished
 								call_deferred("change_scene")
 							counter += 1
 						
-						3:
-							print("Player: ",chance)
-							counter += 1
-							
-							if chance <= 2:
-								$FightHUD/PlayerHP.value -= 5
+					2:
+						print("Player: ",chance)
+						counter += 1
+						if chance <= 2:
+							$FightHUD/PlayerHP.value -= 5
 								
-						_:
-							current_turn += 1
-							counter = 0
-							current_action = 0
+					_:
+						current_turn += 1
+						counter = 0
+						current_action = 0
 	
-	elif not dead and current_turn == 1:
+	elif current_turn == 1:
 		if counter == 0:
 			chance = rng.randi_range(1,20)
 			counter += 1
@@ -119,6 +122,7 @@ func _on_run_button_pressed() -> void:
 	add_child(fight_dialogue)
 	fight_dialogue.change_text("...Você tentou achar uma brecha para fugir...")
 	chance = rng.randi_range(1,20)
+	chance = 1
 	current_action = 3
 
 func _on_player_hp_value_changed(value: float) -> void:
