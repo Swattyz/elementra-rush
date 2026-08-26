@@ -1,43 +1,44 @@
 [gd_scene format=3 uid="uid://ba5pecb4dchew"]
 
 [ext_resource type="Script" uid="uid://b22gm3hxs20bh" path="res://scripts/pre_fight.gd" id="1_x6r5m"]
-[ext_resource type="Texture2D" uid="uid://ds14e13ib8fbw" path="res://backgrounds/fight_spritesheet.png" id="2_r4fr8"]
-[ext_resource type="Texture2D" uid="uid://uo41062thddr" path="res://sprite_placeholders/grass placeholder.png" id="3_x2mcq"]
+[ext_resource type="Texture2D" uid="uid://bym4r8clv2gjy" path="res://backgrounds/blue_sky.png" id="2_r4fr8"]
+[ext_resource type="Texture2D" uid="uid://bab7f54tsdhf6" path="res://backgrounds/prefight_terrain_spritesheet.png" id="3_7u0ny"]
+[ext_resource type="Script" uid="uid://vpb55d637eim" path="res://scripts/prefight_background.gd" id="3_aqtrw"]
 [ext_resource type="PackedScene" uid="uid://i7gse8jih7h6" path="res://scenes/player.tscn" id="4_r4fr8"]
 [ext_resource type="Texture2D" uid="uid://l1rtl0vqtdlj" path="res://sprite_placeholders/dragon_placeholder.png" id="6_7u0ny"]
 [ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="7_aqtrw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7u0ny"]
-atlas = ExtResource("2_r4fr8")
-region = Rect2(0, 0, 640, 360)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(639, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqtrw"]
-atlas = ExtResource("2_r4fr8")
-region = Rect2(640, 0, 640, 360)
+atlas = ExtResource("3_7u0ny")
+region = Rect2(0, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ag6mi"]
-atlas = ExtResource("2_r4fr8")
+atlas = ExtResource("3_7u0ny")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg6vo"]
+atlas = ExtResource("3_7u0ny")
 region = Rect2(1280, 0, 640, 360)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf5fn"]
 animations = [{
 "frames": [{
-"duration": 1.85,
-"texture": SubResource("AtlasTexture_7u0ny")
-}, {
-"duration": 1.85,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_aqtrw")
 }, {
-"duration": 1.85,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ag6mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg6vo")
 }],
 "loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(639, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1u0y"]
 size = Vector2(114, 150)
@@ -51,9 +52,6 @@ size = Vector2(20, 362)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0u6y"]
 size = Vector2(664, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gngh"]
-size = Vector2(658, 275)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcnqv"]
 size = Vector2(1980.6078, 1824.39)
 
@@ -62,27 +60,24 @@ size = Vector2(1019.14746, 848.78033)
 
 [node name="PreFight" type="Node2D" unique_id=348778550]
 script = ExtResource("1_x6r5m")
+metadata/_edit_vertical_guides_ = [640.0]
 
-[node name="Background" type="AnimatedSprite2D" parent="." unique_id=556850775]
-position = Vector2(320, 182)
-sprite_frames = SubResource("SpriteFrames_g4v7s")
-autoplay = "default"
-frame_progress = 0.98260665
-metadata/_edit_lock_ = true
+[node name="Background" type="Sprite2D" parent="." unique_id=1599897200]
+position = Vector2(320, 180)
+texture = ExtResource("2_r4fr8")
+script = ExtResource("3_aqtrw")
 
 [node name="Objects" type="Node2D" parent="." unique_id=1714373173]
 
 [node name="Terrain" type="StaticBody2D" parent="Objects" unique_id=561650433]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Terrain" unique_id=690342533]
-position = Vector2(320.5, 353.5)
+position = Vector2(319.5, 363.5)
 shape = SubResource("RectangleShape2D_g4v7s")
 
-[node name="Sprite2D" type="Sprite2D" parent="Objects/Terrain" unique_id=1546053534]
-modulate = Color(1, 0.15686275, 0.02745098, 1)
-position = Vector2(320.00003, 340)
-scale = Vector2(0.6666666, 0.0851852)
-texture = ExtResource("3_x2mcq")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Objects/Terrain" unique_id=891709718]
+sprite_frames = SubResource("SpriteFrames_yf5fn")
+centered = false
 
 [node name="DialogueTrigger" type="Area2D" parent="Objects" unique_id=2013674989]
 
@@ -100,22 +95,17 @@ position = Vector2(25, 285)
 [node name="RightBarrier" type="CollisionShape2D" parent="Barriers/StaticBody2D" unique_id=2063082558]
 position = Vector2(650, 182)
 shape = SubResource("RectangleShape2D_yf5fn")
-metadata/_edit_lock_ = true
 
 [node name="LeftBarrier" type="CollisionShape2D" parent="Barriers/StaticBody2D" unique_id=1433947301]
 position = Vector2(-10, 182)
 shape = SubResource("RectangleShape2D_57qmd")
-metadata/_edit_lock_ = true
 
 [node name="BottomBarrier" type="CollisionShape2D" parent="Barriers/StaticBody2D" unique_id=2042414877]
-position = Vector2(323, 373)
+position = Vector2(323, 370)
 shape = SubResource("RectangleShape2D_d0u6y")
-metadata/_edit_lock_ = true
 
-[node name="TopBarrier" type="CollisionShape2D" parent="Barriers/StaticBody2D" unique_id=1196611847]
-position = Vector2(320, 118.5)
-shape = SubResource("RectangleShape2D_3gngh")
-metadata/_edit_lock_ = true
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Barriers/StaticBody2D" unique_id=1769868783]
+polygon = PackedVector2Array(0, 0, 1, 221, 71, 248, 127, 255, 284, 283, 434, 284, 641, 278, 640, 0)
 
 [node name="Enemy" type="Node2D" parent="." unique_id=1857199118]
 position = Vector2(539.62506, 279.50003)

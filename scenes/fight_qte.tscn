@@ -1,15 +1,165 @@
 [gd_scene format=3 uid="uid://hpaogpe66ob5"]
 
-[node name="FightQTE" type="CanvasLayer" unique_id=526515395]
+[ext_resource type="Script" uid="uid://dg687gggbuofl" path="res://scripts/fight_qte.gd" id="1_r1wno"]
+[ext_resource type="Texture2D" uid="uid://c5dqceqykx22e" path="res://sprite_placeholders/qte_placeholder.png" id="2_nr7ir"]
+[ext_resource type="Texture2D" uid="uid://c0y0q2g3xlqlu" path="res://sprite_placeholders/sword_placeholder.png" id="3_r1wno"]
 
-[node name="Background" type="ColorRect" parent="." unique_id=604488501]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57qmd"]
+size = Vector2(2, 83)
+
+[sub_resource type="GDScript" id="GDScript_r1wno"]
+script/source = "extends Area2D
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		match name:
+			\"MinDamageArea\":
+				Global.player_damage = 1
+			\"LesserDamageArea\":
+				Global.player_damage = 2
+			\"MedDamageArea\":
+				Global.player_damage = 3
+			\"GoodDamageArea\":
+				Global.player_damage = 4
+			\"HighDamageArea\":
+				Global.player_damage = 5
+			\"HigherDamageArea\":
+				Global.player_damage = 6
+			\"MaxDamageArea\":
+				Global.player_damage = 7
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(75.75, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gngh"]
+size = Vector2(53, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(48.1875, 79)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcnqv"]
+size = Vector2(36, 79)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7numd"]
+size = Vector2(13, 79)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1u0y"]
+size = Vector2(16, 79)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0u6y"]
+size = Vector2(16, 79)
+
+[node name="FightQTE" type="Node2D" unique_id=303110121]
+script = ExtResource("1_r1wno")
+metadata/_edit_vertical_guides_ = [640.0]
+
+[node name="Background" type="ColorRect" parent="." unique_id=1289789165]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.99700004
 anchor_right = 0.5
 anchor_bottom = 0.99700004
-offset_left = -320.0
-offset_top = -72.92001
-offset_right = 320.0
-offset_bottom = 1.0799866
+offset_top = 280.0
+offset_right = 640.0
+offset_bottom = 360.0
 color = Color(0.45840502, 0.45840508, 0.45840502, 1)
+
+[node name="QTEBackground" type="Sprite2D" parent="." unique_id=922692091]
+position = Vector2(319, 320)
+scale = Vector2(1.1648352, 0.65)
+texture = ExtResource("2_nr7ir")
+
+[node name="AttackHitter" type="CharacterBody2D" parent="." unique_id=1217782940]
+position = Vector2(17, 301)
+
+[node name="AttackMarker" type="Sprite2D" parent="AttackHitter" unique_id=147362706]
+position = Vector2(0, -10.8064575)
+rotation = -3.1415925
+scale = Vector2(0.065652505, 0.14191373)
+texture = ExtResource("3_r1wno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitter" unique_id=703637169]
+position = Vector2(0, 17.5)
+shape = SubResource("RectangleShape2D_57qmd")
+
+[node name="MinDamageArea" type="Area2D" parent="." unique_id=476159727]
+script = SubResource("GDScript_r1wno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MinDamageArea" unique_id=1333634546]
+position = Vector2(107.125, 320)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="MinDamageArea" unique_id=1199812834]
+position = Vector2(531, 320)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="LesserDamageArea" type="Area2D" parent="." unique_id=199913148]
+script = SubResource("GDScript_r1wno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LesserDamageArea" unique_id=145666739]
+position = Vector2(171.5, 320)
+shape = SubResource("RectangleShape2D_3gngh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LesserDamageArea" unique_id=2137253987]
+position = Vector2(467, 320)
+shape = SubResource("RectangleShape2D_3gngh")
+
+[node name="MedDamageArea" type="Area2D" parent="." unique_id=366069534]
+script = SubResource("GDScript_r1wno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MedDamageArea" unique_id=964895566]
+position = Vector2(221.90625, 320.5)
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="MedDamageArea" unique_id=1116168766]
+position = Vector2(416, 320.5)
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="GoodDamageArea" type="Area2D" parent="." unique_id=1769752455]
+script = SubResource("GDScript_r1wno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoodDamageArea" unique_id=1023888885]
+position = Vector2(264, 320.5)
+shape = SubResource("RectangleShape2D_fcnqv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="GoodDamageArea" unique_id=1860094446]
+position = Vector2(374, 320.5)
+shape = SubResource("RectangleShape2D_fcnqv")
+
+[node name="HighDamageArea" type="Area2D" parent="." unique_id=861432627]
+script = SubResource("GDScript_r1wno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HighDamageArea" unique_id=177175885]
+position = Vector2(288.5, 320.5)
+shape = SubResource("RectangleShape2D_7numd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HighDamageArea" unique_id=1226059872]
+position = Vector2(350, 320.5)
+shape = SubResource("RectangleShape2D_7numd")
+
+[node name="HigherDamageArea" type="Area2D" parent="." unique_id=391542165]
+script = SubResource("GDScript_r1wno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HigherDamageArea" unique_id=1371117056]
+position = Vector2(303, 320.5)
+shape = SubResource("RectangleShape2D_p1u0y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HigherDamageArea" unique_id=7168668]
+position = Vector2(335, 320.5)
+shape = SubResource("RectangleShape2D_p1u0y")
+
+[node name="MaxDamageArea" type="Area2D" parent="." unique_id=2068720084]
+script = SubResource("GDScript_r1wno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MaxDamageArea" unique_id=356001930]
+position = Vector2(319, 320.5)
+shape = SubResource("RectangleShape2D_d0u6y")
+
+[connection signal="body_entered" from="MinDamageArea" to="." method="_on_min_damage_area_body_entered"]
+[connection signal="body_entered" from="LesserDamageArea" to="." method="_on_lesser_damage_area_body_entered"]
+[connection signal="body_entered" from="MedDamageArea" to="." method="_on_med_damage_area_body_entered"]
+[connection signal="body_entered" from="GoodDamageArea" to="." method="_on_good_damage_area_body_entered"]
+[connection signal="body_entered" from="HighDamageArea" to="." method="_on_high_damage_area_body_entered"]
+[connection signal="body_entered" from="HigherDamageArea" to="." method="_on_higher_damage_area_body_entered"]
+[connection signal="body_entered" from="MaxDamageArea" to="." method="_on_max_damage_area_body_entered"]

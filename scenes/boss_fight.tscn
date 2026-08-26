@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="1_dl1d0"]
 [ext_resource type="Texture2D" uid="uid://ds14e13ib8fbw" path="res://backgrounds/fight_spritesheet.png" id="2_62gkx"]
 [ext_resource type="Texture2D" uid="uid://l1rtl0vqtdlj" path="res://sprite_placeholders/dragon_placeholder.png" id="2_85w88"]
+[ext_resource type="Texture2D" uid="uid://b4e3w3ci8mb1b" path="res://backgrounds/buttons_background_hydro_lighter.png" id="5_7imqq"]
 [ext_resource type="Texture2D" uid="uid://dt70oesliwn15" path="res://object_sprites/button_attack.png" id="6_7imqq"]
 [ext_resource type="Script" uid="uid://b6nfx3q5d6mgu" path="res://scripts/fight_buttons.gd" id="6_62gkx"]
 [ext_resource type="Texture2D" uid="uid://di8jalhdxjd5w" path="res://object_sprites/button_items.png" id="8_7hhev"]
@@ -72,6 +73,56 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ix7a"]
+atlas = ExtResource("5_7imqq")
+region = Rect2(0, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql2p3"]
+atlas = ExtResource("5_7imqq")
+region = Rect2(640, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hllwh"]
+atlas = ExtResource("5_7imqq")
+region = Rect2(1280, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mjmg"]
+atlas = ExtResource("5_7imqq")
+region = Rect2(1920, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76ywu"]
+atlas = ExtResource("5_7imqq")
+region = Rect2(2560, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3grv3"]
+atlas = ExtResource("5_7imqq")
+region = Rect2(3200, 0, 640, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d0u6y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ix7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql2p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hllwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mjmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76ywu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3grv3")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="BossFight" type="Node2D" unique_id=378535863]
 script = ExtResource("1_85w88")
 
@@ -93,19 +144,11 @@ position = Vector2(516.375, 153.22786)
 scale = Vector2(0.17447257, 0.17447257)
 sprite_frames = SubResource("SpriteFrames_yf5fn")
 
-[node name="UIBackground" type="ColorRect" parent="." unique_id=897795773]
-modulate = Color(1, 1, 1, 0.8509804)
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_top = 286.0
-offset_right = 640.0
-offset_bottom = 360.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0.45840502, 0.45840508, 0.45840502, 1)
+[node name="ButtonsBackground" type="AnimatedSprite2D" parent="." unique_id=657692905]
+position = Vector2(0, 280)
+sprite_frames = SubResource("SpriteFrames_d0u6y")
+autoplay = "default"
+centered = false
 
 [node name="FightHUD" type="CanvasLayer" parent="." unique_id=1801211472]
 
@@ -154,7 +197,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 360.0
-metadata/_edit_use_anchors_ = true
 
 [node name="FightButton" type="TextureButton" parent="FightHUD/Buttons" unique_id=1505778063]
 layout_mode = 1
