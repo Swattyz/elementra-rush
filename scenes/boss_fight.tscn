@@ -284,7 +284,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bwg30")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"sword drawing hydro",
 "speed": 5.0
 }, {
@@ -446,7 +446,7 @@ metadata/_edit_lock_ = true
 position = Vector2(104.00001, 188)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"sword idle anemo"
+animation = &"sword drawing anemo"
 script = ExtResource("11_bii1g")
 
 [node name="Enemy" type="AnimatedSprite2D" parent="." unique_id=178384744]
@@ -484,7 +484,8 @@ offset_right = 623.0
 offset_bottom = 40.0
 theme_override_fonts/font = ExtResource("1_dl1d0")
 theme_override_font_sizes/font_size = 15
-value = 100.0
+max_value = 200.0
+value = 200.0
 
 [node name="PlayerHP" type="ProgressBar" parent="FightHUD" unique_id=1790658050]
 offset_left = 59.0

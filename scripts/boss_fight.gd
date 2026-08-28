@@ -52,13 +52,14 @@ func _process(_delta: float) -> void:
 						fight_dialogue.change_text("...Obteve uma extrema perfomance e precisão no ataque e atingiu a criatura em cheio!")
 					else:
 						fight_dialogue.change_text("...Um acerto CRÍTICO na criatura!")
+					$FightHUD/DragonHP.value -= Global.player_damage*4
+					print("Player Damage: ",Global.player_damage*2)
 					counter += 1
 					
-				if Input.is_action_just_pressed("confirm") and counter == 1:
-					$FightHUD/DragonHP.value -= Global.player_damage*2
-					print("Player Damage: ",Global.player_damage*2)
-					current_action = 4
-					counter = 0
+				elif counter == 1:
+					if Input.is_action_just_pressed("confirm"):
+						current_action = 4
+						counter = 0
 			2:
 				pass
 			3:
@@ -114,7 +115,17 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("confirm"):
 			match counter:
 				1:
-					fight_dialogue.change_text("Ele desfere um golpe com suas garras!")
+					if chance < 3:
+						fight_dialogue.change_text("...O dragão errou o golpe!")
+						chance = 0
+					elif chance < 9:
+						fight_dialogue.change_text("...A criatura desfere um golpe certeiro!")
+					elif chance < 14:
+						fight_dialogue.change_text("...A besta realiza um excelente ataque!")
+					elif chance < 19:
+						fight_dialogue.change_text("...A criatura dracônica avança em uma ofensiva letal!")
+					elif chance == 20:
+						fight_dialogue.change_text("...O dragão desfere um acerto PERFEITO!")
 					$FightHUD/PlayerHP.value -= chance
 					counter += 1
 				2:

@@ -5,7 +5,7 @@ var walking_animations = ["anemo_walk", "hydro_walk", "pyro_walk", "dendro_walk"
 var idle_animations = ["anemo_idle", "hydro_idle", "pyro_idle", "dendro_idle"]
 var walk_animation: String
 var idle_animation: String
-var out_of_dialogue = true
+@onready var out_of_dialogue = true
 
 func _ready():
 	var index: int = Global.player_element
