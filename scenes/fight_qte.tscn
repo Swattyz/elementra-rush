@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57qmd"]
 size = Vector2(2, 83)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5s0fj"]
+size = Vector2(69, 78)
+
 [sub_resource type="GDScript" id="GDScript_r1wno"]
 script/source = "extends Area2D
 
@@ -83,6 +86,16 @@ texture = ExtResource("3_r1wno")
 position = Vector2(0, 17.5)
 shape = SubResource("RectangleShape2D_57qmd")
 
+[node name="MissDamageArea" type="Area2D" parent="." unique_id=552210134]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MissDamageArea" unique_id=457408129]
+position = Vector2(34.5, 320)
+shape = SubResource("RectangleShape2D_5s0fj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="MissDamageArea" unique_id=335476089]
+position = Vector2(605, 320)
+shape = SubResource("RectangleShape2D_5s0fj")
+
 [node name="MinDamageArea" type="Area2D" parent="." unique_id=476159727]
 script = SubResource("GDScript_r1wno")
 
@@ -156,6 +169,7 @@ script = SubResource("GDScript_r1wno")
 position = Vector2(319, 320.5)
 shape = SubResource("RectangleShape2D_d0u6y")
 
+[connection signal="body_entered" from="MissDamageArea" to="." method="_on_miss_damage_area_body_entered"]
 [connection signal="body_entered" from="MinDamageArea" to="." method="_on_min_damage_area_body_entered"]
 [connection signal="body_entered" from="LesserDamageArea" to="." method="_on_lesser_damage_area_body_entered"]
 [connection signal="body_entered" from="MedDamageArea" to="." method="_on_med_damage_area_body_entered"]

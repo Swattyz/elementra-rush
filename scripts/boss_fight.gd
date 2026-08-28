@@ -7,7 +7,7 @@ var rng = RandomNumberGenerator.new()
 var chance: int
 
 var fight_qte_scene: PackedScene = preload("res://scenes/fight_qte.tscn")
-var fight_qte_instance = (fight_qte_scene).instantiate()
+var fight_qte
 
 var fight_dialogue_scene: PackedScene = preload("res://scenes/fight_dialogue.tscn")
 var fight_dialogue = fight_dialogue_scene.instantiate()
@@ -18,6 +18,7 @@ var current_action: int = 0
 var counter: int = 0
 
 var dead: bool = false
+var won: bool = false
 var current_turn: int = 0
 
 func _ready() -> void:
@@ -26,7 +27,7 @@ func _ready() -> void:
 	fight_button = $FightHUD/Buttons/FightButton
 
 func _process(_delta: float) -> void:
-	if dead:
+	if dead or won:
 		if Input.is_action_just_pressed("confirm"):
 			if TransitionScreen.transitioning:
 				return
@@ -39,11 +40,28 @@ func _process(_delta: float) -> void:
 	elif current_turn == 0:
 		match current_action:
 			1:
-				pass
+				if counter == 0:
+					fight_qte.queue_free()
+					add_child(fight_dialogue)
+					fight_dialogue.change_dialogue("...", "???", unknown_icon)
+					if Global.player_damage == 0:
+						fight_dialogue.change_text("...Errou o ataque...")
+					elif Global.player_damage < 3:
+						fight_dialogue.change_text("...Desferiu um poderoso golpe na criatura!")
+					elif Global.player_damage < 6:
+						fight_dialogue.change_text("...Obteve uma extrema perfomance e precisão no ataque e atingiu a criatura em cheio!")
+					else:
+						fight_dialogue.change_text("...Um acerto CRÍTICO na criatura!")
+					counter += 1
+					
+				if Input.is_action_just_pressed("confirm") and counter == 1:
+					$FightHUD/DragonHP.value -= Global.player_damage*2
+					print("Player Damage: ",Global.player_damage*2)
+					current_action = 4
+					counter = 0
 			2:
 				pass
 			3:
-				
 				match counter:
 					0:
 						if Input.is_action_just_pressed("confirm"):
@@ -80,9 +98,11 @@ func _process(_delta: float) -> void:
 							$FightHUD/PlayerHP.value -= 5
 								
 					_:
-						current_turn += 1
 						counter = 0
-						current_action = 0
+						current_action = 4
+			4:
+				current_turn += 1
+				current_action = 0
 	
 	elif current_turn == 1:
 		if counter == 0:
@@ -111,7 +131,11 @@ func change_scene():
 
 func _on_fight_button_pressed() -> void:
 	$FightHUD.remove_child(buttons)
-	current_action = 1
+
+	fight_qte = fight_qte_scene.instantiate()
+	fight_qte.player_attacked.connect(_on_player_attacked)
+
+	$FightHUD.add_child(fight_qte)
 
 func _on_item_button_pressed() -> void:
 	$FightHUD.remove_child(buttons)
@@ -126,6 +150,14 @@ func _on_run_button_pressed() -> void:
 	current_action = 3
 
 func _on_player_hp_value_changed(value: float) -> void:
-	if $FightHUD/PlayerHP.value == 0:
+	if value == 0:
 		dead = true
 		fight_dialogue.change_dialogue("...Seu HP ficou baixo demais... Você está perdendo forças...","???",unknown_icon)
+
+func _on_dragon_hp_value_changed(value: float) -> void:
+	if value == 0:
+		won = true
+		fight_dialogue.change_dialogue("...O dragão mostrou-se muito fraco... Você venceu!","???",unknown_icon)
+
+func _on_player_attacked():
+	current_action = 1
