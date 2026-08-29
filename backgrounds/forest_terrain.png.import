@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bab7f54tsdhf6"
-path="res://.godot/imported/prefight_terrain_spritesheet.png-9fb48b5fdb01be74e89dca647e4b4ff6.ctex"
+uid="uid://bhicyqx7epl7j"
+path="res://.godot/imported/forest_terrain.png-c08e3f06bad2a2a77f02536b9a107d8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://backgrounds/prefight_terrain_spritesheet.png"
-dest_files=["res://.godot/imported/prefight_terrain_spritesheet.png-9fb48b5fdb01be74e89dca647e4b4ff6.ctex"]
+source_file="res://backgrounds/forest_terrain.png"
+dest_files=["res://.godot/imported/forest_terrain.png-c08e3f06bad2a2a77f02536b9a107d8e.ctex"]
 
 [params]
 

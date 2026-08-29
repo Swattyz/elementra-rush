@@ -23,25 +23,25 @@ func _physics_process(_delta: float) -> void:
 		return
 
 func _on_min_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_damage = 1
+	Global.player_qte = 1
 
 func _on_lesser_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_damage = 2
+	Global.player_qte = 2
 
 func _on_med_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_damage = 3
+	Global.player_qte = 3
 
 func _on_good_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_damage = 4
+	Global.player_qte = 4
 
 func _on_high_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_damage = 5
+	Global.player_qte = 5
 
 func _on_higher_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_damage = 6
+	Global.player_qte = 6
 
 func _on_max_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_damage = 7
+	Global.player_qte = 7
 
 func _on_miss_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_damage = 0
+	Global.player_qte = 0
