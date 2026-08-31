@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt44yyiomkoja"
-path="res://.godot/imported/tree.png-9ff8c7bb8bce608dd2ab40d50ceff0a7.ctex"
+uid="uid://d2ahfw0ursh"
+path="res://.godot/imported/potion.png-ee0a36563437b7011e0691984baa3ea9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://object_sprites/tree.png"
-dest_files=["res://.godot/imported/tree.png-9ff8c7bb8bce608dd2ab40d50ceff0a7.ctex"]
+source_file="res://sprite_placeholders/potion.png"
+dest_files=["res://.godot/imported/potion.png-ee0a36563437b7011e0691984baa3ea9.ctex"]
 
 [params]
 

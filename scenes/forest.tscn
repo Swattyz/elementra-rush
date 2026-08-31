@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://i7gse8jih7h6" path="res://scenes/player.tscn" id="4_xr56k"]
 [ext_resource type="Texture2D" uid="uid://bq3xfgjx16a0q" path="res://object_sprites/cloud_2.png" id="5_0nboi"]
 [ext_resource type="Texture2D" uid="uid://82thg04ppkc0" path="res://object_sprites/cloud_3.png" id="6_3knxq"]
-[ext_resource type="Texture2D" uid="uid://bis2f8r08asg5" path="res://object_sprites/tree.png" id="7_0nboi"]
+[ext_resource type="Texture2D" uid="uid://dt44yyiomkoja" path="res://object_sprites/tree.png" id="7_0nboi"]
 [ext_resource type="Texture2D" uid="uid://bhicyqx7epl7j" path="res://backgrounds/forest_terrain.png" id="7_qm7rg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sek5r"]

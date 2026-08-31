@@ -179,10 +179,16 @@ func _process(_delta: float) -> void:
 				print("Dragon's Real Damage: ", chance)
 				counter += 1
 			6:
-				var tween = create_tween()
-				tween.tween_property($Player, "modulate", Color(0.5, 0.0, 0.0, 1.0), 0.0)
-				tween.tween_interval(0.25)
-				tween.tween_property($Player, "modulate", Color.WHITE, 0.0)
+				if Global.player_qte == 0:
+					var tween = create_tween()
+					tween.tween_property($Player, "modulate", Color(0.65, 0.0, 0.0, 1.0), 0.0)
+					tween.tween_interval(0.25)
+					tween.tween_property($Player, "modulate", Color.WHITE, 0.0)
+				else:
+					var tween = create_tween()
+					tween.tween_property($Player, "modulate", Color(0.0, 0.0, 0.65, 1.0), 0.0)
+					tween.tween_interval(0.25)
+					tween.tween_property($Player, "modulate", Color.WHITE, 0.0)
 				counter += 1
 			7:
 				if Input.is_action_just_pressed("confirm"):
