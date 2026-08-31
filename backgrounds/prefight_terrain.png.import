@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbv0mrw7b63rg"
-path="res://.godot/imported/mercy_button.png-0d81969e2fde88eab3100c2eb52a0a2d.ctex"
+uid="uid://b5m15gm53dquu"
+path="res://.godot/imported/prefight_terrain.png-8f937f33857ae7fa280c976db7bbc486.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite_placeholders/mercy_button.png"
-dest_files=["res://.godot/imported/mercy_button.png-0d81969e2fde88eab3100c2eb52a0a2d.ctex"]
+source_file="res://backgrounds/prefight_terrain.png"
+dest_files=["res://.godot/imported/prefight_terrain.png-8f937f33857ae7fa280c976db7bbc486.ctex"]
 
 [params]
 

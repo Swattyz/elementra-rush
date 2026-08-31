@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://i7gse8jih7h6" path="res://scenes/player.tscn" id="4_xr56k"]
 [ext_resource type="Texture2D" uid="uid://bq3xfgjx16a0q" path="res://object_sprites/cloud_2.png" id="5_0nboi"]
 [ext_resource type="Texture2D" uid="uid://82thg04ppkc0" path="res://object_sprites/cloud_3.png" id="6_3knxq"]
+[ext_resource type="Texture2D" uid="uid://bis2f8r08asg5" path="res://object_sprites/tree.png" id="7_0nboi"]
 [ext_resource type="Texture2D" uid="uid://bhicyqx7epl7j" path="res://backgrounds/forest_terrain.png" id="7_qm7rg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sek5r"]
@@ -94,6 +95,46 @@ flip_v = true
 [node name="Cloud3" type="Sprite2D" parent="Background" unique_id=117713615]
 position = Vector2(220, -45)
 texture = ExtResource("6_3knxq")
+
+[node name="Tree" type="Sprite2D" parent="Background" unique_id=112389366]
+position = Vector2(-251, 88)
+texture = ExtResource("7_0nboi")
+
+[node name="Tree2" type="Sprite2D" parent="Background" unique_id=97430640]
+position = Vector2(-106, 95)
+texture = ExtResource("7_0nboi")
+flip_h = true
+
+[node name="Tree3" type="Sprite2D" parent="Background" unique_id=3502625]
+position = Vector2(-13, 101)
+texture = ExtResource("7_0nboi")
+
+[node name="Tree4" type="Sprite2D" parent="Background" unique_id=1792593921]
+position = Vector2(73, 87)
+texture = ExtResource("7_0nboi")
+flip_h = true
+
+[node name="Tree5" type="Sprite2D" parent="Background" unique_id=1339841136]
+position = Vector2(153, 107)
+texture = ExtResource("7_0nboi")
+
+[node name="Tree6" type="Sprite2D" parent="Background" unique_id=1088077348]
+position = Vector2(235, 85)
+texture = ExtResource("7_0nboi")
+flip_h = true
+
+[node name="Tree7" type="Sprite2D" parent="Background" unique_id=484391741]
+position = Vector2(-180, 104)
+texture = ExtResource("7_0nboi")
+
+[node name="Tree8" type="Sprite2D" parent="Background" unique_id=980586496]
+position = Vector2(-317, 104)
+texture = ExtResource("7_0nboi")
+
+[node name="Tree9" type="Sprite2D" parent="Background" unique_id=553445162]
+position = Vector2(300, 98)
+texture = ExtResource("7_0nboi")
+flip_h = true
 
 [node name="Terrain" type="StaticBody2D" parent="." unique_id=1771400334]
 

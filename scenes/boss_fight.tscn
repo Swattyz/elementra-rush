@@ -210,6 +210,26 @@ region = Rect2(300, 0, 150, 150)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
 animations = [{
+"frames": [],
+"loop": 0,
+"name": &"attacking anemo",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 0,
+"name": &"attacking dendro",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 0,
+"name": &"attacking hydro",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 0,
+"name": &"attacking pyro",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kctqd")
@@ -446,7 +466,7 @@ metadata/_edit_lock_ = true
 position = Vector2(104.00001, 188)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"sword drawing anemo"
+animation = &"sword idle pyro"
 script = ExtResource("11_bii1g")
 
 [node name="Enemy" type="AnimatedSprite2D" parent="." unique_id=178384744]

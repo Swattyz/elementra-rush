@@ -44,6 +44,7 @@ func _process(_delta: float) -> void:
 				if player_hit_qte:
 					if counter == 0:
 						fight_qte.queue_free()
+						
 						add_child(fight_dialogue)
 						fight_dialogue.change_dialogue("...", "???", unknown_icon)
 						if Global.player_qte == 0:
@@ -55,11 +56,19 @@ func _process(_delta: float) -> void:
 						else:
 							fight_dialogue.change_text("...Um acerto CRÍTICO na criatura!")
 						$FightHUD/DragonHP.value -= Global.player_qte*3
+						
 						print("Player DMG D20: ",Global.player_qte)
 						print("Player Damage: ",Global.player_qte*3,"\n")
 						counter += 1
-						
+					
 					elif counter == 1:
+						var tween = create_tween()
+						tween.tween_property($Enemy, "modulate", Color(0.5, 0.0, 0.0, 1.0), 0.0)
+						tween.tween_interval(0.25)
+						tween.tween_property($Enemy, "modulate", Color.WHITE, 0.0)
+						counter += 1
+						
+					elif counter == 2:
 						if Input.is_action_just_pressed("confirm"):
 							current_action = 4
 							player_hit_qte = false
@@ -132,7 +141,7 @@ func _process(_delta: float) -> void:
 					counter += 1
 					
 					if chance == 0:
-						counter = 6
+						counter = 7
 			2:
 				if Input.is_action_just_pressed("confirm"):
 					fight_dialogue.change_text("Prepare-se para se defender!")
@@ -170,12 +179,18 @@ func _process(_delta: float) -> void:
 				print("Dragon's Real Damage: ", chance)
 				counter += 1
 			6:
+				var tween = create_tween()
+				tween.tween_property($Player, "modulate", Color(0.5, 0.0, 0.0, 1.0), 0.0)
+				tween.tween_interval(0.25)
+				tween.tween_property($Player, "modulate", Color.WHITE, 0.0)
+				counter += 1
+			7:
 				if Input.is_action_just_pressed("confirm"):
 					remove_child(fight_dialogue)
 					$FightHUD.add_child(buttons)
 					fight_button.grab_focus()
 					counter += 1
-			7:
+			8:
 				current_turn -= 1
 				player_hit_qte = false
 				counter = 0
