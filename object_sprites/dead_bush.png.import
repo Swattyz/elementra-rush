@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4nf7ukocbjfy"
-path="res://.godot/imported/drawing_sword_anemo.png-8c90a3f2e747da9920bce2d10e2cee17.ctex"
+uid="uid://ci2et0jm46cyk"
+path="res://.godot/imported/dead_bush.png-213ee9338a0f62feba59e363e8c6d522.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player_sprites/player_fighting/drawing_sword_anemo.png"
-dest_files=["res://.godot/imported/drawing_sword_anemo.png-8c90a3f2e747da9920bce2d10e2cee17.ctex"]
+source_file="res://object_sprites/dead_bush.png"
+dest_files=["res://.godot/imported/dead_bush.png-213ee9338a0f62feba59e363e8c6d522.ctex"]
 
 [params]
 

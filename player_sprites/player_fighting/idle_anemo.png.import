@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l6bijtw7fyd2"
-path="res://.godot/imported/tree_top.png-498063c8ba33e020aece3e4b4af302aa.ctex"
+uid="uid://dvt4bhfulc71v"
+path="res://.godot/imported/idle_anemo.png-a7ea46c58d3b7b7c7142a061786f9b40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://object_sprites/tree_top.png"
-dest_files=["res://.godot/imported/tree_top.png-498063c8ba33e020aece3e4b4af302aa.ctex"]
+source_file="res://player_sprites/player_fighting/idle_anemo.png"
+dest_files=["res://.godot/imported/idle_anemo.png-a7ea46c58d3b7b7c7142a061786f9b40.ctex"]
 
 [params]
 

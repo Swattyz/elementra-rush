@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3t3abydtcrcx"
-path="res://.godot/imported/drawing_sword_pyro.png-5ef6fc2f0b33560b4406850bd6d14db5.ctex"
+uid="uid://l6bijtw7fyd2"
+path="res://.godot/imported/bush.png-81af65c1d39915581bc0323a36cea3b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player_sprites/player_fighting/drawing_sword_pyro.png"
-dest_files=["res://.godot/imported/drawing_sword_pyro.png-5ef6fc2f0b33560b4406850bd6d14db5.ctex"]
+source_file="res://object_sprites/bush.png"
+dest_files=["res://.godot/imported/bush.png-81af65c1d39915581bc0323a36cea3b7.ctex"]
 
 [params]
 

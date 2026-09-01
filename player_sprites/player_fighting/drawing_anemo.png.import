@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cho242xol3id6"
-path="res://.godot/imported/sword_idle_anemo.png-d0a2cb6a2edb0c130d7c9554530f1247.ctex"
+uid="uid://bodayo10jgiua"
+path="res://.godot/imported/drawing_anemo.png-84330561276e32876a7b695d996d5e79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player_sprites/player_fighting/sword_idle_anemo.png"
-dest_files=["res://.godot/imported/sword_idle_anemo.png-d0a2cb6a2edb0c130d7c9554530f1247.ctex"]
+source_file="res://player_sprites/player_fighting/drawing_anemo.png"
+dest_files=["res://.godot/imported/drawing_anemo.png-84330561276e32876a7b695d996d5e79.ctex"]
 
 [params]
 

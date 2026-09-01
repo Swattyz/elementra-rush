@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1tpiqpl3wo1j"
-path="res://.godot/imported/sword_idle_pyro.png-bf516922cfc50c3d4e7333eb988139bc.ctex"
+uid="uid://bo110la4ro6eu"
+path="res://.godot/imported/dead_root.png-9f36b40711102ed4840edcfad977c12e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player_sprites/player_fighting/sword_idle_pyro.png"
-dest_files=["res://.godot/imported/sword_idle_pyro.png-bf516922cfc50c3d4e7333eb988139bc.ctex"]
+source_file="res://object_sprites/dead_root.png"
+dest_files=["res://.godot/imported/dead_root.png-9f36b40711102ed4840edcfad977c12e.ctex"]
 
 [params]
 

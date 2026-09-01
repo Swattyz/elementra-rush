@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://huv5maatdvfe"
-path="res://.godot/imported/drawing_sword_hydro.png-1d351f4e3f84ba64ae1218662258ee7c.ctex"
+uid="uid://dqir487stmyjv"
+path="res://.godot/imported/idle_hydro.png-6a0ff3b8bb96e8f7fe670f993812eaec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player_sprites/player_fighting/drawing_sword_hydro.png"
-dest_files=["res://.godot/imported/drawing_sword_hydro.png-1d351f4e3f84ba64ae1218662258ee7c.ctex"]
+source_file="res://player_sprites/player_fighting/idle_hydro.png"
+dest_files=["res://.godot/imported/idle_hydro.png-6a0ff3b8bb96e8f7fe670f993812eaec.ctex"]
 
 [params]
 

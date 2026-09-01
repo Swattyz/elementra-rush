@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3qt4xm4anjbx"
-path="res://.godot/imported/sword_idle_dendro.png-2fe877da8eded5ccfe10f259935910c7.ctex"
+uid="uid://b4ngl7mhuxe01"
+path="res://.godot/imported/idle_dendro.png-40e73e05580601c0019a211fbd3b9391.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player_sprites/player_fighting/sword_idle_dendro.png"
-dest_files=["res://.godot/imported/sword_idle_dendro.png-2fe877da8eded5ccfe10f259935910c7.ctex"]
+source_file="res://player_sprites/player_fighting/idle_dendro.png"
+dest_files=["res://.godot/imported/idle_dendro.png-40e73e05580601c0019a211fbd3b9391.ctex"]
 
 [params]
 

@@ -11,25 +11,25 @@ load_path = "res://.godot/imported/potion.png-ee0a36563437b7011e0691984baa3ea9.c
 size = Vector2(2, 83)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(106, 40)
+size = Vector2(50, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
-size = Vector2(106, 40)
+size = Vector2(50, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57qmd"]
-size = Vector2(106, 40)
+size = Vector2(50, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0u6y"]
-size = Vector2(70, 20)
+size = Vector2(169, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_voyct"]
-size = Vector2(89, 20)
+size = Vector2(73, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtx12"]
-size = Vector2(89.5, 20)
+size = Vector2(72, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d53yt"]
-size = Vector2(74, 20)
+size = Vector2(176, 20)
 
 [node name="ItemQTE" type="Node2D" unique_id=704960953]
 script = ExtResource("1_voyct")
@@ -51,41 +51,41 @@ offset_right = 640.0
 offset_bottom = 326.0
 color = Color(0.83862054, 0.8243622, 0.8488097, 1)
 
-[node name="ATKBuff" type="ColorRect" parent="." unique_id=515993592]
-offset_left = 265.0
+[node name="BackgroundATK" type="ColorRect" parent="." unique_id=515993592]
+offset_left = 292.0
 offset_top = 299.0
-offset_right = 371.0
+offset_right = 342.0
 offset_bottom = 339.0
 color = Color(1, 0.32999998, 0.32999998, 1)
 
-[node name="DEFBuff" type="ColorRect" parent="." unique_id=312726818]
-offset_left = 70.0
+[node name="PotionATK" type="Sprite2D" parent="BackgroundATK" unique_id=706371756]
+position = Vector2(25, 19)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_1t5qu")
+
+[node name="BackgroundDEF" type="ColorRect" parent="." unique_id=312726818]
+offset_left = 169.0
 offset_top = 299.0
-offset_right = 176.0
+offset_right = 219.0
 offset_bottom = 339.0
 color = Color(5.198121e-06, 0.6415284, 0.91693795, 1)
 
-[node name="HEAL" type="ColorRect" parent="." unique_id=1839610507]
-offset_left = 460.0
+[node name="PotionDEF" type="Sprite2D" parent="BackgroundDEF" unique_id=317874043]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(25, 19)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_1t5qu")
+
+[node name="BackgroundHEAL" type="ColorRect" parent="." unique_id=1839610507]
+offset_left = 414.0
 offset_top = 299.0
-offset_right = 566.0
+offset_right = 464.0
 offset_bottom = 339.0
 color = Color(0.40707266, 0.6868156, 0.08812585, 1)
 
-[node name="Potion" type="Sprite2D" parent="." unique_id=706371756]
-position = Vector2(317, 318)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_1t5qu")
-
-[node name="Potion2" type="Sprite2D" parent="." unique_id=317874043]
-modulate = Color(0, 1, 1, 1)
-position = Vector2(123.000015, 318)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_1t5qu")
-
-[node name="Potion3" type="Sprite2D" parent="." unique_id=980972726]
+[node name="PotionHEAL" type="Sprite2D" parent="BackgroundHEAL" unique_id=980972726]
 modulate = Color(0, 1, 0.25882354, 1)
-position = Vector2(512.99994, 318)
+position = Vector2(26.00003, 19)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("CompressedTexture2D_d53yt")
 
@@ -105,37 +105,37 @@ shape = SubResource("RectangleShape2D_1t5qu")
 [node name="DeffenseBuffArea" type="Area2D" parent="." unique_id=302581042]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeffenseBuffArea" unique_id=113267548]
-position = Vector2(123, 319)
+position = Vector2(194, 319)
 shape = SubResource("RectangleShape2D_g4v7s")
 
 [node name="AttackBuffArea" type="Area2D" parent="." unique_id=1279732692]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBuffArea" unique_id=647612873]
-position = Vector2(318, 319)
+position = Vector2(317, 319)
 shape = SubResource("RectangleShape2D_yf5fn")
 
 [node name="HealArea" type="Area2D" parent="." unique_id=1323250275]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealArea" unique_id=520032966]
-position = Vector2(513, 319)
+position = Vector2(439, 319)
 shape = SubResource("RectangleShape2D_57qmd")
 
 [node name="MissArea" type="Area2D" parent="." unique_id=1590571337]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MissArea" unique_id=1565149641]
-position = Vector2(35, 320)
+position = Vector2(84.5, 320)
 shape = SubResource("RectangleShape2D_d0u6y")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="MissArea" unique_id=734694268]
-position = Vector2(220.5, 320)
+position = Vector2(255.5, 320)
 shape = SubResource("RectangleShape2D_voyct")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="MissArea" unique_id=65376894]
-position = Vector2(415.5, 320)
+position = Vector2(378, 320)
 shape = SubResource("RectangleShape2D_wtx12")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="MissArea" unique_id=348592]
-position = Vector2(603, 320)
+position = Vector2(552, 320)
 shape = SubResource("RectangleShape2D_d53yt")
 
 [connection signal="body_entered" from="DeffenseBuffArea" to="." method="_on_deffense_buff_area_body_entered"]
