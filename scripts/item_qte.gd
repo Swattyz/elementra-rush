@@ -39,7 +39,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_deffense_buff_area_body_entered(_body: Node2D) -> void:
 	Global.item_qte = "def"
-	Global.item_value = 1 + (0.2 * (3 / times_bounced))
+	Global.item_value = 0.1 * (3 / times_bounced)
 
 func _on_attack_buff_area_body_entered(_body: Node2D) -> void:
 	Global.item_qte = "atk"
@@ -47,7 +47,7 @@ func _on_attack_buff_area_body_entered(_body: Node2D) -> void:
 
 func _on_heal_area_body_entered(_body: Node2D) -> void:
 	Global.item_qte = "heal"
-	Global.item_value = 45 / times_bounced
+	Global.item_value = 30 / times_bounced
 
 func _on_miss_area_body_entered(_body: Node2D) -> void:
 	Global.item_qte = "none"

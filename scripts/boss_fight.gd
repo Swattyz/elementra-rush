@@ -9,6 +9,18 @@ var chance: float
 var fight_qte_scene: PackedScene = preload("res://scenes/fight_qte.tscn")
 var fight_qte
 
+var item_qte_scene: PackedScene = preload("res://scenes/item_qte.tscn")
+var item_qte
+
+var atk_bonus: float = 1
+var def_bonus: float = 0
+
+var cycles_run_def: int = 0
+var cycles_run_atk: int = 0
+
+var atk_buff_active: bool = false
+var def_buff_active: bool = false
+
 var fight_dialogue_scene: PackedScene = preload("res://scenes/fight_dialogue.tscn")
 var fight_dialogue = fight_dialogue_scene.instantiate()
 var unknown_icon: String = "res://object_sprites/unknown_identity_icon.png"
@@ -21,6 +33,7 @@ var dead: bool = false
 var won: bool = false
 var current_turn: int = 0
 var player_hit_qte: bool = false
+var player_chose_item: bool = false
 
 func _ready() -> void:
 	rng.randomize()
@@ -55,10 +68,10 @@ func _process(_delta: float) -> void:
 							fight_dialogue.change_text("...Obteve uma extrema perfomance e precisão no ataque e atingiu a criatura em cheio!")
 						else:
 							fight_dialogue.change_text("...Um acerto CRÍTICO na criatura!")
-						$FightHUD/DragonHP.value -= Global.player_qte*3
+						$FightHUD/DragonHP.value -= Global.player_qte * (3+atk_bonus)
 						
-						print("Player DMG D20: ",Global.player_qte)
-						print("Player Damage: ",Global.player_qte*3,"\n")
+						print("Player QTE: ",Global.player_qte)
+						print("Player Damage: ",Global.player_qte*(3+atk_bonus),"\n")
 						counter += 1
 					
 					elif counter == 1:
@@ -75,7 +88,35 @@ func _process(_delta: float) -> void:
 							player_hit_qte = false
 							counter = 0
 			2:
-				pass
+				if player_chose_item:
+					if counter == 0:
+						item_qte.queue_free()
+						add_child(fight_dialogue)
+						
+						match Global.item_qte:
+							"heal":
+								fight_dialogue.change_text("...Conseguiu uma poção de cura e recuperou HP!")
+								$FightHUD/PlayerHP.value += Global.item_value
+							"atk":
+								fight_dialogue.change_text("...Conseguiu uma poção de aumento de dano por 2 turnos!")
+								atk_bonus = Global.item_value
+								atk_buff_active = true
+								cycles_run_atk = 0
+							"def":
+								fight_dialogue.change_text("...Conseguiu uma poção de aumento de defesa por 2 turnos!")
+								def_bonus = Global.item_value
+								def_buff_active = true
+								cycles_run_def = 0
+							"none":
+								fight_dialogue.change_text("...Não encontrou itens no inventário...")
+						
+						counter += 1
+					
+					elif counter == 1:
+						if Input.is_action_just_pressed("confirm"):
+							current_action = 4
+							counter = 0
+							player_chose_item = false
 			3:
 				match counter:
 					0:
@@ -116,8 +157,36 @@ func _process(_delta: float) -> void:
 						counter = 0
 						current_action = 4
 			4:
+				if atk_buff_active or def_buff_active:
+					if atk_buff_active:
+						cycles_run_atk += 1
+						
+						if cycles_run_atk == 4:
+							cycles_run_atk = 0
+							atk_bonus = 1
+							atk_buff_active = false
+							fight_dialogue.change_text("...Seu aumento de dano expirou!")
+							current_action = 5
+							return
+						
+					if def_buff_active:
+						cycles_run_def += 1
+							
+						if cycles_run_def == 4:
+							cycles_run_def = 0
+							def_bonus = 0
+							def_buff_active = false
+							fight_dialogue.change_text("...Seu aumento de defesa expirou!")
+							current_action = 5
+							return
+					
 				current_turn += 1
 				current_action = 0
+			
+			5:
+				if Input.is_action_just_pressed("confirm"):
+					current_turn += 1
+					current_action = 0
 	
 	elif current_turn == 1:
 		match counter:
@@ -169,9 +238,9 @@ func _process(_delta: float) -> void:
 					print("Dragon's DMG: ", chance*2,"\n")
 					
 					print("Player's Defense D20: ",Global.player_qte,"\n")
-					print("Player's Defense Multiplier: ", (1 - (Global.player_qte/10)))
-					print("Player's Reduced DMG: ", (chance * 2) - ((chance * 2) * (1 - (Global.player_qte/10))))
-					chance = (chance * 2) * (1 - (Global.player_qte/10))
+					print("Player's Defense Multiplier: ", (1 - ((Global.player_qte/10) + def_bonus)))
+					print("Player's Reduced DMG: ", (chance * 2) * (1 - ((Global.player_qte/10) + def_bonus)))
+					chance = (chance * 2) * (1 - ((Global.player_qte/10) + def_bonus))
 					
 					if chance < 0: chance = 0
 					counter += 1
@@ -217,7 +286,13 @@ func qte_start():
 
 func _on_item_button_pressed() -> void:
 	$FightHUD.remove_child(buttons)
+	item_qte_start()
 	current_action = 2
+
+func item_qte_start():
+	item_qte = item_qte_scene.instantiate()
+	item_qte.item_chose.connect(_on_item_chosen)
+	$FightHUD.add_child(item_qte)
 
 func _on_run_button_pressed() -> void:
 	$FightHUD.remove_child(buttons)
@@ -239,4 +314,6 @@ func _on_dragon_hp_value_changed(value: float) -> void:
 
 func _on_player_attacked():
 	player_hit_qte = true
-	
+
+func _on_item_chosen():
+	player_chose_item = true
