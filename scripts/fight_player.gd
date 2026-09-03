@@ -18,5 +18,4 @@ func _ready() -> void:
 	play(sword_drawing_animations[Global.player_element])
 
 func _on_animation_finished() -> void:
-	if animation in sword_drawing_animations:
-		play(sword_idle_animations[Global.player_element])
+	play(sword_idle_animations[Global.player_element])

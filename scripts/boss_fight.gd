@@ -35,10 +35,31 @@ var current_turn: int = 0
 var player_hit_qte: bool = false
 var player_chose_item: bool = false
 
+var attacking_animations: Array = [
+	"attacking anemo",
+	"attacking hydro",
+	"attacking pyro",
+	"attacking dendro"
+]
+
+var blocking_animations: Array = [
+	"blocking anemo",
+	"blocking hydro",
+	"blocking pyro",
+	"blocking dendro"
+]
+
+var player_block_animation: String
+var player_attack_animation: String
+
 func _ready() -> void:
 	rng.randomize()
 	buttons = $FightHUD/Buttons
 	fight_button = $FightHUD/Buttons/FightButton
+	$ATKBuff.hide()
+	$DEFBuff.hide()
+	player_block_animation = blocking_animations[Global.player_element]
+	player_attack_animation = attacking_animations[Global.player_element]
 
 func _process(_delta: float) -> void:
 	if dead or won:
@@ -97,15 +118,21 @@ func _process(_delta: float) -> void:
 							"heal":
 								fight_dialogue.change_text("...Conseguiu uma poção de cura e recuperou HP!")
 								$FightHUD/PlayerHP.value += Global.item_value
+								var tween = create_tween()
+								tween.tween_property($Player, "modulate", Color(0.0, 0.65, 0.0, 1.0), 0.0)
+								tween.tween_interval(0.25)
+								tween.tween_property($Player, "modulate", Color.WHITE, 0.0)
 							"atk":
-								fight_dialogue.change_text("...Conseguiu uma poção de aumento de dano por 2 turnos!")
+								fight_dialogue.change_text("...Conseguiu uma poção de aumento de dano por 3 turnos!")
 								atk_bonus = Global.item_value
 								atk_buff_active = true
+								$ATKBuff.show()
 								cycles_run_atk = 0
 							"def":
-								fight_dialogue.change_text("...Conseguiu uma poção de aumento de defesa por 2 turnos!")
+								fight_dialogue.change_text("...Conseguiu uma poção de aumento de defesa por 3 turnos!")
 								def_bonus = Global.item_value
 								def_buff_active = true
+								$DEFBuff.show()
 								cycles_run_def = 0
 							"none":
 								fight_dialogue.change_text("...Não encontrou itens no inventário...")
@@ -120,6 +147,23 @@ func _process(_delta: float) -> void:
 			3:
 				match counter:
 					0:
+						print("Player RunAway: ",chance)
+						if $FightHUD/PlayerHP.value < 5:
+							chance += 8
+						elif $FightHUD/PlayerHP.value < 10:
+							chance += 6
+						elif $FightHUD/PlayerHP.value < 20:
+							chance += 4
+						elif $FightHUD/PlayerHP.value < 40:
+							chance += 3
+						elif $FightHUD/PlayerHP.value < 60:
+							chance += 2
+						elif $FightHUD/PlayerHP.value < 80:
+							chance += 1
+						
+						if chance > 20: chance = 20
+						counter += 1
+					1:
 						if Input.is_action_just_pressed("confirm"):
 							if chance >= 19:
 								fight_dialogue.change_text("...Com um ótimo controle de seu corpo, obteve extremo sucesso na sua fuga.")
@@ -133,9 +177,8 @@ func _process(_delta: float) -> void:
 								fight_dialogue.change_text("...Você é impedido no meio de sua fútil tentativa e cai no chão.")
 							else:
 								fight_dialogue.change_text("...Terrivelmente, você tropeça na menor rocha possível, cai no chão e leva dano por isso... Não é seu dia de sorte.")
-								counter += 1
-						
-					1:
+							counter += 1
+					2:
 						if Input.is_action_just_pressed("confirm"):
 							if chance >= 17:
 								if TransitionScreen.transitioning:
@@ -147,8 +190,8 @@ func _process(_delta: float) -> void:
 								call_deferred("change_scene")
 							counter += 1
 						
-					2:
-						print("Player RunAway D20: ",chance,"\n")
+					3:
+						print("Player Real RunAway: ",chance,"\n")
 						counter += 1
 						if chance <= 2:
 							$FightHUD/PlayerHP.value -= 5
@@ -165,6 +208,7 @@ func _process(_delta: float) -> void:
 							cycles_run_atk = 0
 							atk_bonus = 1
 							atk_buff_active = false
+							$ATKBuff.hide()
 							fight_dialogue.change_text("...Seu aumento de dano expirou!")
 							current_action = 5
 							return
@@ -172,10 +216,11 @@ func _process(_delta: float) -> void:
 					if def_buff_active:
 						cycles_run_def += 1
 							
-						if cycles_run_def == 4:
+						if cycles_run_def == 5:
 							cycles_run_def = 0
 							def_bonus = 0
 							def_buff_active = false
+							$DEFBuff.hide()
 							fight_dialogue.change_text("...Seu aumento de defesa expirou!")
 							current_action = 5
 							return
@@ -220,6 +265,7 @@ func _process(_delta: float) -> void:
 				if Input.is_action_just_pressed("confirm"):
 					remove_child(fight_dialogue)
 					await get_tree().process_frame
+					$Player.play(player_block_animation)
 					qte_start()
 					counter += 1
 			4:
@@ -246,7 +292,7 @@ func _process(_delta: float) -> void:
 					counter += 1
 			5:
 				$FightHUD/PlayerHP.value -= chance
-				print("Dragon's Real Damage: ", chance)
+				print("Dragon's Real Damage: ", chance,"\n")
 				counter += 1
 			6:
 				if Global.player_qte == 0:
@@ -277,6 +323,7 @@ func change_scene():
 func _on_fight_button_pressed() -> void:
 	$FightHUD.remove_child(buttons)
 	qte_start()
+	$Player.play(player_attack_animation)
 	current_action = 1
 
 func qte_start():
@@ -299,7 +346,6 @@ func _on_run_button_pressed() -> void:
 	add_child(fight_dialogue)
 	fight_dialogue.change_text("...Você tentou achar uma brecha para fugir...")
 	chance = rng.randi_range(1,20)
-	chance = 1
 	current_action = 3
 
 func _on_player_hp_value_changed(value: float) -> void:

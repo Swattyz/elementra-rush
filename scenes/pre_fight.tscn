@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ds14e13ib8fbw" path="res://backgrounds/fight_spritesheet.png" id="2_r4fr8"]
 [ext_resource type="Texture2D" uid="uid://b5m15gm53dquu" path="res://backgrounds/prefight_terrain.png" id="3_r4fr8"]
 [ext_resource type="PackedScene" uid="uid://i7gse8jih7h6" path="res://scenes/player.tscn" id="4_r4fr8"]
+[ext_resource type="Texture2D" uid="uid://k8klhe6k5se2" path="res://backgrounds/lava.png" id="5_7u0ny"]
 [ext_resource type="Texture2D" uid="uid://l1rtl0vqtdlj" path="res://sprite_placeholders/dragon_placeholder.png" id="6_7u0ny"]
 [ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="7_aqtrw"]
 
@@ -22,13 +23,13 @@ region = Rect2(1280, 0, 640, 360)
 [sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_7u0ny")
 }, {
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_km1uw")
 }, {
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_obcv6")
 }],
 "loop": 1,
@@ -41,6 +42,35 @@ size = Vector2(639, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1u0y"]
 size = Vector2(114, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqtrw"]
+atlas = ExtResource("5_7u0ny")
+region = Rect2(0, 0, 40, 325)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag6mi"]
+atlas = ExtResource("5_7u0ny")
+region = Rect2(40, 0, 40, 325)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg6vo"]
+atlas = ExtResource("5_7u0ny")
+region = Rect2(80, 0, 40, 325)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf5fn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqtrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag6mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg6vo")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
 size = Vector2(20, 362)
@@ -92,6 +122,28 @@ shape = SubResource("RectangleShape2D_p1u0y")
 
 [node name="Player" parent="." unique_id=900707046 instance=ExtResource("4_r4fr8")]
 position = Vector2(7, 306)
+
+[node name="LavaFalling" type="AnimatedSprite2D" parent="." unique_id=1580568157]
+modulate = Color(0.3254902, 0.3254902, 0.3254902, 0.6392157)
+position = Vector2(182.5, 158.25)
+scale = Vector2(1.225, 1.2938461)
+sprite_frames = SubResource("SpriteFrames_yf5fn")
+autoplay = "default"
+
+[node name="LavaFalling2" type="AnimatedSprite2D" parent="." unique_id=44700775]
+modulate = Color(0.20392157, 0.20392157, 0.20392157, 0.7490196)
+position = Vector2(391.75, 167.25)
+scale = Vector2(2.2625005, 1.2384616)
+sprite_frames = SubResource("SpriteFrames_yf5fn")
+autoplay = "default"
+flip_h = true
+
+[node name="LavaFalling3" type="AnimatedSprite2D" parent="." unique_id=1450003426]
+modulate = Color(0.20392157, 0.20392157, 0.20392157, 0.7490196)
+position = Vector2(624.125, 167.25)
+scale = Vector2(2.9562492, 1.2384616)
+sprite_frames = SubResource("SpriteFrames_yf5fn")
+autoplay = "default"
 
 [node name="Barriers" type="Node2D" parent="." unique_id=955887741]
 
