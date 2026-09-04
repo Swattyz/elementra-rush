@@ -28,6 +28,8 @@
 [ext_resource type="Script" uid="uid://bmqnbuddthttk" path="res://scripts/fight_player.gd" id="11_bii1g"]
 [ext_resource type="Texture2D" uid="uid://cs67sp2dw38jv" path="res://object_sprites/atk_buff_lesser.png" id="21_oq6wl"]
 [ext_resource type="Texture2D" uid="uid://dqupmjr7ig1ag" path="res://object_sprites/def_buff_lesser.png" id="22_x2y70"]
+[ext_resource type="FontFile" uid="uid://b6qq6p4aasabv" path="res://fonts/VCR_OSD_MONO.ttf" id="25_g1mv6"]
+[ext_resource type="Script" uid="uid://catlh8yv561cw" path="res://scripts/damage_player.gd" id="26_gwguq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7imqq"]
 atlas = ExtResource("2_62gkx")
@@ -808,11 +810,11 @@ centered = false
 
 [node name="FightHUD" type="CanvasLayer" parent="." unique_id=1801211472]
 
-[node name="Label" type="Label" parent="FightHUD" unique_id=1261936155]
-offset_left = 14.0
-offset_top = 245.0
-offset_right = 54.0
-offset_bottom = 275.0
+[node name="HPText2" type="Label" parent="FightHUD" unique_id=2002292040]
+offset_left = 315.0
+offset_top = 10.0
+offset_right = 355.0
+offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.9855103, 0.50458753, 0, 1)
 theme_override_fonts/font = ExtResource("1_dl1d0")
 theme_override_font_sizes/font_size = 30
@@ -829,6 +831,28 @@ theme_override_font_sizes/font_size = 15
 max_value = 250.0
 value = 250.0
 
+[node name="DamageDragon" type="Label" parent="FightHUD" unique_id=1625902661]
+offset_left = 416.0
+offset_top = 54.0
+offset_right = 466.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("25_g1mv6")
+theme_override_font_sizes/font_size = 20
+text = "00"
+horizontal_alignment = 1
+script = ExtResource("26_gwguq")
+
+[node name="HPText" type="Label" parent="FightHUD" unique_id=1261936155]
+offset_left = 14.0
+offset_top = 245.0
+offset_right = 54.0
+offset_bottom = 275.0
+theme_override_colors/font_color = Color(0.9855103, 0.50458753, 0, 1)
+theme_override_fonts/font = ExtResource("1_dl1d0")
+theme_override_font_sizes/font_size = 30
+text = "HP:"
+horizontal_alignment = 1
+
 [node name="PlayerHP" type="ProgressBar" parent="FightHUD" unique_id=1790658050]
 offset_left = 59.0
 offset_top = 250.0
@@ -838,15 +862,14 @@ theme_override_fonts/font = ExtResource("1_dl1d0")
 theme_override_font_sizes/font_size = 15
 value = 100.0
 
-[node name="Label2" type="Label" parent="FightHUD" unique_id=2002292040]
-offset_left = 315.0
-offset_top = 10.0
-offset_right = 355.0
-offset_bottom = 40.0
-theme_override_colors/font_color = Color(0.9855103, 0.50458753, 0, 1)
-theme_override_fonts/font = ExtResource("1_dl1d0")
-theme_override_font_sizes/font_size = 30
-text = "HP:"
+[node name="DamagePlayer" type="Label" parent="FightHUD" unique_id=1534326468]
+offset_left = 133.0
+offset_top = 57.0
+offset_right = 183.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("25_g1mv6")
+theme_override_font_sizes/font_size = 20
+text = "00"
 horizontal_alignment = 1
 
 [node name="Buttons" type="Control" parent="FightHUD" unique_id=1977820104]

@@ -35,6 +35,8 @@ var current_turn: int = 0
 var player_hit_qte: bool = false
 var player_chose_item: bool = false
 
+var dragon_phase: int = 0
+
 var attacking_animations: Array = [
 	"attacking anemo",
 	"attacking hydro",
@@ -60,6 +62,11 @@ func _ready() -> void:
 	$DEFBuff.hide()
 	player_block_animation = blocking_animations[Global.player_element]
 	player_attack_animation = attacking_animations[Global.player_element]
+	$FightHUD/DamagePlayer.hide()
+	$FightHUD/DamageDragon.hide()
+	
+	$FightHUD/DragonHP.max_value = 150
+	$FightHUD/DragonHP.value = 150
 
 func _process(_delta: float) -> void:
 	if dead or won:
@@ -71,6 +78,22 @@ func _process(_delta: float) -> void:
 			await TransitionScreen.on_transition_finished
 			call_deferred("change_scene")
 		return
+	
+	if dragon_phase == 1:
+		match counter:
+			0:
+				fight_dialogue.change_text("...O dragão caiu fraco no magma fervente... Porém voltou da morte?!")
+				counter += 1
+			1:
+				if Input.is_action_just_pressed("confirm"):
+					fight_dialogue.change_text("Ele parece irritado... A defesa e ataque do dragão subiram!")
+					counter += 1
+			2:
+				if Input.is_action_just_pressed("confirm"):
+					dragon_phase = 2
+					current_action = 4
+					counter = 0
+					$FightHUD/DamagePlayer.modulate = Color.RED
 	
 	elif current_turn == 0:
 		match current_action:
@@ -97,6 +120,9 @@ func _process(_delta: float) -> void:
 					
 					elif counter == 1:
 						if Global.player_qte > 0:
+							$FightHUD/DamageDragon.text = str(int(Global.player_qte * (3+atk_bonus)))
+							$FightHUD/DamageDragon.show()
+						
 							var tween = create_tween()
 							tween.tween_property($Enemy, "modulate", Color(0.65, 0.0, 0.0, 1.0), 0.0)
 							tween.tween_interval(0.25)
@@ -108,6 +134,7 @@ func _process(_delta: float) -> void:
 							current_action = 4
 							player_hit_qte = false
 							counter = 0
+							$FightHUD/DamageDragon.hide()
 			2:
 				if player_chose_item:
 					if counter == 0:
@@ -289,12 +316,16 @@ func _process(_delta: float) -> void:
 					chance = (chance * 2) * (1 - ((Global.player_qte/10) + def_bonus))
 					
 					if chance < 0: chance = 0
+					if dragon_phase == 2: chance = chance * 1.5
 					counter += 1
 			5:
 				$FightHUD/PlayerHP.value -= chance
 				print("Dragon's Real Damage: ", chance,"\n")
 				counter += 1
 			6:
+				$FightHUD/DamagePlayer.text = str(int(chance))
+				$FightHUD/DamagePlayer.show()
+				
 				if Global.player_qte == 0:
 					var tween = create_tween()
 					tween.tween_property($Player, "modulate", Color(0.65, 0.0, 0.0, 1.0), 0.0)
@@ -315,6 +346,7 @@ func _process(_delta: float) -> void:
 			8:
 				current_turn -= 1
 				player_hit_qte = false
+				$FightHUD/DamagePlayer.hide()
 				counter = 0
 
 func change_scene():
@@ -355,8 +387,16 @@ func _on_player_hp_value_changed(value: float) -> void:
 
 func _on_dragon_hp_value_changed(value: float) -> void:
 	if value == 0:
-		won = true
-		fight_dialogue.change_dialogue("...O dragão mostrou-se muito fraco... Você venceu!","???",unknown_icon)
+		if dragon_phase == 0:
+			dragon_phase = 1
+			current_action = 0
+			$FightHUD/DragonHP.max_value = 300
+			$FightHUD/DragonHP.value = $FightHUD/DragonHP.max_value
+			player_hit_qte = false
+			
+		elif dragon_phase == 2:
+			won = true
+			fight_dialogue.change_dialogue("...O dragão mostrou-se muito fraco... Você venceu!","???",unknown_icon)
 
 func _on_player_attacked():
 	player_hit_qte = true
