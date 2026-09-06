@@ -81,14 +81,15 @@ func _process(_delta: float) -> void:
 	
 	if dragon_phase == 1:
 		match counter:
-			0:
-				fight_dialogue.change_text("...O dragão caiu fraco no magma fervente... Porém voltou da morte?!")
-				counter += 1
 			1:
+				if Input.is_action_just_pressed("confirm"):
+					fight_dialogue.change_text("...O dragão caiu fraco no magma fervente... Porém voltou da morte?!")
+					counter += 1
+			2:
 				if Input.is_action_just_pressed("confirm"):
 					fight_dialogue.change_text("Ele parece irritado... A defesa e ataque do dragão subiram!")
 					counter += 1
-			2:
+			3:
 				if Input.is_action_just_pressed("confirm"):
 					dragon_phase = 2
 					current_action = 4
@@ -273,13 +274,13 @@ func _process(_delta: float) -> void:
 						fight_dialogue.change_text("...O dragão errou o golpe!")
 						chance = 0
 					elif chance < 9:
-						fight_dialogue.change_text("...A criatura desfere um golpe certeiro!")
+						fight_dialogue.change_text("...A criatura vai desferir um golpe certeiro!")
 					elif chance < 14:
-						fight_dialogue.change_text("...A besta realiza um excelente ataque!")
+						fight_dialogue.change_text("...A besta realizará um excelente ataque!")
 					elif chance < 19:
 						fight_dialogue.change_text("...A criatura dracônica avança em uma ofensiva letal!")
 					elif chance == 20:
-						fight_dialogue.change_text("...O dragão desfere um acerto PERFEITO!")
+						fight_dialogue.change_text("...O dragão lhe atingirá com um acerto PERFEITO!")
 					counter += 1
 					
 					if chance == 0:
@@ -292,6 +293,8 @@ func _process(_delta: float) -> void:
 				if Input.is_action_just_pressed("confirm"):
 					remove_child(fight_dialogue)
 					await get_tree().process_frame
+					
+					$Enemy.move_forward(300,128)
 					$Player.play(player_block_animation)
 					qte_start()
 					counter += 1
@@ -353,6 +356,7 @@ func change_scene():
 	get_tree().change_scene_to_file("res://scenes/ending.tscn")
 
 func _on_fight_button_pressed() -> void:
+	$Player.move_forward(360,186)
 	$FightHUD.remove_child(buttons)
 	qte_start()
 	$Player.play(player_attack_animation)
@@ -392,6 +396,12 @@ func _on_dragon_hp_value_changed(value: float) -> void:
 			current_action = 0
 			$FightHUD/DragonHP.max_value = 300
 			$FightHUD/DragonHP.value = $FightHUD/DragonHP.max_value
+			
+			var tween = create_tween()
+			tween.tween_property($Enemy, "modulate", Color(1.0, 0.0, 0.0, 1.0), 0.0)
+			tween.tween_interval(1.25)
+			tween.tween_property($Enemy, "modulate", Color.WHITE, 0.0)
+			
 			player_hit_qte = false
 			
 		elif dragon_phase == 2:

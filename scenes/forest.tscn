@@ -90,8 +90,33 @@ scale = Vector2(0.35, 0.35)
 texture = ExtResource("7_j3csf")
 
 [node name="Bush7" type="Sprite2D" parent="Background" unique_id=479843961]
+modulate = Color(0.73300546, 0.7330054, 0.7330054, 1)
 position = Vector2(7.9999695, 151)
 scale = Vector2(0.35, 0.35)
+texture = ExtResource("7_j3csf")
+
+[node name="Bush12" type="Sprite2D" parent="Background" unique_id=2067985620]
+modulate = Color(0.3854928, 0.3854924, 0.38549247, 1)
+position = Vector2(-119.00003, 143)
+scale = Vector2(0.19999999, 0.19999999)
+texture = ExtResource("7_j3csf")
+
+[node name="Bush13" type="Sprite2D" parent="Background" unique_id=744076081]
+modulate = Color(0.641934, 0.64193404, 0.64193386, 1)
+position = Vector2(55, 152)
+scale = Vector2(0.19999999, 0.19999999)
+texture = ExtResource("7_j3csf")
+
+[node name="Bush14" type="Sprite2D" parent="Background" unique_id=1896814368]
+modulate = Color(0.641934, 0.64193404, 0.64193386, 1)
+position = Vector2(131, 157)
+scale = Vector2(0.19999999, 0.19999999)
+texture = ExtResource("7_j3csf")
+
+[node name="Bush15" type="Sprite2D" parent="Background" unique_id=435420702]
+modulate = Color(0.641934, 0.64193404, 0.64193386, 1)
+position = Vector2(168, 148)
+scale = Vector2(0.19999999, 0.19999999)
 texture = ExtResource("7_j3csf")
 
 [node name="DarknessFilter" type="ColorRect" parent="Background" unique_id=935195707]
@@ -106,55 +131,67 @@ position = Vector2(-273, 95)
 texture = ExtResource("7_0nboi")
 
 [node name="Tree19" type="Sprite2D" parent="Background" unique_id=2053505939]
+modulate = Color(0.5409904, 0.54099053, 0.5409902, 1)
 position = Vector2(276, 116)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_dabdc")
 
 [node name="Tree20" type="Sprite2D" parent="Background" unique_id=499346171]
+modulate = Color(0.5409904, 0.54099053, 0.5409902, 1)
 position = Vector2(-31.00003, 119)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_dabdc")
 
 [node name="Tree21" type="Sprite2D" parent="Background" unique_id=1345451691]
+modulate = Color(0.5409904, 0.54099053, 0.5409902, 1)
 position = Vector2(-98, 120)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_dabdc")
 flip_h = true
 
 [node name="Tree10" type="Sprite2D" parent="Background" unique_id=1997701364]
+modulate = Color(0.5409904, 0.54099053, 0.5409902, 1)
 position = Vector2(-224, 119)
 texture = ExtResource("9_dabdc")
 
 [node name="Tree11" type="Sprite2D" parent="Background" unique_id=1008099241]
+modulate = Color(0.5409904, 0.54099053, 0.5409902, 1)
 position = Vector2(-137, 109)
 texture = ExtResource("9_dabdc")
 
 [node name="Tree16" type="Sprite2D" parent="Background" unique_id=1059900058]
+modulate = Color(0.5409904, 0.54099053, 0.5409902, 1)
 position = Vector2(-63, 108)
 texture = ExtResource("9_dabdc")
 flip_h = true
 
 [node name="Tree12" type="Sprite2D" parent="Background" unique_id=325388229]
+modulate = Color(0.5409904, 0.54099053, 0.5409902, 1)
 position = Vector2(26, 110)
 texture = ExtResource("9_dabdc")
 
 [node name="Tree13" type="Sprite2D" parent="Background" unique_id=2006737640]
+modulate = Color(0.5409904, 0.54099053, 0.5409902, 1)
 position = Vector2(193, 119)
 texture = ExtResource("9_dabdc")
 
 [node name="Tree14" type="Sprite2D" parent="Background" unique_id=1225772770]
+modulate = Color(0.5409904, 0.54099053, 0.5409902, 1)
 position = Vector2(251, 101)
 texture = ExtResource("9_dabdc")
 
 [node name="Tree17" type="Sprite2D" parent="Background" unique_id=259873898]
+modulate = Color(0.5409904, 0.54099053, 0.5409902, 1)
 position = Vector2(313, 102)
 texture = ExtResource("9_dabdc")
 
 [node name="Tree15" type="Sprite2D" parent="Background" unique_id=210456621]
+modulate = Color(0.5409904, 0.54099053, 0.5409902, 1)
 position = Vector2(91, 93)
 texture = ExtResource("9_dabdc")
 
 [node name="Tree18" type="Sprite2D" parent="Background" unique_id=422034695]
+modulate = Color(0.5409904, 0.54099053, 0.5409902, 1)
 position = Vector2(118, 114)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("9_dabdc")
@@ -196,15 +233,21 @@ texture = ExtResource("7_0nboi")
 flip_h = true
 
 [node name="Bush8" type="Sprite2D" parent="Background" unique_id=1576613623]
-modulate = Color(0.796243, 0.796243, 0.796243, 1)
+modulate = Color(0.6133905, 0.61339015, 0.6133905, 1)
 position = Vector2(-56, 151)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("7_j3csf")
 
 [node name="Bush9" type="Sprite2D" parent="Background" unique_id=117005136]
-modulate = Color(0.7581918, 0.7581918, 0.7581917, 1)
+modulate = Color(0.3854928, 0.3854924, 0.38549247, 1)
 position = Vector2(-202, 130)
 scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_j3csf")
+
+[node name="Bush11" type="Sprite2D" parent="Background" unique_id=219377321]
+modulate = Color(0.3854928, 0.3854924, 0.38549247, 1)
+position = Vector2(-91, 148)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("7_j3csf")
 
 [node name="Bush10" type="Sprite2D" parent="Background" unique_id=1590128069]

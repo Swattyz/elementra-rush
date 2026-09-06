@@ -61,3 +61,9 @@ offset_bottom = 353.0
 texture = ExtResource("3_podaf")
 expand_mode = 1
 stretch_mode = 2
+
+[node name="Timer" type="Timer" parent="." unique_id=1682475700]
+wait_time = 0.009999999999999998
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

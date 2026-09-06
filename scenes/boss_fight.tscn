@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://da78b3b7nhnlt" path="res://player_sprites/player_fighting/idle_pyro.png" id="10_fwsx5"]
 [ext_resource type="Texture2D" uid="uid://c1srm1k43n0dy" path="res://player_sprites/player_fighting/def_pyro.png" id="10_rh4xj"]
 [ext_resource type="Script" uid="uid://bmqnbuddthttk" path="res://scripts/fight_player.gd" id="11_bii1g"]
+[ext_resource type="Script" uid="uid://boxr06hv34miy" path="res://scripts/enemy.gd" id="21_gwguq"]
 [ext_resource type="Texture2D" uid="uid://cs67sp2dw38jv" path="res://object_sprites/atk_buff_lesser.png" id="21_oq6wl"]
 [ext_resource type="Texture2D" uid="uid://dqupmjr7ig1ag" path="res://object_sprites/def_buff_lesser.png" id="22_x2y70"]
 [ext_resource type="FontFile" uid="uid://b6qq6p4aasabv" path="res://fonts/VCR_OSD_MONO.ttf" id="25_g1mv6"]
@@ -766,6 +767,7 @@ animations = [{
 
 [node name="BossFight" type="Node2D" unique_id=378535863]
 script = ExtResource("1_85w88")
+metadata/_edit_vertical_guides_ = [387.0]
 
 [node name="Background" type="AnimatedSprite2D" parent="." unique_id=1364962435]
 sprite_frames = SubResource("SpriteFrames_57qmd")
@@ -788,6 +790,7 @@ position = Vector2(532, 127.99999)
 scale = Vector2(0.12489449, 0.12489449)
 sprite_frames = SubResource("SpriteFrames_yf5fn")
 frame_progress = 0.7816412
+script = ExtResource("21_gwguq")
 
 [node name="ATKBuff" type="Sprite2D" parent="." unique_id=728850737]
 position = Vector2(307.00006, 237.99998)

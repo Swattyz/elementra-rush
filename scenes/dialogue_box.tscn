@@ -65,3 +65,9 @@ texture = ExtResource("3_p0wdv")
 expand_mode = 1
 stretch_mode = 2
 metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=2131328061]
+wait_time = 0.025
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
