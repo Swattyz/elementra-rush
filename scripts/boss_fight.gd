@@ -67,6 +67,8 @@ func _ready() -> void:
 	
 	$FightHUD/DragonHP.max_value = 150
 	$FightHUD/DragonHP.value = 150
+	$FightHUD/DragonHP.texture_over = load("res://hud/over_player.png")
+	$FightHUD/DragonHP.texture_progress = load("res://hud/progress_hp_player.png")
 
 func _process(_delta: float) -> void:
 	if dead or won:
@@ -388,6 +390,12 @@ func _on_player_hp_value_changed(value: float) -> void:
 	if value == 0:
 		dead = true
 		fight_dialogue.change_dialogue("...Seu HP ficou baixo demais... Você está perdendo forças...","???",unknown_icon)
+	elif value < 25:
+		$FightHUD/PlayerHP.tint_progress = Color(1.85, 0.0, 0.0, 1.0)
+	elif value < 50:
+		$FightHUD/PlayerHP.tint_progress = Color(1.95, 0.7, 0.0, 1.0)
+	else:
+		$FightHUD/PlayerHP.tint_progress = Color.WHITE
 
 func _on_dragon_hp_value_changed(value: float) -> void:
 	if value == 0:
@@ -396,6 +404,8 @@ func _on_dragon_hp_value_changed(value: float) -> void:
 			current_action = 0
 			$FightHUD/DragonHP.max_value = 300
 			$FightHUD/DragonHP.value = $FightHUD/DragonHP.max_value
+			$FightHUD/DragonHP.texture_progress = load("res://hud/progress_hp_enemy.png")
+			$FightHUD/DragonHP.texture_over = load("res://hud/over_dragon.png")
 			
 			var tween = create_tween()
 			tween.tween_property($Enemy, "modulate", Color(1.0, 0.0, 0.0, 1.0), 0.0)

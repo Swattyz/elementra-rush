@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bvc7e1qpkxqa7"]
 
 [ext_resource type="Script" uid="uid://ucqxs3wxgo7w" path="res://scripts/boss_fight.gd" id="1_85w88"]
-[ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="1_dl1d0"]
 [ext_resource type="Texture2D" uid="uid://ds14e13ib8fbw" path="res://backgrounds/fight_spritesheet.png" id="2_62gkx"]
 [ext_resource type="Texture2D" uid="uid://l1rtl0vqtdlj" path="res://sprite_placeholders/dragon_placeholder.png" id="2_85w88"]
 [ext_resource type="Texture2D" uid="uid://bodayo10jgiua" path="res://player_sprites/player_fighting/drawing_anemo.png" id="3_3grv3"]
@@ -30,7 +29,12 @@
 [ext_resource type="Texture2D" uid="uid://cs67sp2dw38jv" path="res://object_sprites/atk_buff_lesser.png" id="21_oq6wl"]
 [ext_resource type="Texture2D" uid="uid://dqupmjr7ig1ag" path="res://object_sprites/def_buff_lesser.png" id="22_x2y70"]
 [ext_resource type="FontFile" uid="uid://b6qq6p4aasabv" path="res://fonts/VCR_OSD_MONO.ttf" id="25_g1mv6"]
+[ext_resource type="Texture2D" uid="uid://cuac6bnegol64" path="res://hud/under.png" id="25_rh4xj"]
 [ext_resource type="Script" uid="uid://catlh8yv561cw" path="res://scripts/damage_player.gd" id="26_gwguq"]
+[ext_resource type="Texture2D" uid="uid://cbomgglpdf2ix" path="res://hud/over_dragon.png" id="26_rh4xj"]
+[ext_resource type="Texture2D" uid="uid://cgd1a54002t6i" path="res://hud/progress_hp_enemy.png" id="27_rh4xj"]
+[ext_resource type="Texture2D" uid="uid://ii3latu412lf" path="res://hud/over_player.png" id="29_rh4xj"]
+[ext_resource type="Texture2D" uid="uid://brdiycptanwdf" path="res://hud/progress_hp_player.png" id="31_m8x7l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7imqq"]
 atlas = ExtResource("2_62gkx")
@@ -765,9 +769,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8qpk6"]
+load_path = "res://.godot/imported/under.png-175403296c52731ea67c5f437fdd51ed.ctex"
+
 [node name="BossFight" type="Node2D" unique_id=378535863]
 script = ExtResource("1_85w88")
-metadata/_edit_vertical_guides_ = [387.0]
+metadata/_edit_vertical_guides_ = [1008.0]
 
 [node name="Background" type="AnimatedSprite2D" parent="." unique_id=1364962435]
 sprite_frames = SubResource("SpriteFrames_57qmd")
@@ -793,12 +800,12 @@ frame_progress = 0.7816412
 script = ExtResource("21_gwguq")
 
 [node name="ATKBuff" type="Sprite2D" parent="." unique_id=728850737]
-position = Vector2(307.00006, 237.99998)
+position = Vector2(255.00009, 232)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("21_oq6wl")
 
 [node name="DEFBuff" type="Sprite2D" parent="." unique_id=1487199645]
-position = Vector2(283.99997, 238.00002)
+position = Vector2(232, 232.00003)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("22_x2y70")
 
@@ -813,26 +820,18 @@ centered = false
 
 [node name="FightHUD" type="CanvasLayer" parent="." unique_id=1801211472]
 
-[node name="HPText2" type="Label" parent="FightHUD" unique_id=2002292040]
-offset_left = 315.0
-offset_top = 10.0
-offset_right = 355.0
-offset_bottom = 40.0
-theme_override_colors/font_color = Color(0.9855103, 0.50458753, 0, 1)
-theme_override_fonts/font = ExtResource("1_dl1d0")
-theme_override_font_sizes/font_size = 30
-text = "HP:"
-horizontal_alignment = 1
-
-[node name="DragonHP" type="ProgressBar" parent="FightHUD" unique_id=1195635527]
-offset_left = 360.0
-offset_top = 13.0
-offset_right = 623.0
-offset_bottom = 40.0
-theme_override_fonts/font = ExtResource("1_dl1d0")
-theme_override_font_sizes/font_size = 15
+[node name="DragonHP" type="TextureProgressBar" parent="FightHUD" unique_id=381336842]
+offset_left = 360.00003
+offset_top = 2.0000002
+offset_right = 470.00003
+offset_bottom = 20.0
+scale = Vector2(2.5, 2.5)
 max_value = 250.0
 value = 250.0
+texture_under = ExtResource("25_rh4xj")
+texture_over = ExtResource("26_rh4xj")
+texture_progress = ExtResource("27_rh4xj")
+texture_progress_offset = Vector2(33, 5)
 
 [node name="DamageDragon" type="Label" parent="FightHUD" unique_id=1625902661]
 offset_left = 416.0
@@ -845,25 +844,17 @@ text = "00"
 horizontal_alignment = 1
 script = ExtResource("26_gwguq")
 
-[node name="HPText" type="Label" parent="FightHUD" unique_id=1261936155]
-offset_left = 14.0
-offset_top = 245.0
-offset_right = 54.0
-offset_bottom = 275.0
-theme_override_colors/font_color = Color(0.9855103, 0.50458753, 0, 1)
-theme_override_fonts/font = ExtResource("1_dl1d0")
-theme_override_font_sizes/font_size = 30
-text = "HP:"
-horizontal_alignment = 1
-
-[node name="PlayerHP" type="ProgressBar" parent="FightHUD" unique_id=1790658050]
-offset_left = 59.0
-offset_top = 250.0
-offset_right = 322.0
-offset_bottom = 277.0
-theme_override_fonts/font = ExtResource("1_dl1d0")
-theme_override_font_sizes/font_size = 15
+[node name="PlayerHP" type="TextureProgressBar" parent="FightHUD" unique_id=1452086949]
+offset_left = -4.999999
+offset_top = 234.0
+offset_right = 105.0
+offset_bottom = 252.0
+scale = Vector2(2.5, 2.5)
 value = 100.0
+texture_under = SubResource("CompressedTexture2D_8qpk6")
+texture_over = ExtResource("29_rh4xj")
+texture_progress = ExtResource("31_m8x7l")
+texture_progress_offset = Vector2(33, 5)
 
 [node name="DamagePlayer" type="Label" parent="FightHUD" unique_id=1534326468]
 offset_left = 133.0

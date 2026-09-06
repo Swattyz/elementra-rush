@@ -1,9 +1,33 @@
 [gd_scene format=3 uid="uid://btaq45hkjy5ju"]
 
 [ext_resource type="Texture2D" uid="uid://cq7mxui6buetp" path="res://backgrounds/title_screen.png" id="1_mqjok"]
+[ext_resource type="FontFile" uid="uid://b6qq6p4aasabv" path="res://fonts/VCR_OSD_MONO.ttf" id="2_2x1jc"]
+[ext_resource type="Script" uid="uid://btb0txknoxer5" path="res://scripts/play_again.gd" id="3_nfmnx"]
 
 [node name="Ending" type="Node2D" unique_id=1609261854]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2031706349]
 texture = ExtResource("1_mqjok")
 centered = false
+
+[node name="PlayAgainButton" type="Button" parent="." unique_id=990654776]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 229.0
+offset_top = 288.0
+offset_right = 417.0
+offset_bottom = 341.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_2x1jc")
+theme_override_font_sizes/font_size = 25
+text = "Jogar Novamente"
+script = ExtResource("3_nfmnx")
+
+[connection signal="button_down" from="PlayAgainButton" to="PlayAgainButton" method="_on_button_down"]
+[connection signal="button_up" from="PlayAgainButton" to="PlayAgainButton" method="_on_button_up"]
+[connection signal="mouse_entered" from="PlayAgainButton" to="PlayAgainButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PlayAgainButton" to="PlayAgainButton" method="_on_mouse_exited"]
