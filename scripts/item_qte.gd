@@ -1,5 +1,5 @@
 extends Node2D
-var speed: int = 800
+var speed: int = 500
 var direction: int = 1
 var times_bounced: float = 1
 @onready var hit: bool = false
@@ -10,8 +10,6 @@ func _ready() -> void:
 	$Hitter.position.x = 0
 
 func _physics_process(_delta: float) -> void:
-	# print(Global.item_qte)
-	
 	if Input.is_action_just_pressed("confirm") and not hit:
 		hit = true
 	

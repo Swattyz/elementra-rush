@@ -85,7 +85,7 @@ color = Color(0.40707266, 0.6868156, 0.08812585, 1)
 
 [node name="PotionHEAL" type="Sprite2D" parent="BackgroundHEAL" unique_id=980972726]
 modulate = Color(0, 1, 0.25882354, 1)
-position = Vector2(26.00003, 19)
+position = Vector2(25, 19)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("CompressedTexture2D_d53yt")
 

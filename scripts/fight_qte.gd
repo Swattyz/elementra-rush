@@ -1,5 +1,5 @@
 extends Node2D
-var speed: int = 600
+var speed: int = 450
 @onready var hit: bool = false
 @onready var check = true
 signal player_attacked

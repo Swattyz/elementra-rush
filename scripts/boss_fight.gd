@@ -29,8 +29,6 @@ var player_icon: String = "res://player_sprites/anemo_walking_spritesheet.png"
 var current_action: int = 0
 var counter: int = 0
 
-var dead: bool = false
-var won: bool = false
 var current_turn: int = 0
 var player_hit_qte: bool = false
 var player_chose_item: bool = false
@@ -65,13 +63,13 @@ func _ready() -> void:
 	$FightHUD/DamagePlayer.hide()
 	$FightHUD/DamageDragon.hide()
 	
-	$FightHUD/DragonHP.max_value = 150
-	$FightHUD/DragonHP.value = 150
+	$FightHUD/DragonHP.max_value = 120
+	$FightHUD/DragonHP.value = 120
 	$FightHUD/DragonHP.texture_over = load("res://hud/over_player.png")
 	$FightHUD/DragonHP.texture_progress = load("res://hud/progress_hp_player.png")
 
 func _process(_delta: float) -> void:
-	if dead or won:
+	if Global.ending != 0:
 		if Input.is_action_just_pressed("confirm"):
 			if TransitionScreen.transitioning:
 				return
@@ -209,17 +207,12 @@ func _process(_delta: float) -> void:
 								fight_dialogue.change_text("...Terrivelmente, você tropeça na menor rocha possível, cai no chão e leva dano por isso... Não é seu dia de sorte.")
 							counter += 1
 					2:
+						if chance >= 17:
+							Global.ending = 1
+							return
+							
 						if Input.is_action_just_pressed("confirm"):
-							if chance >= 17:
-								if TransitionScreen.transitioning:
-									return
-									
-								TransitionScreen.transitioning = true
-								TransitionScreen.transition()
-								await TransitionScreen.on_transition_finished
-								call_deferred("change_scene")
 							counter += 1
-						
 					3:
 						print("Player Real RunAway: ",chance,"\n")
 						counter += 1
@@ -321,7 +314,7 @@ func _process(_delta: float) -> void:
 					chance = (chance * 2) * (1 - ((Global.player_qte/10) + def_bonus))
 					
 					if chance < 0: chance = 0
-					if dragon_phase == 2: chance = chance * 1.5
+					if dragon_phase == 2: chance = chance * 1.2
 					counter += 1
 			5:
 				$FightHUD/PlayerHP.value -= chance
@@ -355,7 +348,7 @@ func _process(_delta: float) -> void:
 				counter = 0
 
 func change_scene():
-	get_tree().change_scene_to_file("res://scenes/ending.tscn")
+	get_tree().change_scene_to_file("res://scenes/aftermath.tscn")
 
 func _on_fight_button_pressed() -> void:
 	$Player.move_forward(360,186)
@@ -388,7 +381,7 @@ func _on_run_button_pressed() -> void:
 
 func _on_player_hp_value_changed(value: float) -> void:
 	if value == 0:
-		dead = true
+		Global.ending = 2
 		fight_dialogue.change_dialogue("...Seu HP ficou baixo demais... Você está perdendo forças...","???",unknown_icon)
 	elif value < 25:
 		$FightHUD/PlayerHP.tint_progress = Color(1.85, 0.0, 0.0, 1.0)
@@ -402,7 +395,7 @@ func _on_dragon_hp_value_changed(value: float) -> void:
 		if dragon_phase == 0:
 			dragon_phase = 1
 			current_action = 0
-			$FightHUD/DragonHP.max_value = 300
+			$FightHUD/DragonHP.max_value = 150
 			$FightHUD/DragonHP.value = $FightHUD/DragonHP.max_value
 			$FightHUD/DragonHP.texture_progress = load("res://hud/progress_hp_enemy.png")
 			$FightHUD/DragonHP.texture_over = load("res://hud/over_dragon.png")
@@ -415,7 +408,7 @@ func _on_dragon_hp_value_changed(value: float) -> void:
 			player_hit_qte = false
 			
 		elif dragon_phase == 2:
-			won = true
+			Global.ending = 3
 			fight_dialogue.change_dialogue("...O dragão mostrou-se muito fraco... Você venceu!","???",unknown_icon)
 
 func _on_player_attacked():

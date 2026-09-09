@@ -388,7 +388,7 @@ region = Rect2(400, 0, 200, 150)
 [sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 2.75,
 "texture": SubResource("AtlasTexture_i2fql")
 }, {
 "duration": 1.0,
@@ -405,7 +405,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.75,
 "texture": SubResource("AtlasTexture_oyelj")
 }, {
 "duration": 1.0,
@@ -422,7 +422,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.75,
 "texture": SubResource("AtlasTexture_lwv5f")
 }, {
 "duration": 1.0,
@@ -439,7 +439,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.75,
 "texture": SubResource("AtlasTexture_0su6o")
 }, {
 "duration": 1.0,
@@ -788,8 +788,6 @@ position = Vector2(140, 186)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
 animation = &"attacking pyro"
-frame = 3
-frame_progress = 1.0
 script = ExtResource("11_bii1g")
 
 [node name="Enemy" type="AnimatedSprite2D" parent="." unique_id=178384744]
