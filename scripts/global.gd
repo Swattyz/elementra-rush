@@ -4,6 +4,7 @@ var player_element: int = 0
 var player_qte: float = 0
 var item_qte: String = "none"
 var item_value: float = 0
+var ending: int = 0
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):

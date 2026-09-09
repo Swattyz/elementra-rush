@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bqwn87dx24ya4"]
+
+[ext_resource type="Script" uid="uid://5qjeypbwjymi" path="res://scripts/aftermath.gd" id="1_3kjdc"]
+[ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="2_ra6ld"]
+
+[node name="Aftermath" type="CanvasLayer" unique_id=1428966348]
+script = ExtResource("1_3kjdc")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1985122470]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+
+[node name="Text" type="Label" parent="." unique_id=1774010515]
+custom_minimum_size = Vector2(600, 80)
+custom_maximum_size = Vector2(600, 80)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -279.5
+offset_top = -42.25
+offset_right = 279.5
+offset_bottom = 42.25
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_ra6ld")
+theme_override_font_sizes/font_size = 22
+text = "text"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Timer" type="Timer" parent="." unique_id=1163367371]
+wait_time = 0.035
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
