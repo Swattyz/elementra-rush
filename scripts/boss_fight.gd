@@ -72,6 +72,8 @@ func _ready() -> void:
 	$FightHUD/DragonHP.texture_progress = load("res://hud/progress_hp_player.png")
 
 func _process(_delta: float) -> void:
+	if bar_changing: return
+	
 	if Global.ending != 0:
 		if Input.is_action_just_pressed("confirm"):
 			if TransitionScreen.transitioning:
@@ -84,11 +86,6 @@ func _process(_delta: float) -> void:
 	
 	if dragon_phase == 1:
 		match counter:
-			1:
-				if not bar_changing:
-					if Input.is_action_just_pressed("confirm"):
-						fight_dialogue.change_text("...O dragão caiu fraco no magma fervente... Porém voltou da morte?!")
-						counter += 1
 			2:
 				if Input.is_action_just_pressed("confirm"):
 					fight_dialogue.change_text("Ele parece irritado... A defesa e ataque do dragão subiram!")
@@ -103,82 +100,81 @@ func _process(_delta: float) -> void:
 	elif current_turn == 0:
 		match current_action:
 			1:
-				if player_hit_qte:
-					if counter == 0:
-						fight_qte.queue_free()
-						
-						add_child(fight_dialogue)
-						fight_dialogue.change_dialogue("...", "???", unknown_icon)
-						if Global.player_qte == 0:
-							fight_dialogue.change_text("...Errou o ataque...")
-						elif Global.player_qte < 3:
-							fight_dialogue.change_text("...Desferiu um poderoso golpe na criatura!")
-						elif Global.player_qte < 7:
-							fight_dialogue.change_text("...Obteve uma extrema perfomance e precisão no ataque e atingiu a criatura em cheio!")
-						else:
-							fight_dialogue.change_text("...Um acerto CRÍTICO na criatura!")
-						dmg = Global.player_qte * (3+atk_bonus)
-						taking_damage($Enemy)
-						
-						print("Player QTE: ",Global.player_qte)
-						print("Player Damage: ",dmg,"\n")
-						counter += 1
-						
-					elif counter == 1:
-						drop_health($FightHUD/DragonHP,dmg)
-						counter += 1
-						
-					elif counter == 2 and not bar_changing:
-						if Global.player_qte > 0:
-							$FightHUD/DamageDragon.text = str(int(Global.player_qte * (3+atk_bonus)))
-							$FightHUD/DamageDragon.show()
-							reappearing_effect($Enemy)
-						counter += 1
-						
-					elif counter == 3:
-						if Input.is_action_just_pressed("confirm"):
-							current_action = 4
-							player_hit_qte = false
-							counter = 0
-							$FightHUD/DamageDragon.hide()
+				if not player_hit_qte: return
+				
+				if counter == 0:
+					fight_qte.queue_free()
+					
+					add_child(fight_dialogue)
+					fight_dialogue.change_dialogue("...", "???", unknown_icon)
+					if Global.player_qte == 0:
+						fight_dialogue.change_text("...Errou o ataque...")
+					elif Global.player_qte < 3:
+						fight_dialogue.change_text("...Desferiu um poderoso golpe na criatura!")
+					elif Global.player_qte < 7:
+						fight_dialogue.change_text("...Obteve uma extrema perfomance e precisão no ataque e atingiu a criatura em cheio!")
+					else:
+						fight_dialogue.change_text("...Um acerto CRÍTICO na criatura!")
+					dmg = Global.player_qte * (3+atk_bonus)
+					taking_damage($Enemy)
+					
+					print("Player QTE: ",Global.player_qte)
+					print("Player Damage: ",dmg,"\n")
+					counter += 1
+					
+				elif counter == 1:
+					drop_health($FightHUD/DragonHP,dmg)
+					counter += 1
+					
+				elif counter == 2:
+					if Global.player_qte > 0:
+						$FightHUD/DamageDragon.text = str(int(Global.player_qte * (3+atk_bonus)))
+						$FightHUD/DamageDragon.show()
+						reappearing_effect($Enemy)
+					counter += 1
+					
+				elif counter == 3:
+					if Input.is_action_just_pressed("confirm"):
+						current_action = 4
+						player_hit_qte = false
+						counter = 0
+						$FightHUD/DamageDragon.hide()
 			2:
-				if player_chose_item:
-					if counter == 0:
-						item_qte.queue_free()
-						add_child(fight_dialogue)
-						
-						match Global.item_qte:
-							"heal":
-								fight_dialogue.change_text("...Conseguiu uma poção de cura e recuperou HP!")
-								var tween = create_tween()
-								tween.tween_property($Player, "modulate", Color(0.0, 0.65, 0.0, 1.0), 0.0)
-								tween.tween_interval(0.35)
-								tween.tween_property($Player, "modulate", Color.WHITE, 0.0)
-								gain_health($FightHUD/PlayerHP,Global.item_value)
-							"atk":
-								fight_dialogue.change_text("...Conseguiu uma poção de aumento de dano por 3 turnos!")
-								atk_bonus = Global.item_value
-								atk_buff_active = true
-								$ATKBuff.show()
-								cycles_run_atk = 0
-							"def":
-								fight_dialogue.change_text("...Conseguiu uma poção de aumento de defesa por 3 turnos!")
-								def_bonus = Global.item_value
-								def_buff_active = true
-								$DEFBuff.show()
-								cycles_run_def = 0
-							"none":
-								fight_dialogue.change_text("...Não encontrou itens no inventário...")
-						counter += 1
+				if not player_chose_item: return
+				
+				if counter == 0:
+					item_qte.queue_free()
+					add_child(fight_dialogue)
 					
-					elif counter == 1:
-						if not bar_changing: counter += 1
+					match Global.item_qte:
+						"heal":
+							fight_dialogue.change_text("...Conseguiu uma poção de cura e recuperou HP!")
+							var tween = create_tween()
+							tween.tween_property($Player, "modulate", Color(0.0, 0.65, 0.0, 1.0), 0.0)
+							tween.tween_interval(0.35)
+							tween.tween_property($Player, "modulate", Color.WHITE, 0.0)
+							gain_health($FightHUD/PlayerHP,Global.item_value)
+						"atk":
+							fight_dialogue.change_text("...Conseguiu uma poção de aumento de dano por 3 turnos!")
+							atk_bonus = Global.item_value
+							atk_buff_active = true
+							$ATKBuff.show()
+							cycles_run_atk = 0
+						"def":
+							fight_dialogue.change_text("...Conseguiu uma poção de aumento de defesa por 3 turnos!")
+							def_bonus = Global.item_value
+							def_buff_active = true
+							$DEFBuff.show()
+							cycles_run_def = 0
+						"none":
+							fight_dialogue.change_text("...Não encontrou itens no inventário...")
+					counter += 1
 					
-					elif counter == 2:
-						if Input.is_action_just_pressed("confirm"):
-							current_action = 4
-							counter = 0
-							player_chose_item = false
+				elif counter == 1:
+					if Input.is_action_just_pressed("confirm"):
+						current_action = 4
+						counter = 0
+						player_chose_item = false
 			3:
 				match counter:
 					0:
@@ -225,8 +221,6 @@ func _process(_delta: float) -> void:
 						
 						if chance <= 2: drop_health($FightHUD/PlayerHP,5)
 						counter += 1
-					4:
-						if not bar_changing: counter += 1
 					_:
 						counter = 0
 						current_action = 4
@@ -286,7 +280,7 @@ func _process(_delta: float) -> void:
 						fight_dialogue.change_text("...O dragão lhe atingirá com um acerto PERFEITO!")
 					counter += 1
 					
-					if chance == 0: counter = 9
+					if chance == 0: counter = 8
 			2:
 				if Input.is_action_just_pressed("confirm"):
 					fight_dialogue.change_text("Prepare-se para se defender!")
@@ -301,31 +295,31 @@ func _process(_delta: float) -> void:
 					qte_start()
 					counter += 1
 			4:
-				if player_hit_qte:
-					fight_qte.queue_free()
-					add_child(fight_dialogue)
-					if Global.player_qte == 0:
-						fight_dialogue.change_text("...Errou a defesa...")
-					elif Global.player_qte < 3:
-						fight_dialogue.change_text("...Foi capaz de bloquear uma parte razoável de dano!")
-					elif Global.player_qte < 7:
-						fight_dialogue.change_text("...Conseguiu uma excelente postura defensiva!")
-					else:
-						fight_dialogue.change_text("...Realizou uma defesa PERFEITA! Essa foi por pouco...")
-					
-					print("Dragon's DMG: ", chance*2,"\n")
-					
-					print("Player's Defense D20: ",Global.player_qte,"\n")
-					print("Player's Defense Multiplier: ", (1 - ((Global.player_qte/10) + def_bonus)))
-					print("Player's Reduced DMG: ", (chance * 2) * (1 - ((Global.player_qte/10) + def_bonus)))
-					chance = (chance * 2) * (1 - ((Global.player_qte/10) + def_bonus))
-					
-					if chance < 0: chance = 0
-					if dragon_phase == 2: chance = chance * 1.2
-					counter += 1
+				if not player_hit_qte: return
+				
+				fight_qte.queue_free()
+				add_child(fight_dialogue)
+				if Global.player_qte == 0:
+					fight_dialogue.change_text("...Errou a defesa...")
+				elif Global.player_qte < 3:
+					fight_dialogue.change_text("...Foi capaz de bloquear uma parte razoável de dano!")
+				elif Global.player_qte < 7:
+					fight_dialogue.change_text("...Conseguiu uma excelente postura defensiva!")
+				else:
+					fight_dialogue.change_text("...Realizou uma defesa PERFEITA! Essa foi por pouco...")
+				
+				print("Dragon's DMG: ", chance*2,"\n")
+				
+				print("Player's Defense D20: ",Global.player_qte,"\n")
+				print("Player's Defense Multiplier: ", (1 - ((Global.player_qte/10) + def_bonus)))
+				print("Player's Reduced DMG: ", (chance * 2) * (1 - ((Global.player_qte/10) + def_bonus)))
+				chance = (chance * 2) * (1 - ((Global.player_qte/10) + def_bonus))
+				
+				if chance < 0: chance = 0
+				if dragon_phase == 2: chance = chance * 1.2
+				counter += 1
 			5:
 				print("Dragon's Real Damage: ", chance,"\n")
-				
 				if Global.player_qte > 0:
 					var tween = create_tween()
 					tween.tween_property($Player, "modulate", Color(0.0, 0.0, 0.65, 1.0), 0.0)
@@ -342,20 +336,18 @@ func _process(_delta: float) -> void:
 				drop_health($FightHUD/PlayerHP,chance)
 				counter += 1
 			7:
-				if not bar_changing: counter += 1
-			8:
 				$FightHUD/DamagePlayer.text = str(int(chance))
 				$FightHUD/DamagePlayer.show()
 				
 				if chance > 0: reappearing_effect($Player)
 				counter += 1
-			9:
+			8:
 				if Input.is_action_just_pressed("confirm"):
 					remove_child(fight_dialogue)
 					$FightHUD.add_child(buttons)
 					fight_button.grab_focus()
 					counter += 1
-			10:
+			9:
 				current_turn -= 1
 				player_hit_qte = false
 				$FightHUD/DamagePlayer.hide()
@@ -410,9 +402,11 @@ func _on_dragon_hp_value_changed(value: float) -> void:
 			dragon_phase = 1
 			current_action = 0
 			$FightHUD/DragonHP.max_value = 150
-			gain_health($FightHUD/DragonHP,150)
+			fight_dialogue.change_text("...O dragão caiu fraco no magma fervente... Porém voltou da morte?!")
 			$FightHUD/DragonHP.texture_progress = load("res://hud/progress_hp_enemy.png")
 			$FightHUD/DragonHP.texture_over = load("res://hud/over_dragon.png")
+			
+			await gain_health($FightHUD/DragonHP,150)
 			
 			var tween = create_tween()
 			tween.tween_property($Enemy, "modulate", Color(1.0, 0.0, 0.0, 1.0), 0.0)
