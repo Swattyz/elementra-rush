@@ -787,7 +787,9 @@ metadata/_edit_lock_ = true
 position = Vector2(140, 186)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"attacking pyro"
+animation = &"blocking anemo"
+frame = 5
+frame_progress = 1.0
 script = ExtResource("11_bii1g")
 
 [node name="Enemy" type="AnimatedSprite2D" parent="." unique_id=178384744]
