@@ -35,6 +35,7 @@ theme_override_font_sizes/normal_font_size = 18
 text = "...Você tentou achar uma brecha para fugir..."
 scroll_active = false
 horizontal_alignment = 1
+visible_characters_behavior = 1
 
 [node name="Author" type="Label" parent="." unique_id=1489803377]
 modulate = Color(1, 0.5529412, 0, 1)
@@ -63,7 +64,7 @@ expand_mode = 1
 stretch_mode = 2
 
 [node name="Timer" type="Timer" parent="." unique_id=1682475700]
-wait_time = 0.009999999999999998
+wait_time = 0.00999999999999999
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
