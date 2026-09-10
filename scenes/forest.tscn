@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d24q3i2i7f3fh" path="res://object_sprites/cloud_1.png" id="4_qm7rg"]
 [ext_resource type="PackedScene" uid="uid://i7gse8jih7h6" path="res://scenes/player.tscn" id="4_xr56k"]
 [ext_resource type="Texture2D" uid="uid://bq3xfgjx16a0q" path="res://object_sprites/cloud_2.png" id="5_0nboi"]
+[ext_resource type="Script" uid="uid://b2uwah8x0b36q" path="res://scripts/cloud.gd" id="5_cf55d"]
 [ext_resource type="Texture2D" uid="uid://82thg04ppkc0" path="res://object_sprites/cloud_3.png" id="6_3knxq"]
 [ext_resource type="Texture2D" uid="uid://dt44yyiomkoja" path="res://object_sprites/tree.png" id="7_0nboi"]
 [ext_resource type="Texture2D" uid="uid://l6bijtw7fyd2" path="res://object_sprites/bush.png" id="7_j3csf"]
@@ -60,38 +61,46 @@ size = Vector2(8, 132)
 
 [node name="Forest" type="Node2D" unique_id=857046446]
 script = ExtResource("1_xr56k")
+metadata/_edit_vertical_guides_ = [0.0]
+metadata/_edit_horizontal_guides_ = [146.0]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=868753086]
 position = Vector2(320, 180)
 texture = ExtResource("1_0afsd")
 script = ExtResource("2_bgcxa")
 
-[node name="Cloud" type="Sprite2D" parent="Background" unique_id=208688188]
-position = Vector2(-249, -4)
-texture = ExtResource("4_qm7rg")
+[node name="Clouds" type="Node2D" parent="." unique_id=1018881009]
 
-[node name="Cloud4" type="Sprite2D" parent="Background" unique_id=1992157524]
-position = Vector2(22.000002, 14)
+[node name="Cloud" type="Sprite2D" parent="Clouds" unique_id=208688188]
+position = Vector2(71, 176)
+texture = ExtResource("4_qm7rg")
+script = ExtResource("5_cf55d")
+
+[node name="Cloud4" type="Sprite2D" parent="Clouds" unique_id=1992157524]
+position = Vector2(429.00003, 194)
 scale = Vector2(0.62827235, 0.62713414)
 texture = ExtResource("4_qm7rg")
 flip_h = true
+script = ExtResource("5_cf55d")
 
-[node name="Cloud2" type="Sprite2D" parent="Background" unique_id=1692567508]
-position = Vector2(-83, -51)
+[node name="Cloud2" type="Sprite2D" parent="Clouds" unique_id=1692567508]
+position = Vector2(237, 129)
 texture = ExtResource("5_0nboi")
+script = ExtResource("5_cf55d")
 
-[node name="Cloud3" type="Sprite2D" parent="Background" unique_id=117713615]
-position = Vector2(220, -45)
+[node name="Cloud3" type="Sprite2D" parent="Clouds" unique_id=117713615]
+position = Vector2(631, 135)
 texture = ExtResource("6_3knxq")
-
-[node name="DarknessFilter" type="ColorRect" parent="Background" unique_id=935195707]
-offset_left = -330.0
-offset_top = 32.0
-offset_right = 344.0
-offset_bottom = 170.0
-color = Color(0, 0, 0, 0.5372549)
+script = ExtResource("5_cf55d")
 
 [node name="BackgroundObjects" type="Node2D" parent="." unique_id=1044797907]
+
+[node name="DarknessFilter" type="ColorRect" parent="BackgroundObjects" unique_id=935195707]
+offset_left = -10.0
+offset_top = 212.0
+offset_right = 664.0
+offset_bottom = 350.0
+color = Color(0, 0, 0, 0.5372549)
 
 [node name="Bush6" type="Sprite2D" parent="BackgroundObjects" unique_id=2099756107]
 position = Vector2(153, 311)
@@ -407,4 +416,9 @@ polygon = PackedVector2Array(0, 0, 1, 221, 71, 248, 127, 255, 284, 283, 439, 287
 position = Vector2(636, 294)
 shape = SubResource("RectangleShape2D_g4v7s")
 
+[node name="Timer" type="Timer" parent="." unique_id=1180939869]
+wait_time = 2.5
+autostart = true
+
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
