@@ -62,7 +62,7 @@ size = Vector2(8, 132)
 [node name="Forest" type="Node2D" unique_id=857046446]
 script = ExtResource("1_xr56k")
 metadata/_edit_vertical_guides_ = [0.0]
-metadata/_edit_horizontal_guides_ = [146.0]
+metadata/_edit_horizontal_guides_ = [92.0]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=868753086]
 position = Vector2(320, 180)
@@ -417,7 +417,7 @@ position = Vector2(636, 294)
 shape = SubResource("RectangleShape2D_g4v7s")
 
 [node name="Timer" type="Timer" parent="." unique_id=1180939869]
-wait_time = 2.5
+wait_time = 5.0
 autostart = true
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]

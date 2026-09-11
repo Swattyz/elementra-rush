@@ -1,12 +1,14 @@
 extends Node2D
 
 var cloud_scene: PackedScene = preload("res://scenes/cloud.tscn")
-var counter: int = 0
 
 var cloud_positions: Array = [
-	Vector2(720, 180),
+	Vector2(720, 170),
 	Vector2(720, 145),
-	Vector2(720, 110),
+	Vector2(720, 120),
+	Vector2(720, 135),
+	Vector2(720, 160),
+	Vector2(720, 180)
 ]
 
 var clouds: Array = [
@@ -28,14 +30,10 @@ func change_scene():
 
 func _on_timer_timeout() -> void:
 	var cloud = cloud_scene.instantiate()
-	var cloud_pos = cloud_positions[counter]
+	var cloud_pos = cloud_positions.pick_random()
 	var cloud_sprite = clouds.pick_random()
 	
 	cloud.position = cloud_pos
 	cloud.texture = load(cloud_sprite)
 	
 	$Clouds.add_child(cloud)
-	
-	counter += 1
-	
-	if counter > 2: counter = 0
