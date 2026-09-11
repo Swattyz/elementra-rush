@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@export var speed: float = 90.0
+@export var speed: float = 30.0
 
 func _ready() -> void:
 	randomize()

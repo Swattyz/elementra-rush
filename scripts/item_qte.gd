@@ -5,11 +5,20 @@ var times_bounced: float = 1
 @onready var hit: bool = false
 @onready var check = true
 signal item_chose
+signal itemqte_has_started
+@onready var started: bool = false
 
 func _ready() -> void:
 	$Hitter.position.x = 0
 
 func _physics_process(_delta: float) -> void:
+	if not started:
+		if Input.is_action_just_pressed("confirm"):
+			started = true
+			itemqte_has_started.emit()
+			$Press.queue_free()
+		return
+	
 	if Input.is_action_just_pressed("confirm") and not hit:
 		hit = true
 	

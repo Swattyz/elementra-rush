@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://btnku1any8h66" path="res://scripts/item_qte.gd" id="1_voyct"]
 [ext_resource type="Texture2D" uid="uid://d2ahfw0ursh" path="res://sprite_placeholders/potion.png" id="2_1t5qu"]
 [ext_resource type="Texture2D" uid="uid://c0y0q2g3xlqlu" path="res://sprite_placeholders/sword_placeholder.png" id="2_wtx12"]
+[ext_resource type="Script" uid="uid://dymp3bs1aay2j" path="res://scripts/press_warning.gd" id="3_d53yt"]
+[ext_resource type="FontFile" uid="uid://b6qq6p4aasabv" path="res://fonts/VCR_OSD_MONO.ttf" id="4_1hpe2"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d53yt"]
 load_path = "res://.godot/imported/potion.png-ee0a36563437b7011e0691984baa3ea9.ctex"
@@ -89,6 +91,34 @@ position = Vector2(25, 19)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("CompressedTexture2D_d53yt")
 
+[node name="Press" type="ColorRect" parent="." unique_id=8721519]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.99700004
+anchor_right = 0.5
+anchor_bottom = 0.99700004
+offset_left = 240.0
+offset_top = 305.0
+offset_right = 397.0
+offset_bottom = 339.0
+color = Color(0.30588236, 0.34901962, 1, 0.60784316)
+script = ExtResource("3_d53yt")
+
+[node name="Label" type="Label" parent="Press" unique_id=840328309]
+layout_mode = 0
+offset_left = -156.0
+offset_top = 4.0
+offset_right = 315.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("4_1hpe2")
+theme_override_font_sizes/font_size = 24
+text = "PRESSIONE"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="Press" unique_id=1678712853]
+wait_time = 0.8
+autostart = true
+
 [node name="Hitter" type="CharacterBody2D" parent="." unique_id=791481612]
 position = Vector2(7, 301)
 
@@ -138,6 +168,7 @@ shape = SubResource("RectangleShape2D_wtx12")
 position = Vector2(552, 320)
 shape = SubResource("RectangleShape2D_d53yt")
 
+[connection signal="timeout" from="Press/Timer" to="Press" method="_on_timer_timeout"]
 [connection signal="body_entered" from="DeffenseBuffArea" to="." method="_on_deffense_buff_area_body_entered"]
 [connection signal="body_entered" from="AttackBuffArea" to="." method="_on_attack_buff_area_body_entered"]
 [connection signal="body_entered" from="HealArea" to="." method="_on_heal_area_body_entered"]
