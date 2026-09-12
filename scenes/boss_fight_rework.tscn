@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://csy3k638k1y7d"]
 
-[ext_resource type="Script" uid="uid://cwb7e4xtrug82" path="res://scripts/boss_fight_2.gd" id="1_0pekq"]
+[ext_resource type="Script" uid="uid://cwb7e4xtrug82" path="res://scripts/boss_fight.gd" id="1_0pekq"]
 [ext_resource type="Texture2D" uid="uid://ds14e13ib8fbw" path="res://backgrounds/fight_spritesheet.png" id="2_nxd3v"]
 [ext_resource type="Texture2D" uid="uid://bbtar7vts5aog" path="res://player_sprites/player_fighting/attack_anemo.png" id="3_81kxf"]
 [ext_resource type="Texture2D" uid="uid://crl16c0hsn4rf" path="res://player_sprites/player_fighting/attack_dendro.png" id="4_7a4rf"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://cbomgglpdf2ix" path="res://hud/over_dragon.png" id="26_nncqb"]
 [ext_resource type="Texture2D" uid="uid://cgd1a54002t6i" path="res://hud/progress_hp_enemy.png" id="27_ge5hp"]
 [ext_resource type="FontFile" uid="uid://b6qq6p4aasabv" path="res://fonts/VCR_OSD_MONO.ttf" id="28_nsgbb"]
+[ext_resource type="Script" uid="uid://b20qa1wpvrsnq" path="res://scripts/health_bar.gd" id="28_nxd3v"]
 [ext_resource type="Script" uid="uid://catlh8yv561cw" path="res://scripts/damage_player.gd" id="29_bkcbh"]
 [ext_resource type="Texture2D" uid="uid://ii3latu412lf" path="res://hud/over_player.png" id="30_lpe36"]
 [ext_resource type="Texture2D" uid="uid://brdiycptanwdf" path="res://hud/progress_hp_player.png" id="31_odcrg"]
@@ -800,11 +801,13 @@ frame_progress = 0.7816412
 script = ExtResource("21_mkj30")
 
 [node name="ATKBuff" type="Sprite2D" parent="." unique_id=728850737]
+visible = false
 position = Vector2(255.00009, 232)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("22_nofj0")
 
 [node name="DEFBuff" type="Sprite2D" parent="." unique_id=1487199645]
+visible = false
 position = Vector2(232, 232.00003)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("23_kwubo")
@@ -832,9 +835,11 @@ texture_under = ExtResource("25_c2odq")
 texture_over = ExtResource("26_nncqb")
 texture_progress = ExtResource("27_ge5hp")
 texture_progress_offset = Vector2(33, 5)
+script = ExtResource("28_nxd3v")
 metadata/_edit_use_anchors_ = true
 
 [node name="DamageDragon" type="Label" parent="FightHUD" unique_id=1625902661]
+visible = false
 offset_left = 416.0
 offset_top = 54.0
 offset_right = 466.0
@@ -857,9 +862,11 @@ texture_under = SubResource("CompressedTexture2D_8qpk6")
 texture_over = ExtResource("30_lpe36")
 texture_progress = ExtResource("31_odcrg")
 texture_progress_offset = Vector2(33, 5)
+script = ExtResource("28_nxd3v")
 metadata/_edit_use_anchors_ = true
 
 [node name="DamagePlayer" type="Label" parent="FightHUD" unique_id=1534326468]
+visible = false
 offset_left = 133.0
 offset_top = 57.0
 offset_right = 183.0
@@ -933,8 +940,7 @@ script = ExtResource("33_72qh0")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="animation_finished" from="Player" to="Player" method="_on_animation_finished"]
-[connection signal="value_changed" from="FightHUD/DragonHP" to="." method="_on_dragon_hp_value_changed"]
-[connection signal="value_changed" from="FightHUD/PlayerHP" to="." method="_on_player_hp_value_changed"]
+[connection signal="value_changed" from="FightHUD/PlayerHP" to="FightHUD/PlayerHP" method="_on_value_changed"]
 [connection signal="button_down" from="FightHUD/Buttons/FightButton" to="FightHUD/Buttons/FightButton" method="_on_button_down"]
 [connection signal="button_up" from="FightHUD/Buttons/FightButton" to="FightHUD/Buttons/FightButton" method="_on_button_up"]
 [connection signal="focus_entered" from="FightHUD/Buttons/FightButton" to="FightHUD/Buttons/FightButton" method="_on_focus_entered"]
