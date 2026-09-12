@@ -1,5 +1,7 @@
 extends Node2D
 
+signal confirm_pressed
+
 var buttons: Control
 var fight_button: TextureButton
 
@@ -27,16 +29,11 @@ var unknown_icon: String = "res://object_sprites/unknown_identity_icon.png"
 var player_icon: String = "res://player_sprites/anemo_walking_spritesheet.png"
 
 var current_action: int = 0
-var counter: int = 0
 
 var current_turn: int = 0
-var player_hit_qte: bool = false
-var player_chose_item: bool = false
 
 var dragon_phase: int = 0
 var dmg: float = 0.0
-
-var bar_changing: bool = false
 
 var attacking_animations: Array = [
 	"attacking anemo",
@@ -59,313 +56,265 @@ func _ready() -> void:
 	rng.randomize()
 	buttons = $FightHUD/Buttons
 	fight_button = $FightHUD/Buttons/FightButton
-	$ATKBuff.hide()
-	$DEFBuff.hide()
 	player_block_animation = blocking_animations[Global.player_element]
 	player_attack_animation = attacking_animations[Global.player_element]
-	$FightHUD/DamagePlayer.hide()
-	$FightHUD/DamageDragon.hide()
 	
-	$FightHUD/DragonHP.max_value = 120
-	$FightHUD/DragonHP.value = 120
-	$FightHUD/DragonHP.texture_over = load("res://hud/over_player.png")
-	$FightHUD/DragonHP.texture_progress = load("res://hud/progress_hp_player.png")
-
-func _process(_delta: float) -> void:
-	if bar_changing: return
-	
-	if Global.ending != 0:
-		if Input.is_action_just_pressed("confirm"):
-			if TransitionScreen.transitioning:
-				return
-			TransitionScreen.transitioning = true
-			TransitionScreen.transition()
-			await TransitionScreen.on_transition_finished
-			call_deferred("change_scene")
-		return
-	
-	if dragon_phase == 1:
-		match counter:
-			2:
-				if Input.is_action_just_pressed("confirm"):
-					fight_dialogue.change_text("Ele parece irritado... A defesa e ataque do dragão subiram!")
-					counter += 1
-			3:
-				if Input.is_action_just_pressed("confirm"):
-					dragon_phase = 2
-					current_action = 4
-					counter = 0
-					$FightHUD/DamagePlayer.modulate = Color.RED
-	
-	elif current_turn == 0:
-		match current_action:
-			1:
-				if not player_hit_qte: return
-				
-				if counter == 0:
-					fight_qte.queue_free()
-					
-					add_child(fight_dialogue)
-					fight_dialogue.change_dialogue("...", "???", unknown_icon)
-					if Global.player_qte == 0:
-						fight_dialogue.change_text("...Errou o ataque...")
-					elif Global.player_qte < 3:
-						fight_dialogue.change_text("...Desferiu um poderoso golpe na criatura!")
-					elif Global.player_qte < 7:
-						fight_dialogue.change_text("...Obteve uma extrema perfomance e precisão no ataque e atingiu a criatura em cheio!")
-					else:
-						fight_dialogue.change_text("...Um acerto CRÍTICO na criatura!")
-					dmg = Global.player_qte * (3+atk_bonus)
-					taking_damage($Enemy)
-					
+	while Global.ending == 0:
+		if current_turn == 0:
+			match current_action:
+				1:
+					await player_attack()
 					print("Player QTE: ",Global.player_qte)
 					print("Player Damage: ",dmg,"\n")
-					counter += 1
 					
-				elif counter == 1:
-					drop_health($FightHUD/DragonHP,dmg)
-					counter += 1
+					if $FightHUD/DragonHP.value == 0:
+						await dragon_death()
+						continue
 					
-				elif counter == 2:
-					if Global.player_qte > 0:
-						$FightHUD/DamageDragon.text = str(int(Global.player_qte * (3+atk_bonus)))
-						$FightHUD/DamageDragon.show()
-						reappearing_effect($Enemy)
-					counter += 1
-					
-				elif counter == 3:
-					if Input.is_action_just_pressed("confirm"):
-						current_action = 4
-						player_hit_qte = false
-						counter = 0
-						$FightHUD/DamageDragon.hide()
-			2:
-				if not player_chose_item: return
-				
-				if counter == 0:
-					item_qte.queue_free()
-					add_child(fight_dialogue)
-					
-					match Global.item_qte:
-						"heal":
-							fight_dialogue.change_text("...Conseguiu uma poção de cura e recuperou HP!")
-							var tween = create_tween()
-							tween.tween_property($Player, "modulate", Color(0.0, 0.65, 0.0, 1.0), 0.0)
-							tween.tween_interval(0.35)
-							tween.tween_property($Player, "modulate", Color.WHITE, 0.0)
-							gain_health($FightHUD/PlayerHP,Global.item_value)
-						"atk":
-							fight_dialogue.change_text("...Conseguiu uma poção de aumento de dano por 3 turnos!")
-							atk_bonus = Global.item_value
-							atk_buff_active = true
-							$ATKBuff.show()
-							cycles_run_atk = 0
-						"def":
-							fight_dialogue.change_text("...Conseguiu uma poção de aumento de defesa por 3 turnos!")
-							def_bonus = Global.item_value
-							def_buff_active = true
-							$DEFBuff.show()
-							cycles_run_def = 0
-						"none":
-							fight_dialogue.change_text("...Não encontrou itens no inventário...")
-					counter += 1
-					
-				elif counter == 1:
-					if Input.is_action_just_pressed("confirm"):
-						current_action = 4
-						counter = 0
-						player_chose_item = false
-			3:
-				match counter:
-					0:
-						print("Player RunAway: ",chance)
-						if $FightHUD/PlayerHP.value < 5:
-							chance += 8
-						elif $FightHUD/PlayerHP.value < 10:
-							chance += 6
-						elif $FightHUD/PlayerHP.value < 20:
-							chance += 4
-						elif $FightHUD/PlayerHP.value < 40:
-							chance += 3
-						elif $FightHUD/PlayerHP.value < 60:
-							chance += 2
-						elif $FightHUD/PlayerHP.value < 80:
-							chance += 1
-						
-						if chance > 20: chance = 20
-						counter += 1
-					1:
-						if Input.is_action_just_pressed("confirm"):
-							if chance >= 19:
-								fight_dialogue.change_text("...Com um ótimo controle de seu corpo, obteve extremo sucesso na sua fuga.")
-							elif chance == 18:
-								fight_dialogue.change_text("...Você conseguiu fugir, covardemente.")
-							elif chance == 17:
-								fight_dialogue.change_text("...Por pouco, quase perdia um pé durante a fuga... Mas obteve sucesso, ou quase isso.")
-							elif chance >= 10:
-								fight_dialogue.change_text("...A tentativa falhou miseravelmente... Exatamente como um jantar de dragão, tentando fugir de seu destino.")
-							elif chance > 2:
-								fight_dialogue.change_text("...Você é impedido no meio de sua fútil tentativa e cai no chão.")
-							else:
-								fight_dialogue.change_text("...Terrivelmente, você tropeça na menor rocha possível, cai no chão e leva dano por isso... Não é seu dia de sorte.")
-							counter += 1
-					2:
-						if chance >= 17:
-							Global.ending = 1
-							return
-							
-						if Input.is_action_just_pressed("confirm"):
-							counter += 1
-					3:
-						print("Player Real RunAway: ",chance,"\n")
-						
-						if chance <= 2: drop_health($FightHUD/PlayerHP,5)
-						counter += 1
-					_:
-						counter = 0
-						current_action = 4
-			4:
-				if atk_buff_active or def_buff_active:
-					if atk_buff_active:
-						cycles_run_atk += 1
-						
-						if cycles_run_atk == 4:
-							cycles_run_atk = 0
-							atk_bonus = 1
-							atk_buff_active = false
-							$ATKBuff.hide()
-							fight_dialogue.change_text("...Seu aumento de dano expirou!")
-							current_action = 5
-							return
-						
-					if def_buff_active:
-						cycles_run_def += 1
-							
-						if cycles_run_def == 5:
-							cycles_run_def = 0
-							def_bonus = 0
-							def_buff_active = false
-							$DEFBuff.hide()
-							fight_dialogue.change_text("...Seu aumento de defesa expirou!")
-							current_action = 5
-							return
-					
-				current_turn += 1
-				current_action = 0
-			
-			5:
-				if Input.is_action_just_pressed("confirm"):
-					current_turn += 1
+					current_turn = 1
 					current_action = 0
-	
-	elif current_turn == 1:
-		match counter:
-			0:
-				chance = rng.randi_range(1,20)
-				print("Dragon DMG D20: ",chance)
-				fight_dialogue.change_text("O dragão furiosamente ataca!")
-				counter += 1
-			1:
-				if Input.is_action_just_pressed("confirm"):
-					if chance < 3:
-						fight_dialogue.change_text("...O dragão errou o golpe!")
-						chance = 0
-					elif chance < 9:
-						fight_dialogue.change_text("...A criatura vai desferir um golpe certeiro!")
-					elif chance < 14:
-						fight_dialogue.change_text("...A besta realizará um excelente ataque!")
-					elif chance < 19:
-						fight_dialogue.change_text("...A criatura dracônica avança em uma ofensiva letal!")
-					elif chance == 20:
-						fight_dialogue.change_text("...O dragão lhe atingirá com um acerto PERFEITO!")
-					counter += 1
+				2:
+					await player_item()
+					current_turn = 1
+					current_action = 0
+				3:
+					print("Player RunAway: ",chance)
+					await player_runaway()
 					
-					if chance == 0: counter = 8
-			2:
-				if Input.is_action_just_pressed("confirm"):
-					fight_dialogue.change_text("Prepare-se para se defender!")
-					counter += 1
-			3:
-				if Input.is_action_just_pressed("confirm"):
-					remove_child(fight_dialogue)
-					await get_tree().process_frame
+					if chance >= 17:
+						Global.ending = 1
+						break
 					
-					$Enemy.move_forward(300,128)
-					$Player.play(player_block_animation)
-					qte_start()
-					counter += 1
-			4:
-				if not player_hit_qte: return
-				
-				fight_qte.queue_free()
-				add_child(fight_dialogue)
-				if Global.player_qte == 0:
-					fight_dialogue.change_text("...Errou a defesa...")
-				elif Global.player_qte < 3:
-					fight_dialogue.change_text("...Foi capaz de bloquear uma parte razoável de dano!")
-				elif Global.player_qte < 7:
-					fight_dialogue.change_text("...Conseguiu uma excelente postura defensiva!")
-				else:
-					fight_dialogue.change_text("...Realizou uma defesa PERFEITA! Essa foi por pouco...")
-				
-				print("Dragon's DMG: ", chance*2,"\n")
-				
-				print("Player's Defense D20: ",Global.player_qte,"\n")
-				print("Player's Defense Multiplier: ", (1 - ((Global.player_qte/10) + def_bonus)))
-				print("Player's Reduced DMG: ", (chance * 2) * (1 - ((Global.player_qte/10) + def_bonus)))
-				chance = (chance * 2) * (1 - ((Global.player_qte/10) + def_bonus))
-				
-				if chance < 0: chance = 0
-				if dragon_phase == 2: chance = chance * 1.2
-				counter += 1
-			5:
-				print("Dragon's Real Damage: ", chance,"\n")
-				if Global.player_qte > 0:
-					var tween = create_tween()
-					tween.tween_property($Player, "modulate", Color(0.0, 0.0, 0.65, 1.0), 0.0)
-					tween.tween_interval(0.1)
-					tween.tween_property($Player, "modulate", Color.WHITE, 0.0)
-					tween.tween_interval(0.1)
-					tween.tween_property($Player, "modulate", Color(0.0, 0.0, 0.65, 1.0), 0.0)
-					tween.tween_interval(0.25)
-					tween.tween_property($Player, "modulate", Color.WHITE, 0.0)
-				else:
-					taking_damage($Player)
-				counter += 1
-			6:
-				drop_health($FightHUD/PlayerHP,chance)
-				counter += 1
-			7:
-				$FightHUD/DamagePlayer.text = str(int(chance))
-				$FightHUD/DamagePlayer.show()
-				
-				if chance > 0: reappearing_effect($Player)
-				counter += 1
-			8:
-				if Input.is_action_just_pressed("confirm"):
+					current_turn = 1
+					current_action = 0
+				4:
+					await verify_current_effects()
 					remove_child(fight_dialogue)
 					$FightHUD.add_child(buttons)
 					fight_button.grab_focus()
-					counter += 1
-			9:
-				current_turn -= 1
-				player_hit_qte = false
-				$FightHUD/DamagePlayer.hide()
-				counter = 0
+					current_action = 0
+		
+		elif current_turn == 1:
+			await dragon_attack()
+			
+			if chance > 2:
+				await player_defense()
+			
+			print("Dragon DMG D20: ",chance)
+			print("Dragon's DMG: ", chance*2.5,"\n")
+			print("Player's Defense D20: ",Global.player_qte,"\n")
+			print("Player's Defense Multiplier: ", (1 - ((Global.player_qte/10) + def_bonus)))
+			print("Player's Reduced DMG: ", (chance * 2.5) * (1 - ((Global.player_qte/10) + def_bonus)))
+			print("Dragon's Real Damage: ", chance,"\n")
+			
+			if $FightHUD/PlayerHP.value == 0:
+				fight_dialogue.change_dialogue("...Seu HP ficou baixo demais... Você está perdendo forças...","???",unknown_icon)
+				Global.ending = 2
+				continue
+			
+			current_turn = 0
+			current_action = 4
+			$FightHUD/DamagePlayer.hide()
+			
+		await get_tree().process_frame
+	
+	fight_end()
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("confirm"): confirm_pressed.emit()
 
 func change_scene():
 	get_tree().change_scene_to_file("res://scenes/aftermath.tscn")
 
+func player_attack():
+	await fight_qte.player_attacked
+	fight_qte.queue_free()
+	add_child(fight_dialogue)
+	fight_dialogue.change_dialogue("...", "???", unknown_icon)
+	
+	if Global.player_qte == 0:
+		fight_dialogue.change_text("...Errou o ataque...")
+	elif Global.player_qte < 3:
+		fight_dialogue.change_text("...Desferiu um poderoso golpe na criatura!")
+	elif Global.player_qte < 7:
+		fight_dialogue.change_text("...Obteve uma extrema perfomance e precisão no ataque e atingiu a criatura em cheio!")
+	else:
+		fight_dialogue.change_text("...Um acerto CRÍTICO na criatura!")
+	dmg = Global.player_qte * (3+atk_bonus)
+	
+	if Global.player_qte > 0:
+		await $Enemy.taking_damage()
+		await $FightHUD/DragonHP.drop_health(dmg)
+		$FightHUD/DamageDragon.text = str(int(dmg))
+		$FightHUD/DamageDragon.show()
+		await $Enemy.reappearing_effect()
+	
+	await confirm_pressed
+	$FightHUD/DamageDragon.hide()
+
+func player_item():
+	await item_qte.item_chose
+	item_qte.queue_free()
+	add_child(fight_dialogue)
+
+	match Global.item_qte:
+		"heal":
+			fight_dialogue.change_text("...Conseguiu uma poção de cura e recuperou HP!")
+			$Player.heal_effect()
+			await $FightHUD/PlayerHP.gain_health(Global.item_value)
+		"atk":
+			fight_dialogue.change_text("...Conseguiu uma poção de aumento de dano por 3 turnos!")
+			atk_bonus = Global.item_value
+			atk_buff_active = true
+			$ATKBuff.show()
+			cycles_run_atk = 0
+		"def":
+			fight_dialogue.change_text("...Conseguiu uma poção de aumento de defesa por 3 turnos!")
+			def_bonus = Global.item_value
+			def_buff_active = true
+			$DEFBuff.show()
+			cycles_run_def = 0
+		"none":
+			fight_dialogue.change_text("...Não encontrou itens no inventário...")
+			
+	await get_tree().create_timer(0.5).timeout
+	await confirm_pressed
+
+func player_runaway():
+	running_buff()
+	await confirm_pressed
+	
+	if chance >= 19:
+		fight_dialogue.change_text("...Com um ótimo controle de seu corpo, obteve extremo sucesso na sua fuga.")
+	elif chance == 18:
+		fight_dialogue.change_text("...Você conseguiu fugir, covardemente.")
+	elif chance == 17:
+		fight_dialogue.change_text("...Por pouco, quase perdia um pé durante a fuga... Mas obteve sucesso, ou quase isso.")
+	elif chance >= 10:
+		fight_dialogue.change_text("...A tentativa falhou miseravelmente... Exatamente como um jantar de dragão, tentando fugir de seu destino.")
+	elif chance > 2:
+		fight_dialogue.change_text("...Você é impedido no meio de sua fútil tentativa e cai no chão.")
+	else:
+		fight_dialogue.change_text("...Terrivelmente, você tropeça na menor rocha possível, cai no chão e leva dano por isso... Não é seu dia de sorte.")
+	
+	await confirm_pressed
+	print("Player Real RunAway: ",chance,"\n")
+	
+	if chance <= 2:
+		$FightHUD/DamagePlayer.text = "5"
+		await $FightHUD/PlayerHP.drop_health(5)
+		$FightHUD/DamagePlayer.show()
+		await $Player.reappearing_effect()
+		await get_tree().create_timer(0.5).timeout
+		$FightHUD/DamagePlayer.hide()
+
+func player_defense():
+	fight_dialogue.change_text("Prepare-se para se defender!")
+	await confirm_pressed
+	
+	remove_child(fight_dialogue)
+	await get_tree().process_frame
+	
+	qte_start()
+	await fight_qte.qte_has_started
+	$Enemy.move_forward(300,128)
+	$Player.play(player_block_animation)
+	await fight_qte.player_attacked
+	
+	fight_qte.queue_free()
+	add_child(fight_dialogue)
+	if Global.player_qte == 0:
+		fight_dialogue.change_text("...Errou a defesa...")
+	elif Global.player_qte < 3:
+		fight_dialogue.change_text("...Foi capaz de bloquear uma parte razoável de dano!")
+	elif Global.player_qte < 7:
+		fight_dialogue.change_text("...Conseguiu uma excelente postura defensiva!")
+	else:
+		fight_dialogue.change_text("...Realizou uma defesa PERFEITA! Essa foi por pouco...")
+	
+	dmg = (chance * 2.5) * (1 - ((Global.player_qte/10) + def_bonus))
+	
+	if dmg < 0: dmg = 0
+	if dragon_phase == 1: dmg *= 1.2
+	
+	if Global.player_qte > 0:
+		await $Player.blocking_effect()
+	else:
+		await $Player.taking_damage()
+	
+	await $FightHUD/PlayerHP.drop_health(dmg)
+	
+	$FightHUD/DamagePlayer.text = str(int(dmg))
+	$FightHUD/DamagePlayer.show()
+	
+	if dmg > 0:
+		await $Player.reappearing_effect()
+	
+	await confirm_pressed
+
+func dragon_attack():
+	chance = rng.randi_range(1,20)
+	fight_dialogue.change_text("O dragão furiosamente ataca!")
+	await confirm_pressed
+	if chance < 3:
+		fight_dialogue.change_text("...O dragão errou o golpe!")
+		dmg = 0
+	elif chance < 9:
+		fight_dialogue.change_text("...A criatura vai desferir um golpe certeiro!")
+	elif chance < 14:
+		fight_dialogue.change_text("...A besta realizará um excelente ataque!")
+	elif chance < 19:
+		fight_dialogue.change_text("...A criatura dracônica avança em uma ofensiva letal!")
+	elif chance == 20:
+		fight_dialogue.change_text("...O dragão lhe atingirá com um acerto PERFEITO!")
+	await confirm_pressed
+
+func running_buff():
+	if $FightHUD/PlayerHP.value < 5:
+		chance += 8
+	elif $FightHUD/PlayerHP.value < 10:
+		chance += 6
+	elif $FightHUD/PlayerHP.value < 20:
+		chance += 4
+	elif $FightHUD/PlayerHP.value < 40:
+		chance += 3
+	elif $FightHUD/PlayerHP.value < 60:
+		chance += 2
+	elif $FightHUD/PlayerHP.value < 80:
+		chance += 1
+	if chance > 20: chance = 20
+
+func verify_current_effects():
+	if atk_buff_active:
+		cycles_run_atk += 1
+		if cycles_run_atk == 4:
+			cycles_run_atk = 0
+			atk_bonus = 1
+			atk_buff_active = false
+			$ATKBuff.hide()
+			fight_dialogue.change_text("...Seu aumento de dano expirou!")
+			await confirm_pressed
+	
+	if def_buff_active:
+		cycles_run_def += 1
+		if cycles_run_def == 4:
+			cycles_run_def = 0
+			def_bonus = 0
+			def_buff_active = false
+			$DEFBuff.hide()
+			fight_dialogue.change_text("...Seu aumento de defesa expirou!")
+			await confirm_pressed
+
 func _on_fight_button_pressed() -> void:
-	$Player.move_forward(360,186)
 	$FightHUD.remove_child(buttons)
 	qte_start()
+	await fight_qte.qte_has_started
+	$Player.move_forward(360,186)
 	$Player.play(player_attack_animation)
 	current_action = 1
 
 func qte_start():
 	fight_qte = fight_qte_scene.instantiate()
-	fight_qte.player_attacked.connect(_on_player_attacked)
 	$FightHUD.add_child(fight_qte)
 
 func _on_item_button_pressed() -> void:
@@ -375,7 +324,6 @@ func _on_item_button_pressed() -> void:
 
 func item_qte_start():
 	item_qte = item_qte_scene.instantiate()
-	item_qte.item_chose.connect(_on_item_chosen)
 	$FightHUD.add_child(item_qte)
 
 func _on_run_button_pressed() -> void:
@@ -383,84 +331,37 @@ func _on_run_button_pressed() -> void:
 	add_child(fight_dialogue)
 	fight_dialogue.change_text("...Você tentou achar uma brecha para fugir...")
 	chance = rng.randi_range(1,20)
+	chance = 1
 	current_action = 3
 
-func _on_player_hp_value_changed(value: float) -> void:
-	if value == 0:
-		Global.ending = 2
-		fight_dialogue.change_dialogue("...Seu HP ficou baixo demais... Você está perdendo forças...","???",unknown_icon)
-	elif value < 25:
-		$FightHUD/PlayerHP.tint_progress = Color(1.85, 0.0, 0.0, 1.0)
-	elif value < 50:
-		$FightHUD/PlayerHP.tint_progress = Color(1.95, 0.7, 0.0, 1.0)
-	else:
-		$FightHUD/PlayerHP.tint_progress = Color.WHITE
+func dragon_death():
+	if dragon_phase == 0:
+		dragon_phase = 1
+		current_turn = 1
+		await second_phase()
+		
+	elif dragon_phase == 1:
+		Global.ending = 3
+		fight_dialogue.change_dialogue("...O dragão mostrou-se muito fraco... Você venceu!","???",unknown_icon)
 
-func _on_dragon_hp_value_changed(value: float) -> void:
-	if value == 0:
-		if dragon_phase == 0:
-			dragon_phase = 1
-			current_action = 0
-			$FightHUD/DragonHP.max_value = 150
-			fight_dialogue.change_text("...O dragão caiu fraco no magma fervente... Porém voltou da morte?!")
-			$FightHUD/DragonHP.texture_progress = load("res://hud/progress_hp_enemy.png")
-			$FightHUD/DragonHP.texture_over = load("res://hud/over_dragon.png")
-			
-			await gain_health($FightHUD/DragonHP,150)
-			
-			var tween = create_tween()
-			tween.tween_property($Enemy, "modulate", Color(1.0, 0.0, 0.0, 1.0), 0.0)
-			tween.tween_interval(0.5)
-			tween.tween_property($Enemy, "modulate", Color.WHITE, 0.0)
-			
-			player_hit_qte = false
-			
-		elif dragon_phase == 2:
-			Global.ending = 3
-			fight_dialogue.change_dialogue("...O dragão mostrou-se muito fraco... Você venceu!","???",unknown_icon)
-
-func _on_player_attacked():
-	player_hit_qte = true
-
-func _on_item_chosen():
-	player_chose_item = true
-
-func taking_damage(a):
-	var tween = create_tween()
-	tween.tween_property(a, "modulate", Color(0.65, 0.0, 0.0, 1.0), 0.0)
-	tween.tween_interval(0.1)
-	tween.tween_property(a, "modulate", Color.WHITE, 0.0)
-	tween.tween_interval(0.1)
-	tween.tween_property(a, "modulate", Color(0.65, 0.0, 0.0, 1.0), 0.0)
-	tween.tween_interval(0.25)
-	tween.tween_property(a, "modulate", Color.WHITE, 0.0)
-
-func reappearing_effect(a):
-	var tween = create_tween()
-	tween.tween_property(a, "visible", false, 0.0)
-	tween.tween_interval(0.1)
-	tween.tween_property(a, "visible", true, 0.0)
-	tween.tween_interval(0.1)
-	tween.tween_property(a, "visible", false, 0.0)
-	tween.tween_interval(0.25)
-	tween.tween_property(a, "visible", true, 0.0)
-
-func drop_health(bar, damage):
-	bar_changing = true
-	var new_health = bar.value - damage
-	if new_health < 0: new_health = 0
+func second_phase():
+	fight_dialogue.change_text("...O dragão caiu fraco no magma fervente... Porém voltou da morte?!")
+	await confirm_pressed
+	fight_dialogue.change_text("Ele parece irritado... A defesa e ataque do dragão subiram!")
+	await confirm_pressed
+	$FightHUD/DamagePlayer.modulate = Color.RED
+	await $FightHUD/DragonHP.dragon_second_phase()
 	
 	var tween = create_tween()
-	tween.tween_property(bar, "value", new_health, 1.0)
+	tween.tween_property($Enemy, "modulate", Color(1.0, 0.0, 0.0, 1.0), 0.0)
+	tween.tween_interval(0.5)
+	tween.tween_property($Enemy, "modulate", Color.WHITE, 0.0)
 	await tween.finished
-	bar_changing = false
 
-func gain_health(bar, health):
-	bar_changing = true
-	var new_health = bar.value + health
-	if new_health > bar.max_value: new_health = bar.max_value
-	
-	var tween = create_tween()
-	tween.tween_property(bar, "value", new_health, 1.0)
-	await tween.finished
-	bar_changing = false
+func fight_end():
+	await confirm_pressed
+	if TransitionScreen.transitioning: return
+	TransitionScreen.transitioning = true
+	TransitionScreen.transition()
+	await TransitionScreen.on_transition_finished
+	call_deferred("change_scene")
