@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ndwxj0va0x05"
-path="res://.godot/imported/pyro_symbol.png-5588618f88f622d5c52f263612cb5ccf.ctex"
+uid="uid://6epyxvg5f5wo"
+path="res://.godot/imported/heal.png-e8e517b62b1eeb557a6a5c9cbb9825bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite_placeholders/pyro_symbol.png"
-dest_files=["res://.godot/imported/pyro_symbol.png-5588618f88f622d5c52f263612cb5ccf.ctex"]
+source_file="res://object_sprites/potions/heal.png"
+dest_files=["res://.godot/imported/heal.png-e8e517b62b1eeb557a6a5c9cbb9825bf.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbmjke8kstnyj"
-path="res://.godot/imported/dendro_symbol.png-b59aa35ce4ee447720e870d8a70c44af.ctex"
+uid="uid://4irs7hdxxbxl"
+path="res://.godot/imported/def.png-8cf30de500c7452d52c6e398d5a90f0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite_placeholders/dendro_symbol.png"
-dest_files=["res://.godot/imported/dendro_symbol.png-b59aa35ce4ee447720e870d8a70c44af.ctex"]
+source_file="res://object_sprites/potions/def.png"
+dest_files=["res://.godot/imported/def.png-8cf30de500c7452d52c6e398d5a90f0d.ctex"]
 
 [params]
 

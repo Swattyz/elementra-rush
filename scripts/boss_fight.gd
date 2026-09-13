@@ -160,18 +160,23 @@ func player_item():
 	match Global.item_qte:
 		"heal":
 			fight_dialogue.change_text("...Conseguiu uma poção de cura e recuperou HP!")
+			await $Potion.use_item(Global.item_qte)
 			$Player.heal_effect()
 			await $FightHUD/PlayerHP.gain_health(Global.item_value)
 		"atk":
 			fight_dialogue.change_text("...Conseguiu uma poção de aumento de dano por 3 turnos!")
 			atk_bonus = Global.item_value
 			atk_buff_active = true
+			await $Potion.use_item(Global.item_qte)
+			$Player.atk_effect()
 			$ATKBuff.show()
 			cycles_run_atk = 0
 		"def":
 			fight_dialogue.change_text("...Conseguiu uma poção de aumento de defesa por 3 turnos!")
 			def_bonus = Global.item_value
 			def_buff_active = true
+			await $Potion.use_item(Global.item_qte)
+			$Player.def_effect()
 			$DEFBuff.show()
 			cycles_run_def = 0
 		"none":

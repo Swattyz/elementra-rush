@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7e1lqe6ltdby"
-path="res://.godot/imported/hydro_symbol.png-5bed1c1188a2e32b711a412522ff5373.ctex"
+uid="uid://bry8w7en4daiy"
+path="res://.godot/imported/buttons_background_pyro.png-ffced12826b14a253269c2c03caf018f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite_placeholders/hydro_symbol.png"
-dest_files=["res://.godot/imported/hydro_symbol.png-5bed1c1188a2e32b711a412522ff5373.ctex"]
+source_file="res://backgrounds/buttons_background_pyro.png"
+dest_files=["res://.godot/imported/buttons_background_pyro.png-ffced12826b14a253269c2c03caf018f.ctex"]
 
 [params]
 

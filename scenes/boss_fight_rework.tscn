@@ -23,13 +23,19 @@
 [ext_resource type="Script" uid="uid://boxr06hv34miy" path="res://scripts/enemy.gd" id="21_mkj30"]
 [ext_resource type="Texture2D" uid="uid://cs67sp2dw38jv" path="res://object_sprites/atk_buff_lesser.png" id="22_nofj0"]
 [ext_resource type="Texture2D" uid="uid://dqupmjr7ig1ag" path="res://object_sprites/def_buff_lesser.png" id="23_kwubo"]
-[ext_resource type="Texture2D" uid="uid://ca4jns0jdhest" path="res://backgrounds/buttons_background_hydro_3.png" id="24_grgsj"]
+[ext_resource type="Texture2D" uid="uid://ca4jns0jdhest" path="res://backgrounds/buttons_background_hydro.png" id="24_grgsj"]
+[ext_resource type="Texture2D" uid="uid://b333rcrgch66o" path="res://backgrounds/buttons_background_anemo.png" id="24_pypt1"]
 [ext_resource type="Texture2D" uid="uid://cuac6bnegol64" path="res://hud/under.png" id="25_c2odq"]
+[ext_resource type="Texture2D" uid="uid://cgicl46xhylfm" path="res://backgrounds/buttons_background_dendro.png" id="25_ec73t"]
 [ext_resource type="Texture2D" uid="uid://cbomgglpdf2ix" path="res://hud/over_dragon.png" id="26_nncqb"]
 [ext_resource type="Texture2D" uid="uid://cgd1a54002t6i" path="res://hud/progress_hp_enemy.png" id="27_ge5hp"]
+[ext_resource type="Texture2D" uid="uid://bry8w7en4daiy" path="res://backgrounds/buttons_background_pyro.png" id="27_v3n62"]
+[ext_resource type="Script" uid="uid://dktgvetjkosdm" path="res://scripts/buttons_background.gd" id="28_cly3g"]
 [ext_resource type="FontFile" uid="uid://b6qq6p4aasabv" path="res://fonts/VCR_OSD_MONO.ttf" id="28_nsgbb"]
 [ext_resource type="Script" uid="uid://b20qa1wpvrsnq" path="res://scripts/health_bar.gd" id="28_nxd3v"]
 [ext_resource type="Script" uid="uid://catlh8yv561cw" path="res://scripts/damage_player.gd" id="29_bkcbh"]
+[ext_resource type="Texture2D" uid="uid://jlsapfxko1ti" path="res://object_sprites/potions/atk.png" id="29_v3n62"]
+[ext_resource type="Script" uid="uid://brjm6ucj7o0lr" path="res://scripts/potion.gd" id="30_cly3g"]
 [ext_resource type="Texture2D" uid="uid://ii3latu412lf" path="res://hud/over_player.png" id="30_lpe36"]
 [ext_resource type="Texture2D" uid="uid://brdiycptanwdf" path="res://hud/progress_hp_player.png" id="31_odcrg"]
 [ext_resource type="Texture2D" uid="uid://dt70oesliwn15" path="res://object_sprites/button_attack.png" id="32_v231e"]
@@ -720,6 +726,50 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_txq86"]
+atlas = ExtResource("24_pypt1")
+region = Rect2(0, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g2v2"]
+atlas = ExtResource("24_pypt1")
+region = Rect2(640, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7sdi"]
+atlas = ExtResource("24_pypt1")
+region = Rect2(1280, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xihk0"]
+atlas = ExtResource("24_pypt1")
+region = Rect2(1920, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eojpm"]
+atlas = ExtResource("24_pypt1")
+region = Rect2(2560, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hntaf"]
+atlas = ExtResource("24_pypt1")
+region = Rect2(3200, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfje7"]
+atlas = ExtResource("24_pypt1")
+region = Rect2(3840, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvdd3"]
+atlas = ExtResource("25_ec73t")
+region = Rect2(0, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqb43"]
+atlas = ExtResource("25_ec73t")
+region = Rect2(640, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmqck"]
+atlas = ExtResource("25_ec73t")
+region = Rect2(1280, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w6v6"]
+atlas = ExtResource("25_ec73t")
+region = Rect2(1920, 0, 640, 80)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ix7a"]
 atlas = ExtResource("24_grgsj")
 region = Rect2(0, 0, 640, 80)
@@ -744,8 +794,67 @@ region = Rect2(2560, 0, 640, 80)
 atlas = ExtResource("24_grgsj")
 region = Rect2(3200, 0, 640, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkj30"]
+atlas = ExtResource("27_v3n62")
+region = Rect2(0, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nofj0"]
+atlas = ExtResource("27_v3n62")
+region = Rect2(640, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwubo"]
+atlas = ExtResource("27_v3n62")
+region = Rect2(1280, 0, 640, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grgsj"]
+atlas = ExtResource("27_v3n62")
+region = Rect2(1920, 0, 640, 80)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_d0u6y"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txq86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g2v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7sdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xihk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eojpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hntaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfje7")
+}],
+"loop": 1,
+"name": &"anemo_background",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvdd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqb43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmqck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w6v6")
+}],
+"loop": 1,
+"name": &"dendro_background",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4ix7a")
@@ -766,7 +875,24 @@ animations = [{
 "texture": SubResource("AtlasTexture_3grv3")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"hydro_background",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkj30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nofj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwubo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grgsj")
+}],
+"loop": 1,
+"name": &"pyro_background",
 "speed": 5.0
 }]
 
@@ -788,9 +914,7 @@ metadata/_edit_lock_ = true
 position = Vector2(140, 186)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"blocking anemo"
-frame = 5
-frame_progress = 1.0
+animation = &"sword idle anemo"
 script = ExtResource("19_mmqck")
 
 [node name="Enemy" type="AnimatedSprite2D" parent="." unique_id=178384744]
@@ -813,13 +937,19 @@ scale = Vector2(0.55, 0.55)
 texture = ExtResource("23_kwubo")
 
 [node name="ButtonsBackground" type="AnimatedSprite2D" parent="." unique_id=657692905]
-modulate = Color(1, 1, 1, 0.93333334)
+modulate = Color(0.8784314, 0.8784314, 0.8784314, 0.92156863)
 position = Vector2(0, 280)
 sprite_frames = SubResource("SpriteFrames_d0u6y")
-autoplay = "default"
-frame = 1
-frame_progress = 0.7509365
+animation = &"pyro_background"
+frame_progress = 0.96911037
 centered = false
+script = ExtResource("28_cly3g")
+
+[node name="Potion" type="Sprite2D" parent="." unique_id=1721088974]
+position = Vector2(167, 107)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("29_v3n62")
+script = ExtResource("30_cly3g")
 
 [node name="FightHUD" type="CanvasLayer" parent="." unique_id=1801211472]
 
