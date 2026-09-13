@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbmi22ilq8rwm"
-path="res://.godot/imported/diamond_sword_placeholder.png-4eef995d5f2fc7e644559ba6a2eaf14d.ctex"
+uid="uid://b333rcrgch66o"
+path="res://.godot/imported/buttons_background_anemo.png-02c435b39b6a24673d52bcc957e3d280.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite_placeholders/diamond_sword_placeholder.png"
-dest_files=["res://.godot/imported/diamond_sword_placeholder.png-4eef995d5f2fc7e644559ba6a2eaf14d.ctex"]
+source_file="res://backgrounds/buttons_background_anemo.png"
+dest_files=["res://.godot/imported/buttons_background_anemo.png-02c435b39b6a24673d52bcc957e3d280.ctex"]
 
 [params]
 

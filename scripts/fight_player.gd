@@ -60,6 +60,18 @@ func blocking_effect():
 
 func heal_effect():
 	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(0.0, 0.65, 0.0, 1.0), 0.0)
+	tween.tween_property(self, "modulate", Color(0.0, 1.0, 0.0, 1.0), 0.0)
+	tween.tween_interval(1.0)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.0)
+
+func atk_effect():
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1.0, 0.0, 0.0, 1.0), 0.0)
+	tween.tween_interval(0.35)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.0)
+
+func def_effect():
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(0.0, 0.7, 1.0, 1.0), 0.0)
 	tween.tween_interval(0.35)
 	tween.tween_property(self, "modulate", Color.WHITE, 0.0)

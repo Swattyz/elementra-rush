@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4e3w3ci8mb1b"
-path="res://.godot/imported/buttons_background_hydro_lighter.png-1234bdfe701e6b598d90597d7f935b50.ctex"
+uid="uid://jlsapfxko1ti"
+path="res://.godot/imported/atk.png-0cd81ec91d384b6c3580a574d7964389.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://backgrounds/buttons_background_hydro_lighter.png"
-dest_files=["res://.godot/imported/buttons_background_hydro_lighter.png-1234bdfe701e6b598d90597d7f935b50.ctex"]
+source_file="res://object_sprites/potions/atk.png"
+dest_files=["res://.godot/imported/atk.png-0cd81ec91d384b6c3580a574d7964389.ctex"]
 
 [params]
 

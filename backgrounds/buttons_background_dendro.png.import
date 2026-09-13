@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uo41062thddr"
-path="res://.godot/imported/grass placeholder.png-4c4d701587d3c7337fd48883c0a2b04a.ctex"
+uid="uid://cgicl46xhylfm"
+path="res://.godot/imported/buttons_background_dendro.png-f45e4ae271689393362acee7f3d32de1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite_placeholders/grass placeholder.png"
-dest_files=["res://.godot/imported/grass placeholder.png-4c4d701587d3c7337fd48883c0a2b04a.ctex"]
+source_file="res://backgrounds/buttons_background_dendro.png"
+dest_files=["res://.godot/imported/buttons_background_dendro.png-f45e4ae271689393362acee7f3d32de1.ctex"]
 
 [params]
 

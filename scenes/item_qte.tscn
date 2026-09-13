@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://cli22t1gfqji5"]
 
 [ext_resource type="Script" uid="uid://btnku1any8h66" path="res://scripts/item_qte.gd" id="1_voyct"]
-[ext_resource type="Texture2D" uid="uid://d2ahfw0ursh" path="res://sprite_placeholders/potion.png" id="2_1t5qu"]
+[ext_resource type="Texture2D" uid="uid://jlsapfxko1ti" path="res://object_sprites/potions/atk.png" id="2_465yd"]
 [ext_resource type="Texture2D" uid="uid://c0y0q2g3xlqlu" path="res://sprite_placeholders/sword_placeholder.png" id="2_wtx12"]
+[ext_resource type="Texture2D" uid="uid://4irs7hdxxbxl" path="res://object_sprites/potions/def.png" id="3_5rxgq"]
 [ext_resource type="Script" uid="uid://dymp3bs1aay2j" path="res://scripts/press_warning.gd" id="3_d53yt"]
 [ext_resource type="FontFile" uid="uid://b6qq6p4aasabv" path="res://fonts/VCR_OSD_MONO.ttf" id="4_1hpe2"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d53yt"]
-load_path = "res://.godot/imported/potion.png-ee0a36563437b7011e0691984baa3ea9.ctex"
+[ext_resource type="Texture2D" uid="uid://6epyxvg5f5wo" path="res://object_sprites/potions/heal.png" id="4_gl5el"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1t5qu"]
 size = Vector2(2, 83)
@@ -62,8 +61,7 @@ color = Color(1, 0.32999998, 0.32999998, 1)
 
 [node name="PotionATK" type="Sprite2D" parent="BackgroundATK" unique_id=706371756]
 position = Vector2(25, 19)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_1t5qu")
+texture = ExtResource("2_465yd")
 
 [node name="BackgroundDEF" type="ColorRect" parent="." unique_id=312726818]
 offset_left = 169.0
@@ -73,10 +71,8 @@ offset_bottom = 339.0
 color = Color(5.198121e-06, 0.6415284, 0.91693795, 1)
 
 [node name="PotionDEF" type="Sprite2D" parent="BackgroundDEF" unique_id=317874043]
-modulate = Color(0, 1, 1, 1)
 position = Vector2(25, 19)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_1t5qu")
+texture = ExtResource("3_5rxgq")
 
 [node name="BackgroundHEAL" type="ColorRect" parent="." unique_id=1839610507]
 offset_left = 414.0
@@ -86,10 +82,8 @@ offset_bottom = 339.0
 color = Color(0.40707266, 0.6868156, 0.08812585, 1)
 
 [node name="PotionHEAL" type="Sprite2D" parent="BackgroundHEAL" unique_id=980972726]
-modulate = Color(0, 1, 0.25882354, 1)
 position = Vector2(25, 19)
-scale = Vector2(0.2, 0.2)
-texture = SubResource("CompressedTexture2D_d53yt")
+texture = ExtResource("4_gl5el")
 
 [node name="Press" type="ColorRect" parent="." unique_id=8721519]
 anchors_preset = -1
