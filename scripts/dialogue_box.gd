@@ -8,10 +8,8 @@ func change_dialogue(text,author,icon):
 	$Author.text = str(author)
 	$Icon.texture = load(icon)
 	$Text.visible_characters = 0
+	$AnimationPlayer.play("play")
 
 func change_text(text):
 	$Text.text = str(text)
-	$Text.visible_characters = 0
-
-func _on_timer_timeout() -> void:
-	$Text.visible_characters += 1
+	$AnimationPlayer.play("play")

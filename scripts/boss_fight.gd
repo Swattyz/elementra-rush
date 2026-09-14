@@ -137,13 +137,13 @@ func player_attack():
 	fight_dialogue.change_dialogue("...", "???", unknown_icon)
 	
 	if Global.player_qte == 0:
-		fight_dialogue.change_text("...Errou o ataque...")
+		fight_dialogue.change_text(dialog.atk_miss())
 	elif Global.player_qte < 3:
-		fight_dialogue.change_text("...Desferiu um poderoso golpe na criatura!")
+		fight_dialogue.change_text(dialog.atk_okay())
 	elif Global.player_qte < 7:
-		fight_dialogue.change_text("...Obteve uma extrema perfomance e precisão no ataque e atingiu a criatura em cheio!")
+		fight_dialogue.change_text(dialog.atk_great())
 	else:
-		fight_dialogue.change_text("...Um acerto CRÍTICO na criatura!")
+		fight_dialogue.change_text(dialog.atk_crit())
 	dmg = Global.player_qte * (3+atk_bonus)
 	
 	if Global.player_qte > 0:
