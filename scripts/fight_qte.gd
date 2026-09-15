@@ -14,11 +14,13 @@ func _physics_process(_delta: float) -> void:
 		if Input.is_action_just_pressed("confirm"):
 			started = true
 			qte_has_started.emit()
+			Audios.barra_de_reacao()
 			$Press.queue_free()
 		return
 	
 	if Input.is_action_just_pressed("confirm") and not hit:
 		hit = true
+		Audios.acerto()
 	
 	if $AttackHitter.position.x < 640 and not hit:
 		$AttackHitter.velocity.x = speed

@@ -121,7 +121,8 @@ func _ready() -> void:
 	fight_end()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("confirm"): confirm_pressed.emit()
+	if Input.is_action_just_pressed("confirm"):
+		confirm_pressed.emit()
 
 func change_scene():
 	get_tree().change_scene_to_file("res://scenes/aftermath.tscn")
@@ -134,6 +135,7 @@ func player_attack():
 	
 	if Global.player_qte == 0:
 		fight_dialogue.change_text("...Errou o ataque...")
+		Audios.falha()
 	elif Global.player_qte < 3:
 		fight_dialogue.change_text("...Desferiu um poderoso golpe na criatura!")
 	elif Global.player_qte < 7:
@@ -150,6 +152,7 @@ func player_attack():
 		await $Enemy.reappearing_effect()
 	
 	await confirm_pressed
+	Audios.click()
 	$FightHUD/DamageDragon.hide()
 
 func player_item():
@@ -181,28 +184,38 @@ func player_item():
 			cycles_run_def = 0
 		"none":
 			fight_dialogue.change_text("...Não encontrou itens no inventário...")
+			Audios.falha()
 			
 	await get_tree().create_timer(0.5).timeout
 	await confirm_pressed
+	Audios.click()
 
 func player_runaway():
 	running_buff()
 	await confirm_pressed
+	Audios.click()
 	
 	if chance >= 19:
 		fight_dialogue.change_text("...Com um ótimo controle de seu corpo, obteve extremo sucesso na sua fuga.")
+		Audios.acerto()
 	elif chance == 18:
 		fight_dialogue.change_text("...Você conseguiu fugir, covardemente.")
+		Audios.acerto()
 	elif chance == 17:
 		fight_dialogue.change_text("...Por pouco, quase perdia um pé durante a fuga... Mas obteve sucesso, ou quase isso.")
+		Audios.acerto()
 	elif chance >= 10:
 		fight_dialogue.change_text("...A tentativa falhou miseravelmente... Exatamente como um jantar de dragão, tentando fugir de seu destino.")
+		Audios.falha()
 	elif chance > 2:
 		fight_dialogue.change_text("...Você é impedido no meio de sua fútil tentativa e cai no chão.")
+		Audios.falha()
 	else:
 		fight_dialogue.change_text("...Terrivelmente, você tropeça na menor rocha possível, cai no chão e leva dano por isso... Não é seu dia de sorte.")
+		Audios.falha()
 	
 	await confirm_pressed
+	Audios.click()
 	print("Player Real RunAway: ",chance,"\n")
 	
 	if chance <= 2:
@@ -216,6 +229,7 @@ func player_runaway():
 func player_defense():
 	fight_dialogue.change_text("Prepare-se para se defender!")
 	await confirm_pressed
+	Audios.click()
 	
 	remove_child(fight_dialogue)
 	await get_tree().process_frame
@@ -230,6 +244,7 @@ func player_defense():
 	add_child(fight_dialogue)
 	if Global.player_qte == 0:
 		fight_dialogue.change_text("...Errou a defesa...")
+		Audios.falha()
 	elif Global.player_qte < 3:
 		fight_dialogue.change_text("...Foi capaz de bloquear uma parte razoável de dano!")
 	elif Global.player_qte < 7:
@@ -256,13 +271,17 @@ func player_defense():
 		await $Player.reappearing_effect()
 	
 	await confirm_pressed
+	Audios.click()
 
 func dragon_attack():
 	chance = rng.randi_range(1,20)
 	fight_dialogue.change_text("O dragão furiosamente ataca!")
 	await confirm_pressed
+	Audios.click()
+	
 	if chance < 3:
 		fight_dialogue.change_text("...O dragão errou o golpe!")
+		Audios.falha()
 		dmg = 0
 	elif chance < 9:
 		fight_dialogue.change_text("...A criatura vai desferir um golpe certeiro!")
@@ -273,6 +292,7 @@ func dragon_attack():
 	elif chance == 20:
 		fight_dialogue.change_text("...O dragão lhe atingirá com um acerto PERFEITO!")
 	await confirm_pressed
+	Audios.click()
 
 func running_buff():
 	if $FightHUD/PlayerHP.value < 5:
@@ -299,6 +319,7 @@ func verify_current_effects():
 			$ATKBuff.hide()
 			fight_dialogue.change_text("...Seu aumento de dano expirou!")
 			await confirm_pressed
+			Audios.click()
 	
 	if def_buff_active:
 		cycles_run_def += 1
@@ -309,8 +330,10 @@ func verify_current_effects():
 			$DEFBuff.hide()
 			fight_dialogue.change_text("...Seu aumento de defesa expirou!")
 			await confirm_pressed
+			Audios.click()
 
 func _on_fight_button_pressed() -> void:
+	Audios.click()
 	$FightHUD.remove_child(buttons)
 	qte_start()
 	await fight_qte.qte_has_started
@@ -323,6 +346,7 @@ func qte_start():
 	$FightHUD.add_child(fight_qte)
 
 func _on_item_button_pressed() -> void:
+	Audios.click()
 	$FightHUD.remove_child(buttons)
 	item_qte_start()
 	current_action = 2
@@ -332,11 +356,11 @@ func item_qte_start():
 	$FightHUD.add_child(item_qte)
 
 func _on_run_button_pressed() -> void:
+	Audios.click()
 	$FightHUD.remove_child(buttons)
 	add_child(fight_dialogue)
 	fight_dialogue.change_text("...Você tentou achar uma brecha para fugir...")
 	chance = rng.randi_range(1,20)
-	chance = 1
 	current_action = 3
 
 func dragon_death():
@@ -352,8 +376,10 @@ func dragon_death():
 func second_phase():
 	fight_dialogue.change_text("...O dragão caiu fraco no magma fervente... Porém voltou da morte?!")
 	await confirm_pressed
+	Audios.click()
 	fight_dialogue.change_text("Ele parece irritado... A defesa e ataque do dragão subiram!")
 	await confirm_pressed
+	Audios.click()
 	$FightHUD/DamagePlayer.modulate = Color.RED
 	await $FightHUD/DragonHP.dragon_second_phase()
 	
@@ -365,6 +391,7 @@ func second_phase():
 
 func fight_end():
 	await confirm_pressed
+	Audios.click()
 	if TransitionScreen.transitioning: return
 	TransitionScreen.transitioning = true
 	TransitionScreen.transition()

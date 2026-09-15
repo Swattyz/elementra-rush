@@ -26,3 +26,4 @@ func reappearing_effect():
 	tween.tween_property(self, "visible", false, 0.0)
 	tween.tween_interval(0.25)
 	tween.tween_property(self, "visible", true, 0.0)
+	Audios.dano()

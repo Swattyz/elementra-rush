@@ -28,6 +28,7 @@ func move_forward(x,y):
 	tween.tween_property(self, "position", original_position, 0.5)
 
 func taking_damage():
+	Audios.sopro_do_dragao()
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(0.65, 0.0, 0.0, 1.0), 0.0)
 	tween.tween_interval(0.1)
@@ -46,8 +47,10 @@ func reappearing_effect():
 	tween.tween_property(self, "visible", false, 0.0)
 	tween.tween_interval(0.25)
 	tween.tween_property(self, "visible", true, 0.0)
+	Audios.dano()
 
 func blocking_effect():
+	Audios.sopro_do_dragao()
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.65, 1.0), 0.0)
 	tween.tween_interval(0.1)
@@ -61,6 +64,7 @@ func blocking_effect():
 func heal_effect():
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(0.0, 1.0, 0.0, 1.0), 0.0)
+	Audios.cura()
 	tween.tween_interval(1.0)
 	tween.tween_property(self, "modulate", Color.WHITE, 0.0)
 

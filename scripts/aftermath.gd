@@ -12,6 +12,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("confirm"):
+		Audios.click()
+		
 		if TransitionScreen.transitioning:
 			return
 		
@@ -27,3 +29,6 @@ func change_scene():
 
 func _on_timer_timeout() -> void:
 	$Text.visible_characters += 1
+	
+	if $Text.visible_characters < $Text.text.length():
+		Audios.enemy_dialogue()

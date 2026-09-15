@@ -10,6 +10,8 @@ func _on_mouse_exited() -> void:
 	modulate = Color.WHITE
 
 func _on_button_down() -> void:
+	Audios.click()
+	
 	if TransitionScreen.transitioning:
 		return
 	

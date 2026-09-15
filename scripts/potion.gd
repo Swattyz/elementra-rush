@@ -15,8 +15,8 @@ func use_item(item):
 	
 	var original_position = position
 	var tween = create_tween()
-	tween.tween_property(self, "position", Vector2(167, 35), 0.5)
-	tween.tween_property(self, "modulate", Color(1.5, 1.5, 1.5, 0.0), 0.5)
+	tween.tween_property(self, "position", Vector2(167, 35), 0.35)
+	tween.tween_property(self, "modulate", Color(1.5, 1.5, 1.5, 0.0), 0.35)
 	await tween.finished
 	hide()
 	modulate = Color.WHITE

@@ -37,6 +37,7 @@ func _process(_delta: float) -> void:
 					dialogue.change_text("Isso não importa. Você sente que precisa avançar...")
 					counter += 1
 				2:
+					Audios.click()
 					remove_child(dialogue)
 					$Player.out_of_dialogue = true
 					first_dialogue_trigger = false
@@ -53,15 +54,18 @@ func _process(_delta: float) -> void:
 	if started_dialogue and Input.is_action_just_pressed("confirm"):
 		match counter:
 			0:
+				dialogue.mode = "player"
 				dialogue.change_dialogue("...Essa criatura é familiar. Ainda deseja ficar no meu caminho?", "Você", player)
 				counter += 1
 			1:
+				dialogue.mode = "enemy"
 				dialogue.change_dialogue("*rugido*","Dhrygon",unknown)
 				counter += 1
 			2:
 				dialogue.change_dialogue("O dragão lhe ataca ferozmente ao te perceber dentro de seu território!", "???", unknown)
 				counter += 1
 			3:
+				Audios.click()
 				dialogue.hide()
 				TransitionScreen.transitioning = true
 				TransitionScreen.transition()

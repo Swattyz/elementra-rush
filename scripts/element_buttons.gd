@@ -20,6 +20,8 @@ func _on_focus_exited() -> void:
 	selecting_text(0)
 
 func _on_button_down() -> void:
+	Audios.click()
+	
 	if TransitionScreen.transitioning:
 		return
 	

@@ -19,6 +19,7 @@ config/icon="uid://dy87336ju8owx"
 
 TransitionScreen="*uid://cpkbjkkw0tf3k"
 Global="*uid://bcm8ug8ni01po"
+Audios="*uid://cauda6b430ohj"
 
 [display]
 

@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@onready var mode: String = "enemy"
+
 func _ready():
 	$Text.visible_characters = 0
 
@@ -15,3 +17,11 @@ func change_text(text):
 
 func _on_timer_timeout() -> void:
 	$Text.visible_characters += 1
+	
+	if self.name == "FightDialogue": return
+	
+	if $Text.visible_characters < $Text.text.length():
+		if mode == "enemy":
+			Audios.enemy_dialogue()
+		else:
+			Audios.player_dialogue()
