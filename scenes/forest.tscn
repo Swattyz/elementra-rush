@@ -57,12 +57,12 @@ size = Vector2(20, 362)
 size = Vector2(664, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(8, 132)
+size = Vector2(9, 132)
 
 [node name="Forest" type="Node2D" unique_id=857046446]
 script = ExtResource("1_xr56k")
-metadata/_edit_vertical_guides_ = [0.0]
-metadata/_edit_horizontal_guides_ = [92.0]
+metadata/_edit_vertical_guides_ = [0.0, 624.0]
+metadata/_edit_horizontal_guides_ = [92.0, 316.0]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=868753086]
 position = Vector2(320, 180)
@@ -352,7 +352,7 @@ texture = ExtResource("7_j3csf")
 
 [node name="Player" parent="." unique_id=900707046 instance=ExtResource("4_xr56k")]
 y_sort_enabled = true
-position = Vector2(11, 301)
+position = Vector2(11, 315)
 
 [node name="FrontObjects" type="Node2D" parent="." unique_id=515657674]
 
@@ -413,7 +413,7 @@ polygon = PackedVector2Array(0, 0, 1, 221, 71, 248, 127, 255, 284, 283, 439, 287
 [node name="Trigger" type="Area2D" parent="." unique_id=1308459116]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger" unique_id=1630027147]
-position = Vector2(636, 294)
+position = Vector2(639.5, 294)
 shape = SubResource("RectangleShape2D_g4v7s")
 
 [node name="Timer" type="Timer" parent="." unique_id=1180939869]

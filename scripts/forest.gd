@@ -17,6 +17,10 @@ var clouds: Array = [
 	"res://object_sprites/cloud_3.png"
 ]
 
+func _ready() -> void:
+	if Global.coming_back:
+		$Player.position.x = 610
+
 func _on_trigger_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		$Player.out_of_dialogue = false

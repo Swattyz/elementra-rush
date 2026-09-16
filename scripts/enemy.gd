@@ -27,3 +27,17 @@ func reappearing_effect():
 	tween.tween_interval(0.25)
 	tween.tween_property(self, "visible", true, 0.0)
 	Audios.dano()
+
+func dying():
+	modulate = Color.DARK_GRAY
+	var tween = create_tween()
+	tween.tween_property(self, "position", Vector2(532, 400), 1.0)
+	await tween.finished
+	modulate = Color.WHITE
+
+func reviving():
+	modulate = Color.RED
+	var tween = create_tween()
+	tween.tween_property(self, "position", Vector2(532, 128), 1.0)
+	await tween.finished
+	modulate = Color.WHITE

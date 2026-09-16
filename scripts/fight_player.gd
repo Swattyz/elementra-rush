@@ -71,11 +71,20 @@ func heal_effect():
 func atk_effect():
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(1.0, 0.0, 0.0, 1.0), 0.0)
+	Audios.item()
 	tween.tween_interval(0.35)
 	tween.tween_property(self, "modulate", Color.WHITE, 0.0)
 
 func def_effect():
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(0.0, 0.7, 1.0, 1.0), 0.0)
+	Audios.item()
 	tween.tween_interval(0.35)
 	tween.tween_property(self, "modulate", Color.WHITE, 0.0)
+
+func dying():
+	modulate = Color.DARK_GRAY
+	var tween = create_tween()
+	tween.tween_property(self, "position", Vector2(140, 500), 1.0)
+	await tween.finished
+	modulate = Color.WHITE

@@ -26,7 +26,7 @@ var def_buff_active: bool = false
 var fight_dialogue_scene: PackedScene = preload("res://scenes/fight_dialogue.tscn")
 var fight_dialogue = fight_dialogue_scene.instantiate()
 var unknown_icon: String = "res://object_sprites/unknown_identity_icon.png"
-var player_icon: String = "res://player_sprites/anemo_walking_spritesheet.png"
+var player_icon: String
 
 var current_action: int = 0
 
@@ -34,6 +34,14 @@ var current_turn: int = 0
 
 var dragon_phase: int = 0
 var dmg: float = 0.0
+
+var portraits: Array = [
+	"res://player_sprites/portrait_anemo.png",
+	"res://player_sprites/portrait_hydro.png",
+	"res://player_sprites/portrait_pyro.png",
+	"res://player_sprites/portrait_dendro.png"
+	
+]
 
 var attacking_animations: Array = [
 	"attacking anemo",
@@ -58,6 +66,7 @@ func _ready() -> void:
 	fight_button = $FightHUD/Buttons/FightButton
 	player_block_animation = blocking_animations[Global.player_element]
 	player_attack_animation = attacking_animations[Global.player_element]
+	player_icon = portraits[Global.player_element]
 	
 	while Global.ending == 0:
 		if current_turn == 0:
@@ -108,7 +117,13 @@ func _ready() -> void:
 			print("Dragon's Real Damage: ", chance,"\n")
 			
 			if $FightHUD/PlayerHP.value == 0:
-				fight_dialogue.change_dialogue("...Seu HP ficou baixo demais... Você está perdendo forças...","???",unknown_icon)
+				fight_dialogue.change_dialogue("...Você levou muitos ferimentos e está perdendo suas forças...","???",unknown_icon)
+				await confirm_pressed
+				fight_dialogue.change_dialogue("Não... Pode ser...","Você",player_icon)
+				await confirm_pressed
+				$FightHUD/DamagePlayer.hide()
+				await $Player.dying()
+				fight_dialogue.change_dialogue("...Você ficou inconsciente.","???",unknown_icon)
 				Global.ending = 2
 				continue
 			
@@ -371,23 +386,25 @@ func dragon_death():
 		
 	elif dragon_phase == 1:
 		Global.ending = 3
-		fight_dialogue.change_dialogue("...O dragão mostrou-se muito fraco... Você venceu!","???",unknown_icon)
+		fight_dialogue.change_dialogue("...O dragão ficou inconsciente... Você venceu!","???",unknown_icon)
+		await $Enemy.dying()
 
 func second_phase():
-	fight_dialogue.change_text("...O dragão caiu fraco no magma fervente... Porém voltou da morte?!")
+	await $Enemy.dying()
+	fight_dialogue.change_text("...O dragão caiu fraco no magma fervente...")
 	await confirm_pressed
 	Audios.click()
+	fight_dialogue.change_text("...Você ouve barulhos estranhos vindo daquele magma...")
+	await confirm_pressed
+	Audios.click()
+	fight_dialogue.change_text("...O dragão... está vivo?!...")
+	await confirm_pressed
+	await $Enemy.reviving()
 	fight_dialogue.change_text("Ele parece irritado... A defesa e ataque do dragão subiram!")
 	await confirm_pressed
 	Audios.click()
 	$FightHUD/DamagePlayer.modulate = Color.RED
 	await $FightHUD/DragonHP.dragon_second_phase()
-	
-	var tween = create_tween()
-	tween.tween_property($Enemy, "modulate", Color(1.0, 0.0, 0.0, 1.0), 0.0)
-	tween.tween_interval(0.5)
-	tween.tween_property($Enemy, "modulate", Color.WHITE, 0.0)
-	await tween.finished
 
 func fight_end():
 	await confirm_pressed

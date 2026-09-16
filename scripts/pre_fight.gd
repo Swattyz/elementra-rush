@@ -65,8 +65,8 @@ func _process(_delta: float) -> void:
 				dialogue.change_dialogue("O dragão lhe ataca ferozmente ao te perceber dentro de seu território!", "???", unknown)
 				counter += 1
 			3:
+				dialogue.queue_free()	
 				Audios.click()
-				dialogue.hide()
 				TransitionScreen.transitioning = true
 				TransitionScreen.transition()
 				await TransitionScreen.on_transition_finished

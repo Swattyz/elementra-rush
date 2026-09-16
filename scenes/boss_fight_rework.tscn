@@ -902,6 +902,7 @@ load_path = "res://.godot/imported/under.png-175403296c52731ea67c5f437fdd51ed.ct
 [node name="BossFightRework" type="Node2D" unique_id=378535863]
 script = ExtResource("1_0pekq")
 metadata/_edit_vertical_guides_ = [1008.0]
+metadata/_edit_horizontal_guides_ = [373.0]
 
 [node name="Background" type="AnimatedSprite2D" parent="." unique_id=1364962435]
 sprite_frames = SubResource("SpriteFrames_57qmd")
