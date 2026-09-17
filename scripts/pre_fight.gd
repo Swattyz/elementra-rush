@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
 	if first_dialogue_trigger:
 		$Player.out_of_dialogue = false
 		
-		if Input.is_action_just_pressed("confirm"):
+		if Input.is_action_just_pressed("up"):
 			match counter:
 				0:
 					dialogue.change_text("Um ar de familiaridade te atinge, você já esteve aqui antes?")
@@ -43,7 +43,7 @@ func _process(_delta: float) -> void:
 					first_dialogue_trigger = false
 					counter = 0
 
-	if character_nearby and Input.is_action_just_pressed("confirm"):
+	if character_nearby and Input.is_action_just_pressed("up"):
 		$InteractSignal.hide()
 		add_child(dialogue)
 		character_nearby = false
@@ -51,7 +51,7 @@ func _process(_delta: float) -> void:
 		$Player.out_of_dialogue = false
 		started_dialogue = true
 		
-	if started_dialogue and Input.is_action_just_pressed("confirm"):
+	if started_dialogue and Input.is_action_just_pressed("up"):
 		match counter:
 			0:
 				dialogue.mode = "player"

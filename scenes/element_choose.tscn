@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ij14el8dui6p"]
 
 [ext_resource type="Texture2D" uid="uid://sb6kcab8x0r0" path="res://backgrounds/choose_elements_background.png" id="1_d4efv"]
+[ext_resource type="Script" uid="uid://bwby5uibbwrmo" path="res://scenes/movethistosomewheregood.gd" id="1_oo6ja"]
 [ext_resource type="Script" uid="uid://ddcss3bxb7o6n" path="res://scripts/element_response.gd" id="2_xpj2q"]
 [ext_resource type="Texture2D" uid="uid://c8sw54b3jd72f" path="res://object_sprites/icon_anemo.png" id="3_olepd"]
 [ext_resource type="Script" uid="uid://bxbcgwl5ln73i" path="res://scripts/element_buttons.gd" id="3_xpj2q"]
@@ -20,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_oo6ja")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1905342480]
 modulate = Color(0.42858, 0.42858, 0.42858, 1)

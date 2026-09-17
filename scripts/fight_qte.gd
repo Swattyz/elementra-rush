@@ -4,7 +4,9 @@ var speed: int = 450
 @onready var check = true
 signal player_attacked
 signal qte_has_started
-@onready var started: bool = false
+@onready var started: bool = false:
+	set(new):
+		started = new
 
 func _ready() -> void:
 	$AttackHitter.position.x = 0
@@ -17,42 +19,7 @@ func _physics_process(_delta: float) -> void:
 			Audios.barra_de_reacao()
 			$Press.queue_free()
 		return
-	
-	if Input.is_action_just_pressed("confirm") and not hit:
-		hit = true
-		Audios.acerto()
-	
-	if $AttackHitter.position.x < 640 and not hit:
-		$AttackHitter.velocity.x = speed
-		$AttackHitter.move_and_slide()
-	
-	elif check:
-		player_attacked.emit()
-		check = false
-	
-	else:
-		return
 
-func _on_min_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_qte = 1
-
-func _on_lesser_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_qte = 2
-
-func _on_med_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_qte = 3
-
-func _on_good_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_qte = 4
-
-func _on_high_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_qte = 5
-
-func _on_higher_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_qte = 6
-
-func _on_max_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_qte = 7
-
-func _on_miss_damage_area_body_entered(_body: Node2D) -> void:
-	Global.player_qte = 0
+func aask():
+	var peer = StreamPeerTCP.new()
+	peer.connect_to_host("localhost", 8080)
