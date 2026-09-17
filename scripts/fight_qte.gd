@@ -8,18 +8,25 @@ signal qte_has_started
 	set(new):
 		started = new
 
-func _ready() -> void:
-	$AttackHitter.position.x = 0
-
 func _physics_process(_delta: float) -> void:
 	if not started:
-		if Input.is_action_just_pressed("confirm"):
+		if Input.is_action_just_pressed("up"):
 			started = true
 			qte_has_started.emit()
 			Audios.barra_de_reacao()
+			Global.tcp_client.put_u8(115)
+			Global.polling_movement = false
 			$Press.queue_free()
 		return
-
-func aask():
-	var peer = StreamPeerTCP.new()
-	peer.connect_to_host("localhost", 8080)
+	
+	if Global.tcp_client.get_available_bytes() <= 0:
+		return
+	
+	var size = Global.tcp_client.get_u32()
+	var result = Global.tcp_client.get_data(size)
+	var data = result[1]
+	
+	if data[0] != 118:
+		return
+	
+	print("wawa:", data[1])
