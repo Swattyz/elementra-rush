@@ -44,18 +44,26 @@ func selecting_text(mode):
 				$Air.texture = load("res://object_sprites/unselected_text_anemo.png")
 			elif mode == 1:
 				$Air.texture = load("res://object_sprites/selected_text_anemo.png")
+				Global.tcp_client.put_8(ord('A'))
+				Global.tcp_client.put_8(ord('\n'))
 		"ElementHydro":
 			if mode == 0:
 				$Water.texture = load("res://object_sprites/unselected_text_hydro.png")
 			elif mode == 1:
 				$Water.texture = load("res://object_sprites/selected_text_hydro.png")
+				Global.tcp_client.put_8(ord('H'))
+				Global.tcp_client.put_8(ord('\n'))
 		"ElementPyro":
 			if mode == 0:
 				$Fire.texture = load("res://object_sprites/unselected_text_pyro.png")
 			elif mode == 1:
 				$Fire.texture = load("res://object_sprites/selected_text_pyro.png")
+				Global.tcp_client.put_8(ord('P'))
+				Global.tcp_client.put_8(ord('\n'))
 		"ElementDendro":
 			if mode == 0:
 				$Nature.texture = load("res://object_sprites/unselected_text_dendro.png")
 			elif mode == 1:
 				$Nature.texture = load("res://object_sprites/selected_text_dendro.png")
+				Global.tcp_client.put_8(ord('D'))
+				Global.tcp_client.put_8(ord('\n'))

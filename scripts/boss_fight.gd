@@ -135,9 +135,22 @@ func _ready() -> void:
 	
 	fight_end()
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("confirm"):
-		confirm_pressed.emit()
+func _input(event: InputEvent) -> void:
+	if event.is_action("up") or event.is_action("down") or event.is_action("left") or event.is_action("right"):
+		var ui_event = InputEventAction.new()
+		ui_event.pressed = event.is_action_pressed(event.action)
+		if event.is_action("up"):
+			ui_event.action = "ui_accept"
+			if ui_event.pressed:
+				confirm_pressed.emit()
+				Input.action_press("confirm")
+		elif event.is_action("down"):
+			ui_event.action = "ui_down"
+		elif event.is_action("left"):
+			ui_event.action = "ui_left"
+		elif event.is_action("right"):
+			ui_event.action = "ui_right"
+		Input.parse_input_event(ui_event)
 
 func change_scene():
 	get_tree().change_scene_to_file("res://scenes/aftermath.tscn")

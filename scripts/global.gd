@@ -24,13 +24,8 @@ func _ready() -> void:
 	tcp_client = StreamPeerTCP.new()
 	var ok = tcp_client.connect_to_host("0.0.0.0", 8080)
 	tcp_client.poll()
+	tcp_client.set_no_delay(true)
 	print("ok is: ", ok)
-	var size = tcp_client.get_u32()
-	print("size is: ", size)
-	var result = tcp_client.get_data(size)
-	var error = result[0]
-	var data = result[1]
-	print(data)
 	pass
 
 func _process(delta: float) -> void:
