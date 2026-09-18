@@ -1,6 +1,7 @@
 extends Control
 
 func _input(event: InputEvent) -> void:
+	if !Global.arduino: return
 	if event.is_action("up") or event.is_action("down") or event.is_action("left") or event.is_action("right"):
 		var ui_event = InputEventAction.new()
 		ui_event.pressed = event.is_action_pressed(event.action)

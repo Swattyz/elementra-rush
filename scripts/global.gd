@@ -6,6 +6,7 @@ var item_qte: String = "none"
 var item_value: float = 0
 var ending: int = 0
 var coming_back: bool = false
+var arduino: bool = false
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
