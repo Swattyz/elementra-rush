@@ -21,10 +21,8 @@ func _physics_process(_delta: float) -> void:
 		Audios.barra_de_reacao()
 		Global.tcp_client.put_u8(115)
 		Global.polling_movement = false
-		$Press.queue_free()
-
 	
-	if Global.tcp_client.get_available_bytes() <= 0:
+	if Global.tcp_client && Global.tcp_client.get_available_bytes() <= 0:
 		return
 	
 	var size = Global.tcp_client.get_u32()
@@ -38,4 +36,8 @@ func _physics_process(_delta: float) -> void:
 	Global.player_qte = magic_formula(data[1])
 	
 	Global.polling_movement = true
+	player_attacked.emit()
+
+func _on_button_pressed() -> void:
+	Global.player_qte = $BoxContainer/BoxContainer/HSlider.value
 	player_attacked.emit()

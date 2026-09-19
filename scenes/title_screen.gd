@@ -8,6 +8,6 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action("up") or event.is_action("down") or event.is_action("left") or event.is_action("right"):
 		var ui_event = InputEventAction.new()
-		ui_event.pressed = event.is_action_pressed(event.action)
+		ui_event.pressed = true
 		ui_event.action = "ui_accept"
 		Input.parse_input_event(ui_event)

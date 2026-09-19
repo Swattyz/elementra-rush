@@ -1,50 +1,39 @@
 [gd_scene format=3 uid="uid://hpaogpe66ob5"]
 
 [ext_resource type="Script" uid="uid://dg687gggbuofl" path="res://scripts/fight_qte.gd" id="1_r1wno"]
-[ext_resource type="Script" uid="uid://dymp3bs1aay2j" path="res://scripts/press_warning.gd" id="3_beegt"]
-[ext_resource type="FontFile" uid="uid://b6qq6p4aasabv" path="res://fonts/VCR_OSD_MONO.ttf" id="3_nr7ir"]
 
 [node name="FightQTE" type="Node2D" unique_id=303110121]
 script = ExtResource("1_r1wno")
 metadata/_edit_vertical_guides_ = [640.0]
 
-[node name="Background" type="ColorRect" parent="." unique_id=1289789165]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.99700004
-anchor_right = 0.5
-anchor_bottom = 0.99700004
-offset_top = 280.0
-offset_right = 640.0
-offset_bottom = 360.0
-color = Color(0.45840502, 0.45840508, 0.45840502, 1)
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=991581656]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_top = 287.0
+offset_right = 190.0
+offset_bottom = 345.0
+grow_horizontal = 2
+grow_vertical = 0
+vertical = true
 
-[node name="Press" type="ColorRect" parent="." unique_id=1560083987]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.99700004
-anchor_right = 0.5
-anchor_bottom = 0.99700004
-offset_left = 240.0
-offset_top = 305.0
-offset_right = 397.0
-offset_bottom = 339.0
-color = Color(0.30588236, 0.34901962, 1, 0.60784316)
-script = ExtResource("3_beegt")
+[node name="Button" type="Button" parent="BoxContainer" unique_id=2003887900]
+layout_mode = 2
+text = "quick end fight"
 
-[node name="Label" type="Label" parent="Press" unique_id=1795231154]
-layout_mode = 0
-offset_left = -156.0
-offset_top = 4.0
-offset_right = 315.0
-offset_bottom = 28.0
-theme_override_fonts/font = ExtResource("3_nr7ir")
-theme_override_font_sizes/font_size = 24
-text = "PRESSIONE"
-horizontal_alignment = 1
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer" unique_id=845361723]
+layout_mode = 2
 
-[node name="Timer" type="Timer" parent="Press" unique_id=760375906]
-wait_time = 0.8
-autostart = true
+[node name="HSlider" type="HSlider" parent="BoxContainer/BoxContainer" unique_id=839995199]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 7.0
+rounded = true
 
-[connection signal="timeout" from="Press/Timer" to="Press" method="_on_timer_timeout"]
+[node name="Label" type="Label" parent="BoxContainer/BoxContainer" unique_id=1338050208]
+layout_mode = 2
+text = "0-7"
+
+[connection signal="pressed" from="BoxContainer/Button" to="." method="_on_button_pressed"]

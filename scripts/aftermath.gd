@@ -11,7 +11,7 @@ func _ready() -> void:
 	$Text.visible_characters = 0
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("confirm"):
+	if Input.is_action_just_pressed("up"):
 		Audios.click()
 		
 		if TransitionScreen.transitioning:

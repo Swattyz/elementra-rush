@@ -24,6 +24,7 @@ var polling_movement: bool = true
 func _ready() -> void:
 	tcp_client = StreamPeerTCP.new()
 	var ok = tcp_client.connect_to_host("0.0.0.0", 8080)
+	if !ok: return
 	tcp_client.poll()
 	tcp_client.set_no_delay(true)
 	print("ok is: ", ok)
@@ -33,7 +34,7 @@ func _process(delta: float) -> void:
 	if !polling_movement:
 		return
 	
-	if tcp_client.get_available_bytes() <= 0:
+	if !tcp_client || tcp_client.get_available_bytes() <= 0:
 		return
 	var size = tcp_client.get_u32()
 	var result = tcp_client.get_data(size)
