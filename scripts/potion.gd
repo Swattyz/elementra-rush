@@ -1,8 +1,5 @@
 extends Sprite2D
 
-func _ready() -> void:
-	hide()
-
 func use_item(item):
 	match item:
 		"atk":

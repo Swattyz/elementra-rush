@@ -8,10 +8,10 @@ var fight_button: TextureButton
 var rng = RandomNumberGenerator.new()
 var chance: float
 
-var fight_qte_scene: PackedScene = preload("res://scenes/fight_qte.tscn")
+var fight_qte_scene: PackedScene
 var fight_qte
 
-var item_qte_scene: PackedScene = preload("res://scenes/item_qte.tscn")
+var item_qte_scene: PackedScene
 var item_qte
 
 var atk_bonus: float = 1
@@ -34,6 +34,16 @@ var current_turn: int = 0
 
 var dragon_phase: int = 0
 var dmg: float = 0.0
+
+var fight_qte_scenes: Array = [
+	"res://scenes/fight_qte_old.tscn",
+	"res://scenes/fight_qte.tscn"
+]
+
+var item_qte_scenes: Array = [
+	"res://scenes/item_qte_old.tscn",
+	"res://scenes/item_qte.tscn"
+]
 
 var portraits: Array = [
 	"res://player_sprites/portrait_anemo.png",
@@ -61,6 +71,8 @@ var player_block_animation: String
 var player_attack_animation: String
 
 func _ready() -> void:
+	fight_qte_scene = load(fight_qte_scenes[Global.gamemode])
+	item_qte_scene = load(item_qte_scenes[Global.gamemode])
 	rng.randomize()
 	buttons = $FightHUD/Buttons
 	fight_button = $FightHUD/Buttons/FightButton
@@ -267,7 +279,6 @@ func player_defense():
 	
 	qte_start()
 	await fight_qte.qte_has_started
-	$Enemy.move_forward(300,128)
 	$Player.play(player_block_animation)
 	await fight_qte.player_attacked
 	
@@ -287,6 +298,8 @@ func player_defense():
 	
 	if dmg < 0: dmg = 0
 	if dragon_phase == 1: dmg *= 1.2
+	
+	await $Enemy.dragon_attack()
 	
 	if Global.player_qte > 0:
 		await $Player.blocking_effect()

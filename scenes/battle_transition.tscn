@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bm36b04lbs4k5"]
+
+[ext_resource type="Script" uid="uid://cry2x2tnjll4n" path="res://scripts/battle_transition.gd" id="1_23ywa"]
+[ext_resource type="Texture2D" uid="uid://bd82l3wjr4j6v" path="res://backgrounds/transition/transition_anemo.png" id="2_wqbk0"]
+[ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="3_wqbk0"]
+[ext_resource type="Script" uid="uid://vk7kj871ok7y" path="res://scripts/reappearing_text.gd" id="4_h4na4"]
+
+[node name="BattleTransition" type="CanvasLayer" unique_id=1872237796]
+script = ExtResource("1_23ywa")
+metadata/_edit_vertical_guides_ = [1054.0]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=967923811]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -320.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(12.908735, 0.38858727, 0.38858727, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=112972728]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 0.99215686, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=342156181]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_wqbk0")
+
+[node name="Label" type="Label" parent="." unique_id=2100778680]
+offset_left = 4.0
+offset_top = 335.0
+offset_right = 285.0
+offset_bottom = 356.0
+theme_override_fonts/font = ExtResource("3_wqbk0")
+theme_override_font_sizes/font_size = 20
+text = "Pressione para continuar"
+script = ExtResource("4_h4na4")
+
+[node name="Timer" type="Timer" parent="Label" unique_id=711847779]
+wait_time = 1.5
+autostart = true
+
+[connection signal="timeout" from="Label/Timer" to="Label" method="_on_timer_timeout"]

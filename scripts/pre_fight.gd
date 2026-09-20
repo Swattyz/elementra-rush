@@ -74,7 +74,7 @@ func _process(_delta: float) -> void:
 				counter += 1
 
 func change_scene():
-	get_tree().change_scene_to_file("res://scenes/boss_fight_rework.tscn")
+	get_tree().change_scene_to_file("res://scenes/battle_transition.tscn")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and character_never_entered:

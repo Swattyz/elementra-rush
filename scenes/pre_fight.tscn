@@ -6,8 +6,11 @@
 [ext_resource type="Script" uid="uid://ei10fl252gx5" path="res://scripts/goback.gd" id="4_aqtrw"]
 [ext_resource type="PackedScene" uid="uid://i7gse8jih7h6" path="res://scenes/player.tscn" id="4_r4fr8"]
 [ext_resource type="Texture2D" uid="uid://k8klhe6k5se2" path="res://backgrounds/lava.png" id="5_7u0ny"]
-[ext_resource type="Texture2D" uid="uid://l1rtl0vqtdlj" path="res://sprite_placeholders/dragon_placeholder.png" id="6_7u0ny"]
+[ext_resource type="Texture2D" uid="uid://dohuk5otpu4n0" path="res://enemy_sprites/idle.png" id="7_ag6mi"]
 [ext_resource type="FontFile" uid="uid://27mbe5pw2pdh" path="res://fonts/m6x11plus.ttf" id="7_aqtrw"]
+[ext_resource type="Script" uid="uid://26khhsj55xo7" path="res://scripts/dragon_prefight.gd" id="8_ag6mi"]
+[ext_resource type="Texture2D" uid="uid://cusuntne0vt5h" path="res://enemy_sprites/mid_open_mouth.png" id="8_km1uw"]
+[ext_resource type="Texture2D" uid="uid://6g8nl00ouino" path="res://enemy_sprites/idle_open_mouth.png" id="9_obcv6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7u0ny"]
 atlas = ExtResource("2_r4fr8")
@@ -88,11 +91,74 @@ size = Vector2(664, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gngh"]
 size = Vector2(640, 276)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_11bje"]
+atlas = ExtResource("7_ag6mi")
+region = Rect2(0, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6oyx"]
+atlas = ExtResource("7_ag6mi")
+region = Rect2(300, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62unv"]
+atlas = ExtResource("7_ag6mi")
+region = Rect2(0, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqpik"]
+atlas = ExtResource("9_obcv6")
+region = Rect2(300, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxul1"]
+atlas = ExtResource("9_obcv6")
+region = Rect2(0, 0, 300, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_57qmd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11bje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6oyx")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62unv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_km1uw")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_mqpik")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_kxul1")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_mqpik")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_kxul1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_km1uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62unv")
+}],
+"loop": 0,
+"name": &"open mouth",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcnqv"]
-size = Vector2(1980.6078, 1824.39)
+size = Vector2(1990.2223, 1824.39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7numd"]
-size = Vector2(1019.14746, 848.78033)
+size = Vector2(1028.7615, 848.78033)
 
 [node name="PreFight" type="Node2D" unique_id=348778550]
 script = ExtResource("1_x6r5m")
@@ -180,19 +246,28 @@ shape = SubResource("RectangleShape2D_3gngh")
 position = Vector2(539.62506, 279.50003)
 scale = Vector2(0.10400849, 0.10250002)
 
-[node name="Dragon" type="Sprite2D" parent="Enemy" unique_id=1684796799]
-texture = ExtResource("6_7u0ny")
+[node name="Dragon" type="AnimatedSprite2D" parent="Enemy" unique_id=2096958243]
+position = Vector2(359.34515, -473.17096)
+scale = Vector2(12, 12)
+sprite_frames = SubResource("SpriteFrames_57qmd")
+animation = &"idle"
+autoplay = "idle"
+script = ExtResource("8_ag6mi")
+
+[node name="Timer" type="Timer" parent="Enemy/Dragon" unique_id=769645684]
+wait_time = 5.0
+autostart = true
 
 [node name="Area2D" type="Area2D" parent="Enemy" unique_id=1439389621]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D" unique_id=368430834]
-position = Vector2(-25.23877, -97.56128)
+position = Vector2(-30.046387, -97.56128)
 shape = SubResource("RectangleShape2D_fcnqv")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Enemy" unique_id=1868589829]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/StaticBody2D" unique_id=878971901]
-position = Vector2(-15.624512, -19.512451)
+position = Vector2(-20.432129, -19.512451)
 shape = SubResource("RectangleShape2D_7numd")
 
 [node name="InteractSignal" type="Control" parent="." unique_id=332527410]
@@ -221,5 +296,7 @@ text = "Interagir"
 
 [connection signal="body_entered" from="Objects/DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="animation_finished" from="Enemy/Dragon" to="Enemy/Dragon" method="_on_animation_finished"]
+[connection signal="timeout" from="Enemy/Dragon/Timer" to="Enemy/Dragon" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Enemy/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Enemy/Area2D" to="." method="_on_area_2d_body_exited"]

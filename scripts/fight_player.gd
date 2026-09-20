@@ -1,5 +1,12 @@
 extends AnimatedSprite2D
 
+var damage_animations = [
+	"damage anemo",
+	"damage hydro",
+	"damage pyro",
+	"damage dendro"
+]
+
 var sword_drawing_animations = [
 	"sword drawing anemo",
 	"sword drawing hydro",
@@ -28,7 +35,8 @@ func move_forward(x,y):
 	tween.tween_property(self, "position", original_position, 0.5)
 
 func taking_damage():
-	Audios.sopro_do_dragao()
+	play(damage_animations[Global.player_element])
+	await get_tree().create_timer(1.0).timeout
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(0.65, 0.0, 0.0, 1.0), 0.0)
 	tween.tween_interval(0.1)
@@ -50,7 +58,8 @@ func reappearing_effect():
 	Audios.dano()
 
 func blocking_effect():
-	Audios.sopro_do_dragao()
+	play(damage_animations[Global.player_element])
+	await get_tree().create_timer(1.0).timeout
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.65, 1.0), 0.0)
 	tween.tween_interval(0.1)

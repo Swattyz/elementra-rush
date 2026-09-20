@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://hpaogpe66ob5"]
 
-[ext_resource type="Script" uid="uid://dg687gggbuofl" path="res://scripts/fight_qte.gd" id="1_r1wno"]
+[ext_resource type="Script" uid="uid://c78ahvtyabb4a" path="res://scripts/arduino_fight_qte.gd" id="1_u7vws"]
 
 [node name="FightQTE" type="Node2D" unique_id=303110121]
-script = ExtResource("1_r1wno")
+script = ExtResource("1_u7vws")
 metadata/_edit_vertical_guides_ = [640.0]
 
 [node name="BoxContainer" type="BoxContainer" parent="." unique_id=991581656]

@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dt44yyiomkoja" path="res://object_sprites/tree.png" id="7_0nboi"]
 [ext_resource type="Texture2D" uid="uid://l6bijtw7fyd2" path="res://object_sprites/bush.png" id="7_j3csf"]
 [ext_resource type="Texture2D" uid="uid://bhicyqx7epl7j" path="res://backgrounds/forest_terrain.png" id="7_qm7rg"]
+[ext_resource type="Texture2D" uid="uid://cuh6xrsqndby8" path="res://object_sprites/mushroom.png" id="8_di0nb"]
+[ext_resource type="Script" uid="uid://dcejyleqdwbj0" path="res://scripts/mushrooms.gd" id="8_pyn53"]
 [ext_resource type="Texture2D" uid="uid://db56vfulrsspf" path="res://object_sprites/small_tree.png" id="9_dabdc"]
 [ext_resource type="Texture2D" uid="uid://bo110la4ro6eu" path="res://object_sprites/dead_root.png" id="9_ercsu"]
 [ext_resource type="Texture2D" uid="uid://ci2et0jm46cyk" path="res://object_sprites/dead_bush.png" id="10_j3csf"]
@@ -61,8 +63,8 @@ size = Vector2(9, 132)
 
 [node name="Forest" type="Node2D" unique_id=857046446]
 script = ExtResource("1_xr56k")
-metadata/_edit_vertical_guides_ = [0.0, 624.0]
-metadata/_edit_horizontal_guides_ = [92.0, 316.0]
+metadata/_edit_vertical_guides_ = [2968.0, 2968.0]
+metadata/_edit_horizontal_guides_ = [1843.0, 1843.0]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=868753086]
 position = Vector2(320, 180)
@@ -101,6 +103,49 @@ offset_top = 212.0
 offset_right = 664.0
 offset_bottom = 350.0
 color = Color(0, 0, 0, 0.5372549)
+
+[node name="Mushrooms" type="Node2D" parent="BackgroundObjects" unique_id=676305158]
+script = ExtResource("8_pyn53")
+
+[node name="Mushroom" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=1946441311]
+modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
+position = Vector2(357, 330)
+texture = ExtResource("8_di0nb")
+
+[node name="Mushroom2" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=887905174]
+modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
+position = Vector2(428, 333)
+texture = ExtResource("8_di0nb")
+
+[node name="Mushroom3" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=2132802789]
+modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
+position = Vector2(245, 329)
+texture = ExtResource("8_di0nb")
+
+[node name="Mushroom4" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=914775672]
+modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
+position = Vector2(525, 342)
+texture = ExtResource("8_di0nb")
+
+[node name="Mushroom5" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=2091240859]
+modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
+position = Vector2(271, 324)
+texture = ExtResource("8_di0nb")
+
+[node name="Mushroom6" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=1054584413]
+modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
+position = Vector2(325, 325)
+texture = ExtResource("8_di0nb")
+
+[node name="Mushroom7" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=935119476]
+modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
+position = Vector2(462, 332)
+texture = ExtResource("8_di0nb")
+
+[node name="Mushroom8" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=185080275]
+modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
+position = Vector2(585, 328)
+texture = ExtResource("8_di0nb")
 
 [node name="Bush6" type="Sprite2D" parent="BackgroundObjects" unique_id=2099756107]
 position = Vector2(153, 311)

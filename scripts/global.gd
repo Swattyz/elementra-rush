@@ -7,6 +7,7 @@ var item_value: float = 0
 var ending: int = 0
 var coming_back: bool = false
 var arduino: bool = false
+var gamemode: int = 0
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -30,7 +31,7 @@ func _ready() -> void:
 	print("ok is: ", ok)
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !polling_movement:
 		return
 	

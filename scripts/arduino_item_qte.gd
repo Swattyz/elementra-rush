@@ -31,7 +31,7 @@ func def_value_formula(bounces: int) -> float:
 func atk_value_formula(bounces: int) -> float:
 	return 1.1 + (0.6 * (4.0 / bounces))
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not started:
 		started = true
 		itemqte_has_started.emit()

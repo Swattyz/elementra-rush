@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cli22t1gfqji5"]
 
-[ext_resource type="Script" uid="uid://btnku1any8h66" path="res://scripts/item_qte.gd" id="1_voyct"]
+[ext_resource type="Script" uid="uid://dbd16cajn0ir2" path="res://scripts/arduino_item_qte.gd" id="1_t3aex"]
 
 [node name="ItemQTE" type="Node2D" unique_id=704960953]
-script = ExtResource("1_voyct")
+script = ExtResource("1_t3aex")
 
 [node name="BoxContainer" type="BoxContainer" parent="." unique_id=822701544]
 anchors_preset = 12

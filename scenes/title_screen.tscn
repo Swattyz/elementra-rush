@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://60lr0limgu22"]
 
 [ext_resource type="Texture2D" uid="uid://cq7mxui6buetp" path="res://backgrounds/title_screen.png" id="1_fgkus"]
-[ext_resource type="Script" uid="uid://cj34p2xrsn1yj" path="res://scenes/title_screen.gd" id="1_mgrm8"]
+[ext_resource type="Script" uid="uid://cj34p2xrsn1yj" path="res://scripts/title_screen.gd" id="1_mgrm8"]
 [ext_resource type="Texture2D" uid="uid://bqqw0c25q3puv" path="res://object_sprites/play_button.png" id="2_sa3yf"]
 [ext_resource type="Script" uid="uid://dtu7uqjbrndcf" path="res://scripts/play_button.gd" id="4_mgrm8"]
+[ext_resource type="FontFile" uid="uid://b6qq6p4aasabv" path="res://fonts/VCR_OSD_MONO.ttf" id="5_dc4i4"]
+[ext_resource type="Script" uid="uid://f8238un5taig" path="res://scripts/gamemode.gd" id="5_e54dn"]
 
 [node name="TitleScreen" type="Control" unique_id=1499017291]
 layout_mode = 3
@@ -37,7 +39,26 @@ grow_vertical = 0
 texture_normal = ExtResource("2_sa3yf")
 script = ExtResource("4_mgrm8")
 
+[node name="Gamemode" type="CheckButton" parent="." unique_id=1191488667]
+modulate = Color(5.763214, 5.763214, 5.763214, 1)
+layout_mode = 0
+offset_left = 575.0
+offset_top = 320.0
+offset_right = 619.0
+offset_bottom = 346.0
+script = ExtResource("5_e54dn")
+
+[node name="Label" type="Label" parent="Gamemode" unique_id=1906785275]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -14.0
+offset_right = 51.0
+offset_bottom = 1.0
+theme_override_fonts/font = ExtResource("5_dc4i4")
+text = "Normal"
+
 [connection signal="button_down" from="PlayButton" to="PlayButton" method="_on_button_down"]
 [connection signal="button_up" from="PlayButton" to="PlayButton" method="_on_button_up"]
 [connection signal="mouse_entered" from="PlayButton" to="PlayButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PlayButton" to="PlayButton" method="_on_mouse_exited"]
+[connection signal="toggled" from="Gamemode" to="Gamemode" method="_on_toggled"]
