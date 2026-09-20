@@ -28,16 +28,24 @@ func _ready() -> void:
 	if !ok: return
 	tcp_client.poll()
 	tcp_client.set_no_delay(true)
+	tcp_client.big_endian = false;
 	print("ok is: ", ok)
 	pass
 
 func _process(_delta: float) -> void:
 	if !polling_movement:
 		return
-	
-	if !tcp_client || tcp_client.get_available_bytes() <= 0:
+
+	if !tcp_client:
 		return
+
+	tcp_client.poll()
+
+	if tcp_client.get_available_bytes() <= 0:
+		return
+	
 	var size = tcp_client.get_u32()
+	print("size is: ", size)
 	var result = tcp_client.get_data(size)
 	var error = result[0]
 	var data = result[1]
