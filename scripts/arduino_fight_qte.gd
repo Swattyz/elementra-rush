@@ -29,6 +29,8 @@ func _physics_process(_delta: float) -> void:
 	var result = Global.tcp_client.get_data(size)
 	var data = result[1]
 	
+	print("data: ", data[0])
+	
 	if data[0] != 118:
 		return
 	
@@ -37,7 +39,4 @@ func _physics_process(_delta: float) -> void:
 	
 	Global.polling_movement = true
 	player_attacked.emit()
-
-func _on_button_pressed() -> void:
-	Global.player_qte = $BoxContainer/BoxContainer/HSlider.value
-	player_attacked.emit()
+	print("emitted!")

@@ -8,36 +8,6 @@
 script = ExtResource("1_u7vws")
 metadata/_edit_vertical_guides_ = [640.0]
 
-[node name="BoxContainer" type="BoxContainer" parent="." unique_id=991581656]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 35.0
-offset_top = 287.0
-offset_right = 190.0
-offset_bottom = 345.0
-grow_horizontal = 2
-grow_vertical = 0
-vertical = true
-
-[node name="Button" type="Button" parent="BoxContainer" unique_id=2003887900]
-layout_mode = 2
-text = "quick end fight"
-
-[node name="BoxContainer" type="BoxContainer" parent="BoxContainer" unique_id=845361723]
-layout_mode = 2
-
-[node name="HSlider" type="HSlider" parent="BoxContainer/BoxContainer" unique_id=839995199]
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 7.0
-rounded = true
-
-[node name="Label" type="Label" parent="BoxContainer/BoxContainer" unique_id=1338050208]
-layout_mode = 2
-text = "0-7"
-
 [node name="Press" type="ColorRect" parent="." unique_id=889104449]
 anchors_preset = -1
 anchor_left = 0.5
@@ -66,5 +36,4 @@ horizontal_alignment = 1
 wait_time = 0.8
 autostart = true
 
-[connection signal="pressed" from="BoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Press/Timer" to="Press" method="_on_timer_timeout"]

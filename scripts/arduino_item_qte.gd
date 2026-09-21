@@ -65,19 +65,3 @@ func _physics_process(_delta: float) -> void:
 	print("wawawa: ", Global.item_value)
 	Global.polling_movement = true
 	item_chose.emit()
-
-
-func _heal_button_pressed() -> void:
-	Global.item_qte = "heal"
-	Global.item_value = float($BoxContainer/LineEdit.text)
-	item_chose.emit()
-
-func _atk_button_pressed() -> void:
-	Global.item_qte = "atk"
-	Global.item_value = float($BoxContainer/LineEdit.text)
-	item_chose.emit()
-
-func _def_button_pressed() -> void:
-	Global.item_qte = "def"
-	Global.item_value = float($BoxContainer/LineEdit.text)
-	item_chose.emit()
