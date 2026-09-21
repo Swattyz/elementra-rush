@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cli22t1gfqji5"]
+[gd_scene format=3 uid="uid://pogoxgax3ywd"]
 
 [ext_resource type="Script" uid="uid://btnku1any8h66" path="res://scripts/item_qte_old.gd" id="1_voyct"]
 [ext_resource type="Texture2D" uid="uid://jlsapfxko1ti" path="res://object_sprites/potions/atk.png" id="2_465yd"]

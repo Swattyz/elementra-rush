@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://hpaogpe66ob5"]
+[gd_scene format=3 uid="uid://krivrtrbymmg"]
 
 [ext_resource type="Script" uid="uid://dg687gggbuofl" path="res://scripts/fight_qte_old.gd" id="1_r1wno"]
 [ext_resource type="Texture2D" uid="uid://c5dqceqykx22e" path="res://sprite_placeholders/qte_placeholder.png" id="2_nr7ir"]

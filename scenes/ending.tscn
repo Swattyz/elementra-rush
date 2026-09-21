@@ -27,6 +27,8 @@ theme_override_font_sizes/font_size = 25
 text = "Jogar Novamente"
 script = ExtResource("3_nfmnx")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=625473351]
+
 [connection signal="button_down" from="PlayAgainButton" to="PlayAgainButton" method="_on_button_down"]
 [connection signal="button_up" from="PlayAgainButton" to="PlayAgainButton" method="_on_button_up"]
 [connection signal="mouse_entered" from="PlayAgainButton" to="PlayAgainButton" method="_on_mouse_entered"]

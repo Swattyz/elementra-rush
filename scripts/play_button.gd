@@ -22,7 +22,7 @@ func _on_button_down() -> void:
 	call_deferred("change_scene")
 
 func change_scene():
-	get_tree().change_scene_to_file("res://scenes/element_choose.tscn")
+	get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
 
 func _on_button_up() -> void:
 	modulate = Color(1.2, 1.2, 1.2, 1.0)

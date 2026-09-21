@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://hpaogpe66ob5"]
 
 [ext_resource type="Script" uid="uid://c78ahvtyabb4a" path="res://scripts/arduino_fight_qte.gd" id="1_u7vws"]
+[ext_resource type="Script" uid="uid://dymp3bs1aay2j" path="res://scripts/press_warning.gd" id="2_r1wno"]
+[ext_resource type="FontFile" uid="uid://b6qq6p4aasabv" path="res://fonts/VCR_OSD_MONO.ttf" id="3_nr7ir"]
 
 [node name="FightQTE" type="Node2D" unique_id=303110121]
 script = ExtResource("1_u7vws")
@@ -36,4 +38,33 @@ rounded = true
 layout_mode = 2
 text = "0-7"
 
+[node name="Press" type="ColorRect" parent="." unique_id=889104449]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.99700004
+anchor_right = 0.5
+anchor_bottom = 0.99700004
+offset_left = 157.0
+offset_top = 305.0
+offset_right = 476.0
+offset_bottom = 339.0
+color = Color(0.30588236, 0.34901962, 1, 0.60784316)
+script = ExtResource("2_r1wno")
+
+[node name="Label" type="Label" parent="Press" unique_id=1656393353]
+layout_mode = 0
+offset_left = -73.0
+offset_top = 4.0
+offset_right = 398.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("3_nr7ir")
+theme_override_font_sizes/font_size = 24
+text = "PRESTE ATENÇÃO NO LED!"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="Press" unique_id=1580799011]
+wait_time = 0.8
+autostart = true
+
 [connection signal="pressed" from="BoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="Press/Timer" to="Press" method="_on_timer_timeout"]

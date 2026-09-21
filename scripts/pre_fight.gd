@@ -4,6 +4,7 @@ var character_never_entered: bool = true
 var dialogue_box: PackedScene = preload("res://scenes/dialogue_box.tscn")
 var counter: int = 0
 var unknown: String = "res://object_sprites/unknown_identity_icon.png"
+var enemy_portrait: String = "res://enemy_sprites/dragon_portrait.png"
 var player: String
 var started_dialogue: bool = false
 var dialogue = dialogue_box.instantiate()
@@ -59,7 +60,7 @@ func _process(_delta: float) -> void:
 				counter += 1
 			1:
 				dialogue.mode = "enemy"
-				dialogue.change_dialogue("*rugido*","Dhrygon",unknown)
+				dialogue.change_dialogue("*rugido*","Dhrygon",enemy_portrait)
 				counter += 1
 			2:
 				dialogue.change_dialogue("O dragão lhe ataca ferozmente ao te perceber dentro de seu território!", "???", unknown)

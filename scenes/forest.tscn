@@ -109,7 +109,12 @@ script = ExtResource("8_pyn53")
 
 [node name="Mushroom" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=1946441311]
 modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
-position = Vector2(357, 330)
+position = Vector2(177, 316)
+texture = ExtResource("8_di0nb")
+
+[node name="Mushroom5" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=1238354103]
+modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
+position = Vector2(15, 285)
 texture = ExtResource("8_di0nb")
 
 [node name="Mushroom2" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=887905174]
@@ -127,19 +132,9 @@ modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
 position = Vector2(525, 342)
 texture = ExtResource("8_di0nb")
 
-[node name="Mushroom5" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=2091240859]
-modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
-position = Vector2(271, 324)
-texture = ExtResource("8_di0nb")
-
 [node name="Mushroom6" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=1054584413]
 modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
 position = Vector2(325, 325)
-texture = ExtResource("8_di0nb")
-
-[node name="Mushroom7" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=935119476]
-modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.7254902)
-position = Vector2(462, 332)
 texture = ExtResource("8_di0nb")
 
 [node name="Mushroom8" type="Sprite2D" parent="BackgroundObjects/Mushrooms" unique_id=185080275]

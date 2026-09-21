@@ -55,6 +55,7 @@
 [ext_resource type="Script" uid="uid://b6nfx3q5d6mgu" path="res://scripts/fight_buttons.gd" id="33_72qh0"]
 [ext_resource type="Texture2D" uid="uid://di8jalhdxjd5w" path="res://object_sprites/button_items.png" id="34_t8qc5"]
 [ext_resource type="Texture2D" uid="uid://dnbcaihgic2ou" path="res://object_sprites/button_run_away.png" id="35_cw80d"]
+[ext_resource type="AudioStream" uid="uid://btonynnreanr2" path="res://ost/batalha_dragão2.wav" id="56_nofj0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7imqq"]
 atlas = ExtResource("2_nxd3v")
@@ -766,7 +767,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ossxe")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"blocking anemo",
 "speed": 5.0
 }, {
@@ -789,7 +790,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_reyl8")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"blocking dendro",
 "speed": 5.0
 }, {
@@ -812,7 +813,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fna0v")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"blocking hydro",
 "speed": 5.0
 }, {
@@ -835,42 +836,42 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a61hm")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"blocking pyro",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_nncqb")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ge5hp")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_nsgbb")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_bkcbh")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_lpe36")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_odcrg")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_v231e")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_72qh0")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_t8qc5")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_cw80d")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_xsipb")
 }, {
 "duration": 1.0,
@@ -888,7 +889,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x2fqf")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_op1ox")
 }],
 "loop": 0,
@@ -896,37 +897,37 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_spx44")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_55rek")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_wdt6i")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_sav7n")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_qqhwt")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_k04ir")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_p3miw")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_c7r6s")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_870ox")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_bvpa1")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_5x24i")
 }, {
 "duration": 1.0,
@@ -944,7 +945,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_beajy")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_fybgo")
 }],
 "loop": 0,
@@ -952,37 +953,37 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ollhp")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_xxu7e")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ow71n")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_dnu1d")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_m141t")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_74uty")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_acryx")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_l627q")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_1g811")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ob3fd")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ir6wd")
 }, {
 "duration": 1.0,
@@ -1000,7 +1001,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_svc6r")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_2cqyv")
 }],
 "loop": 0,
@@ -1008,37 +1009,37 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_xllh2")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_6s3vd")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_io7im")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_bgjns")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_tdncl")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_hsima")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_xprko")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_g0lhh")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_6kxwc")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_icss1")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_srdjt")
 }, {
 "duration": 1.0,
@@ -1056,7 +1057,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yymf0")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_jyn1o")
 }],
 "loop": 0,
@@ -1295,40 +1296,40 @@ region = Rect2(0, 0, 300, 300)
 [sub_resource type="SpriteFrames" id="SpriteFrames_yf5fn"]
 animations = [{
 "frames": [{
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_n5sbw")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_r180u")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_vy6qi")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_wmnrh")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_8lraf")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_7hqe4")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_p2xvu")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_2sqkn")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_5v0d4")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_w12jj")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_nqx3t")
 }, {
-"duration": 0.6,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_hq04s")
 }],
 "loop": 0,
@@ -1756,7 +1757,7 @@ metadata/_edit_lock_ = true
 position = Vector2(140, 186)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"damage pyro"
+animation = &"blocking pyro"
 script = ExtResource("19_mmqck")
 
 [node name="StonePlataform" type="Sprite2D" parent="." unique_id=79859133]
@@ -1769,7 +1770,9 @@ texture = ExtResource("24_3w6v6")
 position = Vector2(513, 129)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_yf5fn")
-animation = &"open mouth"
+animation = &"attack"
+frame = 11
+frame_progress = 1.0
 script = ExtResource("21_mkj30")
 
 [node name="Timer" type="Timer" parent="Enemy" unique_id=1029768011]
@@ -1929,6 +1932,11 @@ focus_neighbor_left = NodePath("../ItemButton")
 texture_normal = ExtResource("35_cw80d")
 script = ExtResource("33_72qh0")
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1595161535]
+stream = ExtResource("56_nofj0")
+volume_db = -25.0
+autoplay = true
 
 [connection signal="animation_finished" from="Player" to="Player" method="_on_animation_finished"]
 [connection signal="animation_finished" from="Enemy" to="Enemy" method="_on_animation_finished"]

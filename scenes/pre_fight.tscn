@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://26khhsj55xo7" path="res://scripts/dragon_prefight.gd" id="8_ag6mi"]
 [ext_resource type="Texture2D" uid="uid://cusuntne0vt5h" path="res://enemy_sprites/mid_open_mouth.png" id="8_km1uw"]
 [ext_resource type="Texture2D" uid="uid://6g8nl00ouino" path="res://enemy_sprites/idle_open_mouth.png" id="9_obcv6"]
+[ext_resource type="AudioStream" uid="uid://dyqmxrbf224b6" path="res://ost/cenario_vulcao.wav" id="12_obcv6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7u0ny"]
 atlas = ExtResource("2_r4fr8")
@@ -293,6 +294,11 @@ offset_bottom = 225.0
 theme_override_fonts/font = ExtResource("7_aqtrw")
 theme_override_font_sizes/font_size = 12
 text = "Interagir"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1183258239]
+stream = ExtResource("12_obcv6")
+volume_db = -8.0
+autoplay = true
 
 [connection signal="body_entered" from="Objects/DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

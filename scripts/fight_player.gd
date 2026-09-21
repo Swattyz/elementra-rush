@@ -21,6 +21,13 @@ var sword_idle_animations = [
 	"sword idle dendro"
 ]
 
+var attacking_animations: Array = [
+	"attacking anemo",
+	"attacking hydro",
+	"attacking pyro",
+	"attacking dendro"
+]
+
 func _ready() -> void:
 	play(sword_drawing_animations[Global.player_element])
 
@@ -33,6 +40,11 @@ func move_forward(x,y):
 	tween.tween_property(self, "position", Vector2(x,y), 0.5)
 	tween.tween_interval(0.2)
 	tween.tween_property(self, "position", original_position, 0.5)
+
+func attack():
+	move_forward(360,186)
+	play(attacking_animations[Global.player_element])
+	await animation_finished
 
 func taking_damage():
 	play(damage_animations[Global.player_element])

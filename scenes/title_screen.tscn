@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dtu7uqjbrndcf" path="res://scripts/play_button.gd" id="4_mgrm8"]
 [ext_resource type="FontFile" uid="uid://b6qq6p4aasabv" path="res://fonts/VCR_OSD_MONO.ttf" id="5_dc4i4"]
 [ext_resource type="Script" uid="uid://f8238un5taig" path="res://scripts/gamemode.gd" id="5_e54dn"]
+[ext_resource type="AudioStream" uid="uid://b87cuja5bvrey" path="res://ost/menu.wav" id="7_3yumr"]
 
 [node name="TitleScreen" type="Control" unique_id=1499017291]
 layout_mode = 3
@@ -56,6 +57,11 @@ offset_right = 51.0
 offset_bottom = 1.0
 theme_override_fonts/font = ExtResource("5_dc4i4")
 text = "Normal"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1969152699]
+stream = ExtResource("7_3yumr")
+volume_db = -6.0
+autoplay = true
 
 [connection signal="button_down" from="PlayButton" to="PlayButton" method="_on_button_down"]
 [connection signal="button_up" from="PlayButton" to="PlayButton" method="_on_button_up"]

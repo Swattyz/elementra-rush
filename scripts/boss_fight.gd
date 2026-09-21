@@ -50,14 +50,6 @@ var portraits: Array = [
 	"res://player_sprites/portrait_hydro.png",
 	"res://player_sprites/portrait_pyro.png",
 	"res://player_sprites/portrait_dendro.png"
-	
-]
-
-var attacking_animations: Array = [
-	"attacking anemo",
-	"attacking hydro",
-	"attacking pyro",
-	"attacking dendro"
 ]
 
 var blocking_animations: Array = [
@@ -77,7 +69,6 @@ func _ready() -> void:
 	buttons = $FightHUD/Buttons
 	fight_button = $FightHUD/Buttons/FightButton
 	player_block_animation = blocking_animations[Global.player_element]
-	player_attack_animation = attacking_animations[Global.player_element]
 	player_icon = portraits[Global.player_element]
 	
 	while Global.ending == 0:
@@ -173,6 +164,7 @@ func change_scene():
 func player_attack():
 	await fight_qte.player_attacked
 	fight_qte.queue_free()
+	await $Player.attack()
 	add_child(fight_dialogue)
 	fight_dialogue.change_dialogue("...", "???", unknown_icon)
 	
@@ -381,8 +373,6 @@ func _on_fight_button_pressed() -> void:
 	$FightHUD.remove_child(buttons)
 	qte_start()
 	await fight_qte.qte_has_started
-	$Player.move_forward(360,186)
-	$Player.play(player_attack_animation)
 	current_action = 1
 
 func qte_start():
